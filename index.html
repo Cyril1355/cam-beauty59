@@ -155,18 +155,6 @@
     </main>
 
 	<div id="footer-placeholder"></div>
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        fetch('footer.html')
-            .then(response => {
-                if (!response.ok) throw new Error("Erreur de chargement");
-                return response.text();
-            })
-            .then(data => {
-                document.getElementById('footer-placeholder').innerHTML = data;
-            })
-            .catch(error => console.error("Problème : ", error));
-    });
-</script>
+	<script src="scripts.js"></script>
 </body>
 </html>
