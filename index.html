@@ -12,13 +12,16 @@
 </head>
 <body>
 
+    <!-- EN-TÊTE / HEADER -->
     <header class="main-header">
         <div class="header-container">
-            <a href="index.html" class="logo">
+            <!-- LOGO -->
+            <a href="index.html" class="logo" style="text-decoration: none;">
                 <span class="logo-main">Cam’Beauty59</span>
-				<span class="logo-sub">Institut Privé</span>
+                <span class="logo-sub">Institut Privé</span>
             </a>
             
+            <!-- Menu de Navigation avec Checkbox (Burger) -->
             <input type="checkbox" id="menu-toggle" class="menu-toggle-checkbox">
             <label for="menu-toggle" class="menu-burger-label">
                 <span></span>
@@ -26,15 +29,34 @@
                 <span></span>
             </label>
 
+            <!-- NAVIGATION ÉPURÉE AVEC MENUS DÉROULANTS -->
             <nav class="nav-menu">
                 <ul>
                     <li><a href="index.html" class="active">Accueil</a></li>
                     <li><a href="apropos.html">À Propos</a></li>
-                    <li><a href="ongles.html">Ongles</a></li>
-                    <li><a href="cils.html">Cils</a></li>
-                    <li><a href="soins.html">Soins & Épilation</a></li>
-                    <li><a href="massages.html">Massages</a></li>
-                    <li><a href="animations.html">Enfants & Spa</a></li>
+                    
+                    <!-- MENU DÉROULANT : PRESTATIONS -->
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-trigger">Prestations <i class="fa-solid fa-chevron-down" style="font-size: 0.75rem; margin-left: 4px;"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="ongles.html">Ongles</a></li>
+                            <li><a href="cils.html">Cils</a></li>
+                            <li><a href="soins-epilations.html">Soins & Épilations</a></li>
+                            <li><a href="massages.html">Massages</a></li>
+                            <li><a href="modelage-corps.html">Modelage corps</a></li>
+                            <li><a href="mise-en-beaute.html">Mise en beauté</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- MENU DÉROULANT : ENFANTS -->
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-trigger">Enfants <i class="fa-solid fa-chevron-down" style="font-size: 0.75rem; margin-left: 4px;"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="animations.html">Animations</a></li>
+                            <li><a href="spa-party.html">Spa party</a></li>
+                        </ul>
+                    </li>
+
                     <li><a href="tarifs.html">Tarifs</a></li>
                     <li class="mobile-cta-item"><a href="reservation.html" class="btn-primary">Prendre RDV</a></li>
                 </ul>
@@ -43,7 +65,6 @@
             <a href="reservation.html" class="btn-cta">Prendre RDV</a>
         </div>
     </header>
-
     <main>
         <section class="hero-section">
             <div class="hero-container">
@@ -115,56 +136,37 @@
         </a>
     </div>
 </section>
+
+<!-- Section Localisation & Carte Google Maps avec Marqueur GPS Forcé -->
+<section class="map-section">
+    <div class="map-container">
+        <h2 class="section-title" style="text-align: center; margin-bottom: 25px; font-family: inherit;">📍 Notre Institut Privé</h2>
+        <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2533.6231940192534!2d3.330880377484643!3d50.366113893548984!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTDCsDIxJzU4LjAiTiAzwrAxOSc1MS4yIkU!5e0!3m2!1sfr!2sfr!4v1718204000000!5m2!1sfr!2sfr" 
+            width="100%" 
+            height="450" 
+            style="border:0;" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+    </div>
+</section>
     </main>
 
-<footer class="main-footer">
-    <div class="footer-container">
-<div class="footer-col contact-col">
-    <h4>Contact & Infos</h4>
-    <p><i class="fa-solid fa-location-dot"></i> Hornaing (Nord – 59)</p>
-    <p><i class="fa-solid fa-phone"></i> Téléphone : 06.60.77.10.89</p>
-    <p><i class="fa-solid fa-house-chimney"></i> En institut ou à votre domicile</p>
-    
-    <div class="footer-socials">
-        <a href="https://www.facebook.com/profile.php?id=61571877812657" target="_blank" title="Suivez-nous sur Facebook" class="social-link fb">
-            <i class="fa-brands fa-facebook-f"></i>
-        </a>
-        <a href="https://www.instagram.com/cam_beauty_59?fbclid=IwY2xjawSXhWFleHRuA2FlbQIxMABzcnRjBmFwcF9pZBAyMjIwMzkxNzg4MjAwODkyAAEeG185iUCIok8GED-L1jcoVpaqo45nMcBzob8tK8vyRKc40WzaAgR6T8M7yww_aem_YWdncwBMK76YFuNPr8O8VAela2et&brid=YWdncwGJ7AncZDzfiNrmptBhnZ3S" target="_blank" title="Suivez-nous sur Instagram" class="social-link ig">
-            <i class="fa-brands fa-instagram"></i>
-        </a>
-    </div>
-</div>
-        <div class="footer-col payment-col">
-            <h4>Moyens de paiement</h4>
-            <div class="payment-container">
-                <div class="payment-group accept">
-                    <span class="group-title">Acceptés :</span>
-                    <div class="logos-grid">
-                        <div class="logo-item" title="Espèces"><i class="fa-solid fa-money-bill-wave"></i> <span>Espèces</span></div>
-                        <div class="logo-item" title="PayPal"><i class="fa-brands fa-paypal"></i> <span>PayPal</span></div>
-                        <div class="logo-item" title="Wero"><i class="fa-solid fa-mobile-screen-button"></i> <span>Wero</span></div>
-                    </div>
-                </div>
-                
-                <div class="payment-group refuse">
-                    <span class="group-title">Refusés :</span>
-                    <div class="logos-grid">
-                        <div class="logo-item disabled" title="Carte Bancaire"><i class="fa-solid fa-credit-card"></i> <span>CB</span></div>
-                        <div class="logo-item disabled" title="Chèque"><i class="fa-solid fa-money-check-dollar"></i> <span>Chèque</span></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <div class="footer-bottom">
-        <p>&copy; 2026 Institut Camille. Tous droits réservés.</p>
-        <p class="footer-legal-links">
-            <a href="mentions-legales.html">Mentions Légales</a> | 
-            <a href="politique-confidentialite.html">Politique de Confidentialité & RGPD</a>
-        </p>
-    </div>
-</footer>
-
+	<div id="footer-placeholder"></div>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        fetch('footer.html')
+            .then(response => {
+                if (!response.ok) throw new Error("Erreur de chargement");
+                return response.text();
+            })
+            .then(data => {
+                document.getElementById('footer-placeholder').innerHTML = data;
+            })
+            .catch(error => console.error("Problème : ", error));
+    });
+</script>
 </body>
 </html>

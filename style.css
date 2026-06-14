@@ -79,11 +79,13 @@ img {
     color: var(--text-light);
     margin-top: 4px;
 }
-
+/* ==========================================================================
+   NOUVEAU SYSTÈME DE NAVIGATION ÉPURÉ & DROPDOWNS
+   ========================================================================== */
 .nav-menu ul {
     list-style: none;
     display: flex;
-    gap: 20px;
+    gap: 25px;
     align-items: center;
 }
 
@@ -91,8 +93,70 @@ img {
     font-size: 0.95rem;
     font-weight: 500;
     color: var(--text-light);
-    padding: 5px 0;
+    padding: 10px 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
     position: relative;
+}
+
+/* --- STRUCTURE DES DROPDOWNS (ORDINATEUR) --- */
+.nav-menu li {
+    position: relative; /* Position pivot pour le sous-menu */
+}
+
+.nav-menu .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #ffffff;
+    box-shadow: 0 10px 30px rgba(184, 150, 137, 0.12);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 12px 0;
+    min-width: 200px;
+    z-index: 1000;
+    flex-direction: column;
+    gap: 0;
+}
+
+/* Liens internes du menu déroulant */
+.nav-menu .dropdown-menu li a {
+    display: block;
+    padding: 10px 20px;
+    color: var(--text-dark);
+    font-size: 0.9rem;
+    font-weight: 400;
+    white-space: nowrap;
+    width: 100%;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.nav-menu .dropdown-menu li a:hover,
+.nav-menu .dropdown-menu li a.active {
+    background-color: var(--bg-soft);
+    color: var(--primary-color);
+}
+
+/* Flèche indicative */
+.dropdown-trigger::after {
+    content: '▾';
+    font-size: 0.8rem;
+    color: var(--text-light);
+    transition: transform 0.3s ease;
+}
+
+.dropdown-trigger:hover::after {
+    color: var(--primary-color);
+}
+
+/* Déclenchement au survol sur écran d'ordinateur */
+@media (min-width: 1025px) {
+    .nav-menu li.dropdown:hover .dropdown-menu {
+        display: flex;
+    }
 }
 
 .nav-menu a:hover, .nav-menu a.active {
@@ -649,6 +713,29 @@ img {
     .menu-toggle-checkbox:checked ~ .menu-burger-label span:nth-child(3) {
         transform: translateY(-9px) rotate(-45deg);
     }
+	/* Ajustement des menus déroulants pour le volet mobile */
+    .nav-menu .dropdown-menu {
+        display: none; 
+        position: static;
+        transform: none;
+        box-shadow: none;
+        border: none;
+        padding: 5px 0 5px 15px;
+        background: transparent;
+        min-width: auto;
+    }
+
+    /* Affiche le sous-menu sur mobile au clic/survol */
+    .nav-menu li.dropdown:hover .dropdown-menu,
+    .nav-menu li.dropdown:focus-within .dropdown-menu {
+        display: flex;
+    }
+
+    .nav-menu .dropdown-menu li a {
+        font-size: 1.05rem;
+        padding: 8px 0;
+        color: var(--text-light);
+    }
 }
 
 @media (max-width: 768px) {
@@ -699,4 +786,871 @@ img {
         flex-direction: column;
         gap: 30px;
     }
+}
+/* Style du lien dans le footer */
+.footer-link {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 700;
+  transition: opacity 0.3s ease;
+}
+
+.footer-link:hover {
+  text-decoration: underline;
+  opacity: 0.8;
+}
+
+/* ==========================================================================
+   PAGE À PROPOS - IDENTITÉ CAMILLE
+   ========================================================================== */
+.about-page-content {
+    background-color: var(--bg-soft);
+}
+
+.about-bio-section {
+    padding: 80px 20px;
+    background-color: #ffffff;
+}
+
+.about-bio-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+
+.about-bio-text {
+    flex: 1.2;
+}
+
+.about-bio-text .subtitle {
+    font-size: 0.95rem;
+    color: var(--primary-color);
+    font-weight: 600;
+    display: block;
+    margin-bottom: 15px;
+}
+
+.about-bio-text h1 {
+    font-size: 3rem;
+    color: var(--text-dark);
+    margin-bottom: 20px;
+}
+
+.about-bio-text p {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--text-light);
+    margin-bottom: 15px;
+}
+
+.about-bio-text p.lead {
+    font-size: 1.25rem;
+    color: var(--text-dark);
+    font-weight: 500;
+}
+
+/* Bloc Diplômes & Spécialités */
+.diplomas-block {
+    background-color: var(--bg-soft);
+    padding: 25px 30px;
+    border-radius: 20px;
+    margin-top: 30px;
+    border: 1px solid var(--border-color);
+}
+
+.diplomas-block h3 {
+    font-size: 1.2rem;
+    color: var(--text-dark);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.diplomas-block h3 i {
+    color: var(--primary-color);
+}
+
+.skills-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.skills-list li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1rem;
+    color: var(--text-dark);
+}
+
+.skills-list li i {
+    color: var(--primary-color);
+    font-size: 0.85rem;
+}
+
+/* Zone Photo Institut / Camille */
+.about-bio-gallery {
+    flex: 0.8;
+}
+
+.main-photo-wrapper {
+    background-color: #ffffff;
+    padding: 12px;
+    border-radius: 24px;
+    box-shadow: 0 15px 35px rgba(184, 150, 137, 0.12);
+    border: 1px solid var(--border-color);
+    text-align: center;
+}
+
+.main-photo-wrapper img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 16px;
+    display: block;
+}
+
+.photo-caption {
+    display: inline-block;
+    margin-top: 12px;
+    font-size: 0.85rem;
+    color: var(--text-light);
+    font-style: italic;
+}
+
+/* SECTION GRILLE DES PRESTATIONS VISUELLES */
+.about-services-section {
+    padding: 80px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.services-intro {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.services-intro h2 {
+    font-size: 2.2rem;
+    color: var(--text-dark);
+    margin-bottom: 10px;
+}
+
+.services-intro p {
+    font-size: 1.05rem;
+    color: var(--text-light);
+}
+
+.services-visual-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+    justify-content: center;
+}
+
+.service-visual-card {
+    background-color: #ffffff;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+    border: 1px solid var(--border-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-visual-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(184, 150, 137, 0.12);
+}
+
+.service-img-holder {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    background-color: #f5f5f5;
+}
+
+.service-img-holder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.service-visual-card:hover .service-img-holder img {
+    transform: scale(1.06);
+}
+
+.service-card-info {
+    padding: 20px;
+    text-align: center;
+}
+
+.service-card-info h3 {
+    font-size: 1.1rem;
+    color: var(--text-dark);
+    font-weight: 600;
+}
+
+.service-card-info .small-tag {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--text-light);
+    font-weight: 400;
+    margin-top: 4px;
+}
+
+.about-action-call {
+    text-align: center;
+    margin-top: 50px;
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 992px) {
+    .about-bio-container {
+        flex-direction: column;
+        gap: 40px;
+    }
+    .about-bio-gallery {
+        width: 100%;
+        max-width: 500px;
+    }
+    .about-bio-text h1 {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .services-visual-grid {
+        grid-template-columns: 1fr;
+        max-width: 320px;
+        margin: 0 auto;
+    }
+}
+/* ==========================================================================
+   SYSTEME DE MINI-CARROUSEL SUR LES CARTES
+   ========================================================================== */
+.service-slider-container {
+    position: relative;
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+    background-color: #f5f5f5;
+}
+
+.service-slides {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    width: 100%;
+    height: 100%;
+    /* Masquer la barre de défilement sur tous les navigateurs */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+}
+
+.service-slides::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+}
+
+.service-slides img {
+    flex: 0 0 100%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    scroll-snap-align: start;
+    transition: transform 0.5s ease;
+}
+
+/* Boutons Flèches */
+.slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 32px;
+    height: 32px;
+    background-color: rgba(255, 255, 255, 0.85);
+    border: none;
+    border-radius: 50%;
+    color: var(--text-dark);
+    font-size: 0.8rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    opacity: 0; /* Caché par défaut */
+    z-index: 10;
+}
+
+.slider-btn.prev { left: 10px; }
+.slider-btn.next { right: 10px; }
+
+/* Afficher les flèches uniquement au survol de la carte */
+.service-visual-card:hover .slider-btn {
+    opacity: 1;
+}
+
+.slider-btn:hover {
+    background-color: var(--primary-color);
+    color: #ffffff;
+}
+
+/* Forcer l'affichage des boutons sur mobile puisqu'il n'y a pas de survol "Hover" */
+@media (max-width: 768px) {
+    .slider-btn {
+        opacity: 1;
+        background-color: rgba(255, 255, 255, 0.95);
+    }
+}
+/* Section Google Maps */
+.map-section {
+    padding: 40px 0;
+    width: 100%;
+    background-color: var(--bg-light, #fff); /* S'adapte à ta couleur de fond */
+}
+
+.map-container {
+    max-width: 1200px; /* Aligné sur la largeur maximale de ton site */
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.map-container iframe {
+    width: 100%;
+    border-radius: 12px; /* Pour un rendu plus doux et moderne */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); /* Ombre légère pour le relief */
+}
+/* Ajustement des menus déroulants pour le volet mobile */
+    .nav-menu .dropdown-menu {
+        display: none; 
+        position: static;
+        transform: none;
+        box-shadow: none;
+        border: none;
+        padding: 5px 0 5px 15px;
+        background: transparent;
+        min-width: auto;
+    }
+
+    /* Affiche le sous-menu sur mobile au clic/survol */
+    .nav-menu li.dropdown:hover .dropdown-menu,
+    .nav-menu li.dropdown:focus-within .dropdown-menu {
+        display: flex;
+    }
+
+    .nav-menu .dropdown-menu li a {
+        font-size: 1.05rem;
+        padding: 8px 0;
+        color: var(--text-light);
+    }
+/* ==========================================================================
+   PAGE : MODELAGE CORPS & DOS (Mise en page dédiée)
+   ========================================================================== */
+
+.prestation-hero-section.section-modelage {
+    background: #faf6f5; /* Le beige clair identique à vos autres pages */
+    padding: 100px 20px;
+    text-align: center;
+}
+
+/* Force la couleur sombre sur le titre, le sous-titre et la description */
+.prestation-hero-section.section-modelage h1,
+.prestation-hero-section.section-modelage .prestation-lead-text,
+.prestation-hero-section.section-modelage .prestation-subtitle {
+    color: #4a3e3d !important;
+}
+
+/* Conserve la couleur dorée/rosée uniquement pour le texte d'introduction si besoin */
+.prestation-hero-section.section-modelage .prestation-subtitle {
+    color: #b89689 !important;
+}
+
+.hero-prestation-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+/* 2. Structure principale (Menu + Galerie) */
+.prestation-menu-section {
+    background-color: #faf6f5;
+    padding: 80px 20px;
+}
+
+.prestation-menu-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: table;
+    width: 100%;
+}
+
+/* Colonne de Gauche : Prestations */
+.prestation-items-details {
+    display: table-cell;
+    width: 55%;
+    vertical-align: top;
+    padding-right: 5%;
+}
+
+.prestation-category-block h2 {
+    font-family: "Playfair Display", serif;
+    font-size: 2rem;
+    color: #4a3e3d;
+    margin-bottom: 10px;
+}
+
+.category-intro-text {
+    color: #8c7e7c;
+    font-size: 1.05rem;
+    margin-bottom: 40px;
+    line-height: 1.5;
+}
+
+/* Lignes de prestations avec pointillés */
+.menu-list {
+    margin-bottom: 50px;
+}
+
+.menu-item-row {
+    margin-bottom: 30px;
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(74, 62, 61, 0.03);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.menu-item-row:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(74, 62, 61, 0.07);
+}
+
+.item-title-dots {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.item-title {
+    font-family: "Playfair Display", serif;
+    font-size: 1.35rem;
+    color: #4a3e3d;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.item-dots {
+    flex-grow: 1;
+    border-bottom: 2px dotted #e8d8d4;
+    margin: 0 15px;
+    position: relative;
+    top: -4px;
+}
+
+.item-description {
+    color: #706260;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-top: 10px;
+}
+
+.item-meta {
+    margin-top: 15px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.item-duration {
+    background-color: #f3ece9;
+    color: #4a3e3d;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 50px;
+}
+
+.item-duration i {
+    color: #b89689;
+    margin-right: 5px;
+}
+
+/* Encadré Qualité */
+.quality-callout-box {
+    background-color: #fcf9f8;
+    border-left: 4px solid #b89689;
+    padding: 25px;
+    border-radius: 0 16px 16px 0;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.01);
+}
+
+.quality-callout-box h4 {
+    font-family: "Playfair Display", serif;
+    font-size: 1.15rem;
+    color: #4a3e3d;
+    margin-bottom: 10px;
+}
+
+.quality-callout-box h4 i {
+    color: #b89689;
+    margin-right: 6px;
+}
+
+.quality-callout-box p {
+    color: #706260;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* Colonne de Droite : Galerie Photo interactive */
+.prestation-media-gallery {
+    display: table-cell;
+    width: 40%;
+    vertical-align: top;
+}
+
+.sticky-gallery-wrapper {
+    position: relative;
+}
+
+.interactive-slider {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(74, 62, 61, 0.12);
+    background-color: #4a3e3d;
+}
+
+.slider-slides-container {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+}
+
+.slider-slides-container::-webkit-scrollbar {
+    display: none; /* Cache la scrollbar brute */
+}
+
+.slide-picture-item {
+    flex: 0 0 100%;
+    scroll-snap-align: start;
+    position: relative;
+    height: 480px;
+}
+
+.slide-picture-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.slide-tag {
+    position: absolute;
+    bottom: 25px;
+    left: 25px;
+    background-color: rgba(42, 35, 34, 0.8);
+    backdrop-filter: blur(5px);
+    color: #ffffff;
+    padding: 8px 18px;
+    border-radius: 30px;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+}
+
+/* Flèches de navigation */
+.slider-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #ffffff;
+    color: #4a3e3d;
+    border: none;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    transition: background-color 0.3s, color 0.3s, transform 0.2s;
+    z-index: 10;
+}
+
+.slider-arrow:hover {
+    background-color: #b89689;
+    color: #ffffff;
+}
+
+.slider-arrow:active {
+    transform: translateY(-50%) scale(0.95);
+}
+
+.arrow-left { left: 15px; }
+.arrow-right { right: 15px; }
+
+.gallery-help-text {
+    text-align: center;
+    color: #8c7e7c;
+    font-size: 0.85rem;
+    margin-top: 15px;
+    font-style: italic;
+}
+
+.gallery-help-text i {
+    color: #b89689;
+    margin-right: 4px;
+}
+
+/* 3. Adaptabilité Mobile (Responsive) */
+@media (max-width: 992px) {
+    .prestation-menu-container {
+        display: block;
+    }
+    
+    .prestation-items-details {
+        display: block;
+        width: 100%;
+        padding-right: 0;
+        margin-bottom: 50px;
+    }
+    
+    .prestation-media-gallery {
+        display: block;
+        width: 100%;
+    }
+    
+    .slide-picture-item {
+        height: 380px;
+    }
+}
+
+@media (max-width: 576px) {
+    .prestation-hero-section.section-modelage {
+        padding: 60px 15px;
+    }
+    
+    .hero-prestation-content h1 {
+        font-size: 2.2rem;
+    }
+    
+    .item-title-dots {
+        flex-direction: column;
+    }
+    
+    .item-dots {
+        display: none; /* Supprimé sur petit mobile pour éviter le chevauchement */
+    }
+}
+/* Bannière Spécifique Mise en Beauté */
+.prestation-hero-section.section-makeup {
+    background: #faf6f5; /* Le beige clair identique à vos autres pages */
+    padding: 100px 20px;
+    text-align: center;
+}
+/* Style du sous-titre */
+.prestation-hero-section .prestation-subtitle {
+    display: block;
+    color: #b89689;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 25px;
+}
+
+/* Style du titre avec l'icône */
+.prestation-hero-section h1 {
+    font-family: 'Playfair Display', serif;
+    color: #4a3e3d;
+    font-size: 3.2rem;
+    margin: 0 0 25px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+/* Style de la deuxième ligne de texte en italique */
+.prestation-hero-section .prestation-highlight-text {
+    color: #b89689;
+    font-size: 1.15rem;
+    font-style: italic;
+    margin: 15px auto 35px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+/* Force la couleur sombre sur le titre, le sous-titre et la description */
+.prestation-hero-section.section-makeup h1,
+.prestation-hero-section.section-makeup .prestation-lead-text,
+.prestation-hero-section.section-makeup .prestation-highlight-text,
+.prestation-hero-section.section-makeup .prestation-subtitle {
+    color: #4a3e3d !important;
+}
+
+/* Conserve la couleur dorée/rosée uniquement pour le texte d'introduction si besoin */
+.prestation-hero-section.section-modelage .prestation-subtitle {
+    color: #b89689 !important;
+}
+
+.hero-prestation-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+/* Forcer la structure de la galerie en mode statique */
+.static-gallery-wrapper {
+    position: relative;
+}
+/* Bannière Spécifique Extensions de Cils */
+.prestation-hero-section.section-lashes {
+    background: linear-gradient(rgba(42, 35, 34, 0.5), rgba(42, 35, 34, 0.6)), 
+                url('images/hero-cils.jpg') center/cover no-repeat;
+    padding: 100px 20px;
+    text-align: center;
+    color: #ffffff;
+}
+.presentation-container {
+    text-align: center;
+    padding: 60px 20px;
+    background-color: #fdfaf9; /* Couleur de fond propre à l'image */
+}
+
+.sub-title {
+    color: #b89689; 
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.main-title {
+    font-family: 'Playfair Display', serif; /* Ou votre police titre */
+    color: #4a3e3d;
+    margin: 15px 0;
+}
+
+.intro-text {
+    color: #5c4e4c;
+    margin-bottom: 20px;
+}
+
+.clean-list {
+    list-style: none;
+    display: inline-block;
+    text-align: left;
+    padding: 0;
+    line-height: 2;
+}
+
+.final-quote {
+    color: #b89689;
+    font-style: italic;
+    margin-top: 20px;
+}
+/* --- Mise en page épurée (Animations Enfants) --- */
+.prestation-hero { background: #faf6f5; padding: 60px 20px; text-align: center; border-bottom: 1px solid #e8d8d4; }
+.services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; max-width: 1000px; margin: 40px auto; padding: 0 20px; }
+.service-card { background: #ffffff; padding: 25px; border-radius: 12px; border: 1px solid #eae1de; text-align: center; transition: all 0.3s ease; cursor: pointer; }
+.service-card:hover { transform: translateY(-5px); border-color: #b89689; box-shadow: 0 8px 20px rgba(184, 150, 137, 0.1); }
+.slides-container { position: relative; max-width: 800px; margin: 40px auto; overflow: hidden; border-radius: 16px; height: 400px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
+.kids-slide { display: none; width: 100%; height: 100%; }
+.slide-caption { position: absolute; bottom: 0; width: 100%; background: linear-gradient(transparent, rgba(42,35,34,0.8)); padding: 20px; color: #fff; text-align: center; }
+.event-badges { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; margin: 30px 0; }
+.badge { background: #ffffff; padding: 12px 24px; border-radius: 30px; border: 1px solid #eae1de; cursor: pointer; transition: all 0.2s; }
+.badge:hover { border-color: #b89689; background: #fdfbfb; transform: scale(1.03); }
+
+/* Conteneur du slider : fixe la taille et cache ce qui dépasse */
+.slider-container {
+    position: relative;
+    width: 100%;
+    max-width: 600px; /* Ajustez selon vos besoins */
+    margin: 20px auto;
+    overflow: hidden; /* C'est ce qui masque les images suivantes */
+    border-radius: 12px;
+}
+
+/* Le conteneur interne qui fait défiler les images */
+.slides {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    width: 100%;
+}
+
+/* Chaque image prend toute la largeur du slider */
+.slide {
+    width: 100%;
+    flex-shrink: 0;
+    display: block;
+}
+
+/* Positionnement des flèches par-dessus le slider */
+.slide-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.7);
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 10;
+}
+.slide-prev { left: 10px; }
+.slide-next { right: 10px; }
+
+/* Style pour le badge "Sur Devis" */
+.badge-price {
+    display: inline-block;
+    padding: 6px 16px;
+    background-color: #e8d8d4;
+    color: #4a3e3d;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: 30px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+/* Ajustement pour la cohérence des titres */
+.prestation-hero h1 {
+    font-family: 'Playfair Display', serif;
+    color: #4a3e3d;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+/* Badge prix */
+.badge-price {
+    display: inline-block;
+    padding: 6px 16px;
+    background-color: #fce4e4; /* Rose très doux */
+    color: #4a3e3d;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: 30px;
+    text-transform: uppercase;
+}
+
+/* Grille des services */
+.service-card {
+    background: #ffffff;
+    padding: 20px;
+    border: 1px solid #f3ece9;
+    border-radius: 12px;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.service-card:hover {
+    border-color: #e8d8d4;
+    transform: translateY(-3px);
 }
