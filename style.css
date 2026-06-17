@@ -2461,7 +2461,7 @@ a {
 }
 .btn-page-cta {
     display: inline-block;
-    padding: 14px 28px;
+    padding: 16px 20px;
     background-color: var(--primary-color);
     color: #ffffff;
     font-family: var(--font-body);
