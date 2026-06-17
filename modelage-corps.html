@@ -3,330 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modelage Corps – Cam’Beauty59</title>
-    <!-- Connexion à Google Fonts pour charger les polices du site -->
+    <title>Modelage Corps – Cam’Beauty59 | Hornaing</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <!-- Chargement des icônes Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-    <style>
-        /* ==========================================================================
-           MISE EN PAGE DU HERO (IDENTIQUE À L'IMAGE_37B460.PNG)
-           ========================================================================== */
-        
-        .prestation-hero-section.section-modelage {
-            background: #faf6f5; /* Beige uni ultra-lumineux et doux */
-            padding: 80px 20px 60px 20px;
-            text-align: center;
-            border-bottom: 1px solid #f3ece9;
-        }
-
-        .hero-prestation-content {
-            max-width: 850px;
-            margin: 0 auto;
-        }
-
-        /* Sous-titre en haut (ex: "BEAUTÉ DU REGARD") */
-        .prestation-hero-section.section-modelage .prestation-subtitle {
-            display: block;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            color: #b89689; /* Teinte rosée/dorée douce */
-            font-size: 0.9rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 3px; /* Grand espacement des lettres */
-            margin-bottom: 25px;
-        }
-
-        /* Titre Principal avec Émoji (ex: "Extensions de cils") */
-        .prestation-hero-section.section-modelage h1 {
-            font-family: 'Playfair Display', serif;
-            color: #4a3e3d; /* Marron foncé signature de l'institut */
-            font-size: 3.2rem;
-            font-weight: 700;
-            margin: 0 0 25px 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-            line-height: 1.2;
-        }
-
-        /* Effet visuel sur l'émoji du titre pour lui donner du relief */
-        .prestation-hero-section.section-modelage h1 .title-emoji {
-            font-size: 3rem;
-            filter: drop-shadow(0 4px 6px rgba(74, 62, 61, 0.12));
-            display: inline-block;
-            transform: rotate(-5deg);
-        }
-
-        /* Ligne de texte 1 (ex: "Sublimez votre regard...") */
-        .prestation-hero-section.section-modelage .prestation-lead-text {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            color: #7a6b68;
-            font-size: 1.2rem;
-            line-height: 1.6;
-            margin: 0 auto 15px auto;
-            max-width: 700px;
-            font-weight: 400;
-        }
-
-        /* Ligne de texte 2 en italique (ex: "Résultat naturel...") */
-        .prestation-hero-section.section-modelage .prestation-highlight-text {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            color: #b89689;
-            font-size: 1.15rem;
-            font-style: italic;
-            margin: 0 auto 35px auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            font-weight: 400;
-        }
-
-        .prestation-hero-section.section-modelage .prestation-highlight-text .heart-emoji {
-            filter: drop-shadow(0 2px 4px rgba(184, 150, 137, 0.15));
-        }
-
-        /* ==========================================================================
-           AUTRES AJUSTEMENTS ESTHÉTIQUES DE LA PAGE
-           ========================================================================== */
-
-        .prestation-detail-page {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            color: #4a3e3d;
-        }
-
-        .btn-primary {
-            display: inline-block;
-            background-color: #b89689;
-            color: #ffffff;
-            padding: 14px 28px;
-            border-radius: 10px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 12px rgba(184, 150, 137, 0.15);
-        }
-
-        .btn-primary:hover {
-            background-color: #a38175;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(184, 150, 137, 0.25);
-        }
-
-        .prestation-category-block h2 {
-            font-family: 'Playfair Display', serif;
-            color: #4a3e3d;
-            font-size: 1.8rem;
-            margin-bottom: 10px;
-        }
-
-        .category-intro-text {
-            color: #8c7e7c;
-            margin-bottom: 30px;
-        }
-
-        .item-title {
-            font-family: 'Playfair Display', serif;
-            color: #4a3e3d;
-            font-size: 1.25rem;
-            font-weight: 600;
-        }
-
-        .item-description {
-            color: #7a6b68;
-            font-size: 0.95rem;
-            line-height: 1.5;
-        }
-
-        .item-duration {
-            color: #b89689;
-            font-weight: 500;
-            font-size: 0.9rem;
-        }
-
-        .quality-callout-box {
-            background-color: #faf6f5;
-            border: 1px solid #eae1de;
-            border-radius: 14px;
-            padding: 25px;
-            margin-top: 40px;
-        }
-
-        .quality-callout-box h4 {
-            font-family: 'Playfair Display', serif;
-            color: #4a3e3d;
-            font-size: 1.15rem;
-            margin: 0 0 10px 0;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .quality-callout-box h4 i {
-            color: #b89689;
-        }
-
-        .quality-callout-box p {
-            color: #7a6b68;
-            margin: 0;
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-
-        .slide-tag {
-            position: absolute;
-            bottom: 15px;
-            left: 15px;
-            background: rgba(255, 255, 255, 0.95);
-            color: #4a3e3d;
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            box-shadow: 0 4px 10px rgba(74, 62, 61, 0.05);
-        }
-
-        .slider-arrow {
-            background: rgba(255, 255, 255, 0.9);
-            color: #4a3e3d;
-            border: none;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-        }
-
-        .slider-arrow:hover {
-            background: #b89689;
-            color: #ffffff;
-        }
-    </style>
 </head>
 <body>
+<div id="header-placeholder"></div>	
+<main class="prestation-detail-page">
+    
+    <!-- HERO BANNER DE LA PRESTATION -->
+    <section class="prestation-hero-section section-nails">
+        <div class="hero-prestation-content">
+            <span class="prestation-subtitle">Soin du corps</span>
+            <h1>💆‍♀️ Modelage Corps & Dos</h1>
+            <p class="prestation-lead-text">Évadez-vous le temps d'un soin relaxant pensé pour libérer vos tensions profondes ✨</p>
+            <p class="prestation-lead-text highlight-text">💖 Un moment de reconnexion et d'apaisement absolu selon vos besoins</p>
+        </div>
+    </section>
 
-<header class="main-header">
-    <div class="header-container">
-        <!-- LOGO -->
-        <a href="index.html" class="logo" style="text-decoration: none;">
-            <span class="logo-main">Cam’Beauty59</span>
-            <span class="logo-sub">Institut Privé</span>
-        </a>
-        
-        <!-- MENU BURGER (MOBILE) -->
-        <input type="checkbox" id="menu-toggle" class="menu-toggle-checkbox">
-        <label for="menu-toggle" class="menu-burger-label">
-            <span></span>
-            <span></span>
-            <span></span>
-        </label>
-
-        <!-- NAVIGATION ÉPURÉE -->
-        <nav class="nav-menu">
-            <ul>
-                <li><a href="index.html">Accueil</a></li>
-                <li><a href="apropos.html">À Propos</a></li>
-                
-                <!-- MENU DÉROULANT : PRESTATIONS -->
-                <li class="dropdown">
-                    <a href="#" class="dropdown-trigger active">Prestations <i class="fa-solid fa-chevron-down" style="font-size: 0.75rem; margin-left: 4px;"></i></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="ongles.html">Ongles</a></li>
-                        <li><a href="cils.html">Cils</a></li>
-                        <li><a href="soins-epilations.html">Soins & Épilations</a></li>
-                        <li><a href="massages.html">Massages</a></li>
-                        <li><a href="modelage-corps.html" class="active">Modelage corps</a></li>
-                        <li><a href="mise-en-beaute.html">Mise en beauté</a></li>
-                    </ul>
-                </li>
-
-                <!-- MENU DÉROULANT : ENFANTS -->
-                <li class="dropdown">
-                    <a href="#" class="dropdown-trigger">Enfants <i class="fa-solid fa-chevron-down" style="font-size: 0.75rem; margin-left: 4px;"></i></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="animations.html">Animations</a></li>
-                        <li><a href="spa-party.html">Spa party</a></li>
-                    </ul>
-                </li>
-
-                <li><a href="tarifs.html">Tarifs</a></li>
-                <li class="mobile-cta-item"><a href="reservation.html" class="btn-primary">Prendre RDV</a></li>
-            </ul>
-        </nav>
-
-        <!-- BOUTON CTA -->
-        <a href="reservation.html" class="btn-cta">Prendre RDV</a>
-    </div>
-</header>
-	
-    <main class="prestation-detail-page">
-        <!-- HERO BANNER DE LA PRESTATION (MIS EN PAGE SELON IMAGE_37B460.PNG) -->
-        <section class="prestation-hero-section section-modelage">
-            <div class="hero-prestation-content">
-                <span class="prestation-subtitle">Soin du corps</span>
-                <h1><span class="title-emoji">💆‍♀️</span> Modelage Corps & Dos</h1>
-                <p class="prestation-lead-text">Évadez-vous le temps d'un soin relaxant pensé pour libérer vos tensions profondes ✨</p>
-                <p class="prestation-highlight-text"><span class="heart-emoji">💖</span> Un moment de reconnexion et d'apaisement absolu selon vos besoins</p>
-                <a href="reservation.html" class="btn-primary">Réserver mon moment douceur</a>
-            </div>
-        </section>
-
-        <!-- CONTENU DE LA PRESTATION & VISUELS -->
-        <section class="prestation-menu-section" style="padding: 60px 20px;">
-            <div class="prestation-menu-container">
-                
-                <!-- BLOC TARIFS ET DESCRIPTION -->
-                <div class="prestation-items-details">
-                    <div class="prestation-category-block">
-                        <h2><i class="fa-solid fa-spa" style="color: #b89689; margin-right: 10px;"></i> Nos Modelages Exclusifs</h2>
-                        <p class="category-intro-text">Chaque soin est réalisé avec une gestuelle douce et enveloppante pour une déconnexion totale en institut privé ou à domicile.</p>
-                        
-                        <div class="menu-list">
-                            <!-- Prestation 1 -->
-                            <div class="menu-item-row" style="margin-bottom: 25px;">
-                                <div class="item-main-info">
-                                    <div class="item-title-dots">
-                                        <span class="item-title">Modelage du dos</span>
-                                        <span class="item-dots"></span>
-                                    </div>
-                                    <p class="item-description" style="margin: 5px 0 0 0;">Un soin ciblé pour dénouer les tensions accumulées au niveau des épaules, des omoplates et des lombaires.</p>
+    <!-- CONTENU DE LA PRESTATION & VISUELS -->
+    <section class="prestation-menu-section">
+        <div class="prestation-menu-container">
+            
+            <!-- COLONNE DE GAUCHE : LES PRESTATIONS -->
+            <div class="prestation-items-details">
+                <div class="prestation-category-block">
+                    <h2><i class="fa-solid fa-spa"></i> Nos Modelages Exclusifs</h2>
+                    <p class="category-intro-text">Chaque soin est réalisé avec une gestuelle douce et enveloppante pour une déconnexion totale en institut privé ou à domicile.</p>
+                    
+                    <div class="menu-list">
+                        <!-- Prestation 1 -->
+                        <div class="menu-item-row">
+                            <div class="item-main-info">
+                                <div class="item-title-dots">
+                                    <span class="item-title">Modelage du dos</span>
+                                    <span class="item-dots"></span>
                                 </div>
-                                <div class="item-meta" style="margin-top: 5px;">
-                                    <span class="item-duration"><i class="fa-regular fa-clock"></i> 30 min</span>
-                                </div>
+                                <p class="item-description">Un soin ciblé pour dénouer les tensions accumulées au niveau des épaules, des omoplates et des lombaires.</p>
                             </div>
+                            <div class="item-meta">
+                                <span class="item-duration"><i class="fa-regular fa-clock"></i> 30 min</span>
+                            </div>
+                        </div>
 
-                            <!-- Prestation 2 -->
-                            <div class="menu-item-row">
-                                <div class="item-main-info">
-                                    <div class="item-title-dots">
-                                        <span class="item-title">Modelage corps californien</span>
-                                        <span class="item-dots"></span>
-                                    </div>
-                                    <p class="item-description" style="margin: 5px 0 0 0;">De longs mouvements fluides, lents et enveloppants sur l'ensemble du corps pour une relaxation physique et psychique absolue.</p>
+                        <!-- Prestation 2 -->
+                        <div class="menu-item-row">
+                            <div class="item-main-info">
+                                <div class="item-title-dots">
+                                    <span class="item-title">Modelage corps californien</span>
+                                    <span class="item-dots"></span>
                                 </div>
-                                <div class="item-meta" style="margin-top: 5px;">
-                                    <span class="item-duration"><i class="fa-regular fa-clock"></i> 1 heure</span>
-                                </div>
+                                <p class="item-description">De longs mouvements fluides, lents et enveloppants sur l'ensemble du corps pour une relaxation physique et psychique absolue.</p>
+                            </div>
+                            <div class="item-meta">
+                                <span class="item-duration"><i class="fa-regular fa-clock"></i> 1 heure</span>
                             </div>
                         </div>
                     </div>
-
-                    <!-- CADRE ENGAGEMENT QUALITÉ -->
-                    <div class="quality-callout-box">
-                        <h4><i class="fa-solid fa-heart"></i> Le petit plus de Cam’Beauty59</h4>
-                        <p>Les huiles de modelage utilisées sont sélectionnées avec soin pour leur texture soyeuse et leur parfum délicat, vous garantissant une peau nourrie et un esprit totalement apaisé.</p>
-                    </div>
                 </div>
+            </div>
 
-            <!-- COLONNE DE DROITE : GALERIE PHOTO (RESTE BIEN EN HAUT EN FACE DES PRESTATIONS) -->
+            <!-- COLONNE DE DROITE : GALERIE PHOTO -->
             <div class="prestation-media-gallery">
                 <div class="static-gallery-wrapper">
                     <div class="interactive-slider">
@@ -349,106 +89,11 @@
                     <p class="gallery-help-text">Retrouvez plus de photos sur mes réseaux sociaux !</p>
                 </div>
             </div>
-        </section>
-    </main>
-
-<footer class="main-footer">
-    <div class="footer-container">
-        <div class="footer-col contact-col">
-            <h4>Contact & Infos</h4>
-            <p><i class="fa-solid fa-location-dot"></i> Hornaing (Nord – 59)</p>
-            <p><i class="fa-solid fa-phone"></i> Téléphone : 06.60.77.10.89</p>
-            <p><i class="fa-solid fa-envelope"></i> <a href="mailto:cam.beauty59@gmail.com" style="color: #d1c7c3; transition: color 0.3s;" onmouseover="this.style.color='#b89689'" onmouseout="this.style.color='#d1c7c3'">cam.beauty59@gmail.com</a></p>
-            <p><i class="fa-solid fa-house-chimney"></i> En institut ou à votre domicile</p>
-            <div class="footer-socials">
-                <a href="https://www.facebook.com/profile.php?id=61571877812657" target="_blank" title="Suivez-nous sur Facebook" class="social-link fb">
-                    <i class="fa-brands fa-facebook-f"></i>
-                </a>
-                <a href="https://www.instagram.com/cam_beauty_59?fbclid=IwY2xjawSXhWFleHRuA2FlbQIxMABzcnRjBmFwcF9pZBAyMjIwMzkxNzg4MjAwODkyAAEeG185iUCIok8GED-L1jcoVpaqo45nMcBzob8tK8vyRKc40WzaAgR6T8M7yww_aem_YWdncwBMK76YFuNPr8O8VAela2et&brid=YWdncwGJ7AncZDzfiNrmptBhnZ3S" target="_blank" title="Suivez-nous sur Instagram" class="social-link ig">
-                    <i class="fa-brands fa-instagram"></i>
-                </a>
-            </div>
+            
         </div>
-        <div class="footer-col payment-col">
-            <h4>Moyens de paiement</h4>
-            <div class="payment-container">
-                <div class="payment-group accept">
-                    <span class="group-title">Acceptés :</span>
-                    <div class="logos-grid">
-                        <div class="logo-item" title="Espèces"><i class="fa-solid fa-money-bill-wave"></i> <span>Espèces</span></div>
-                        <div class="logo-item" title="PayPal"><i class="fa-brands fa-paypal"></i> <span>PayPal</span></div>
-                        <div class="logo-item" title="Wero"><i class="fa-solid fa-mobile-screen-button"></i> <span>Wero</span></div>
-                    </div>
-                </div>
-                
-                <div class="payment-group refuse">
-                    <span class="group-title">Refusés :</span>
-                    <div class="logos-grid">
-                        <div class="logo-item disabled" title="Carte Bancaire"><i class="fa-solid fa-credit-card"></i> <span>CB</span></div>
-                        <div class="logo-item disabled" title="Chèque"><i class="fa-solid fa-money-check-dollar"></i> <span>Chèque</span></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <div class="footer-bottom">
-        <p>&copy; 2026 Cam’Beauty59 - Tous droits réservés - Réalisation <a href="https://cyril1355.github.io/Cyril-freelance/" target="_blank" class="footer-link">BIMBI Cyril</a></p>
-        <p class="footer-legal-links" style="font-size: 0.85rem; color: #8c7e7c;">
-            <span onclick="openModal('legal-modal')" style="color: #b89689; cursor: pointer; text-decoration: underline; transition: color 0.3s;" onmouseover="this.style.color='#ffffff'" onmouseout="this.style.color='#b89689'">Mentions Légales</span> 
-            <span style="color: #8c7e7c; margin: 0 10px;">|</span> 
-            <span onclick="openModal('rgpd-modal')" style="color: #b89689; cursor: pointer; text-decoration: underline; transition: color 0.3s;" onmouseover="this.style.color='#ffffff'" onmouseout="this.style.color='#b89689'">Politique de Confidentialité & RGPD</span>
-        </p>
-    </div>
-</footer>
-
-<!-- Modales Mentions Légales et RGPD (Arrière-plan inchangé) -->
-<div id="legal-modal" style="display:none; position:fixed; z-index:99999; left:0; top:0; width:100%; height:100%; background-color: rgba(42, 35, 34, 0.6); backdrop-filter: blur(5px); align-items: center; justify-content: center;">
-    <div style="background-color: #faf6f5; margin: auto; padding: 30px; border: 1px solid #f3ece9; width: 90%; max-width: 650px; border-radius: 16px; box-shadow: 0 12px 40px rgba(0,0,0,0.15); font-family: 'Plus Jakarta Sans', sans-serif; position: relative;">
-        <span onclick="closeModal('legal-modal')" style="position: absolute; right: 20px; top: 15px; font-size: 28px; cursor: pointer; color: #8c7e7c; transition: color 0.3s;" onmouseover="this.style.color='#4a3e3d'" onmouseout="this.style.color='#8c7e7c'">&times;</span>
-        <h2 style="font-family: 'Playfair Display', serif; color: #4a3e3d; margin-top: 0; border-bottom: 1px solid #e8d8d4; padding-bottom: 12px; font-size: 1.6rem;">Mentions Légales</h2>
-        <div style="max-height: 400px; overflow-y: auto; text-align: left; color: #5c4e4c; font-size: 0.9rem; line-height: 1.6; padding-right: 15px;">
-            <p><strong>1. Édition du site</strong><br>Le présent site web est édité par <strong>Camille</strong>, agissant en qualité de Micro-Entrepreneur / Professionnel indépendant.<br>Secteur géographique : Hornaing (Nord – 59)<br>Siret : [Renseigner ton SIRET ici]<br>E-mail : cam.beauty59@gmail.com<br>Téléphone : 06.60.77.10.89</p>
-            <p><strong>2. Hébergement</strong><br>Ce site est hébergé par GitHub Pages (GitHub Inc., 88 Colin P. Kelly Jr. St, San Francisco, CA 94107, États-Unis).</p>
-            <p><strong>3. Propriété intellectuelle</strong><br>L'ensemble des contenus présents sur ce site (textes, visuels, charte graphique) est la propriété exclusive de Cam’Beauty59. Toute reproduction ou utilisation sans accord écrit est interdite.</p>
-            <p><strong>4. Conditions d'Acompte & d'Annulation</strong><br>Les réservations de prestations esthétiques s'effectuent via la plateforme technique TidyCal. Pour chaque confirmation de rendez-vous, un acompte obligatoire et forfaitaire de 10 € est demandé. Cet acompte est déduit du montant final de la prestation.</p>
-            <p>Conformément à l'article L221-28 du Code de la consommation concernant les services de soins à date déterminée, le droit de rétractation ne s'applique pas aux réservations effectuées.</p>
-            <p><strong>Règle des 48h :</strong> Toute annulation ou modification de créneau doit survenir plus de 48 heures à l'avance. Passé ce délai de 48h, ou en cas de non-présentation, l'acompte de 10 € sera définitivement conservé par Cam’Beauty59 à titre de dédommagement forfaitaire pour l'immobilisation du créneau, sans possibilité de remboursement ou de report.</p>
-        </div>
-    </div>
-</div>
-
-<div id="rgpd-modal" style="display:none; position:fixed; z-index:99999; left:0; top:0; width:100%; height:100%; background-color: rgba(42, 35, 34, 0.6); backdrop-filter: blur(5px); align-items: center; justify-content: center;">
-    <div style="background-color: #faf6f5; margin: auto; padding: 30px; border: 1px solid #f3ece9; width: 90%; max-width: 650px; border-radius: 16px; box-shadow: 0 12px 40px rgba(0,0,0,0.15); font-family: 'Plus Jakarta Sans', sans-serif; position: relative;">
-        <span onclick="closeModal('rgpd-modal')" style="position: absolute; right: 20px; top: 15px; font-size: 28px; cursor: pointer; color: #8c7e7c; transition: color 0.3s;" onmouseover="this.style.color='#4a3e3d'" onmouseout="this.style.color='#8c7e7c'">&times;</span>
-        <h2 style="font-family: 'Playfair Display', serif; color: #4a3e3d; margin-top: 0; border-bottom: 1px solid #e8d8d4; padding-bottom: 12px; font-size: 1.6rem;">Politique de Confidentialité (RGPD)</h2>
-        <div style="max-height: 400px; overflow-y: auto; text-align: left; color: #5c4e4c; font-size: 0.9rem; line-height: 1.6; padding-right: 15px;">
-            <p><strong>1. Responsable du traitement</strong><br>La responsable de la collecte et du traitement de vos données personnelles est Camille (cam.beauty59@gmail.com).</p>
-            <p><strong>2. Données collectées & Finalités</strong><br>Nous collectons uniquement les informations nécessaires au bon traitement de vos demandes :
-            <br>• Prénom, Nom, Email, Téléphone : pour enregistrer, planifier et confirmer vos rendez-vous.
-            <br>• Données de paiement : pour le règlement sécurisé de votre acompte de 10 €.</p>
-            <p><strong>3. Transmission et Sécurité</strong><br>Vos données sont transmises de manière sécurisée aux outils tiers indispensables à la prise de rendez-vous automatique : TidyCal (planification), Google Calendar (agenda professionnel) et Stripe/PayPal (passerelles de paiement agréées). Aucun identifiant bancaire n'est stocké sur notre site web.</p>
-            <p><strong>4. Vos Droits</strong><br>Conformément au RGPD, vous disposez d’un droit d’accès, de modification, de limitation ou de suppression de vos données personnelles. Pour exercer vos droits, vous pouvez envoyer votre demande à tout moment par e-mail à cam.beauty59@gmail.com.</p>
-        </div>
-    </div>
-</div>
-
-<script>
-function openModal(id) {
-    document.getElementById(id).style.display = "flex";
-    document.body.style.overflow = "hidden";
-}
-
-function closeModal(id) {
-    document.getElementById(id).style.display = "none";
-    document.body.style.overflow = "auto";
-}
-
-window.addEventListener('click', function(event) {
-    if (event.target.id === 'legal-modal') closeModal('legal-modal');
-    if (event.target.id === 'rgpd-modal') closeModal('rgpd-modal');
-});
-</script>
-
+    </section>
+</main>
+<div id="footer-placeholder"></div>
+<script src="script.js"></script>
 </body>
 </html>
