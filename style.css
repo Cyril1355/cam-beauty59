@@ -41,138 +41,6 @@ img {
 a {
     text-decoration: none;
 }
-/* ==========================================================================
-  				NAVIGATION RESPONSIVE
-   ========================================================================== */
-.main-header {
-    background-color: #ffffff;
-    border-bottom: 1px solid var(--border-color);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-}
-
-.header-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 15px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.logo {
-    display: flex;
-    flex-direction: column;
-    z-index: 1010;
-}
-
-.logo-main {
-    font-size: 1.8rem;
-    font-weight: 700;
-    letter-spacing: 1px;
-    color: var(--primary-color);
-    line-height: 1;
-}
-
-.logo-sub {
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    color: var(--text-light);
-    margin-top: 4px;
-}
-/* ==========================================================================
-   NOUVEAU SYSTÈME DE NAVIGATION ÉPURÉ & DROPDOWNS
-   ========================================================================== */
-.nav-menu ul {
-    list-style: none;
-    display: flex;
-    gap: 25px;
-    align-items: center;
-}
-
-.nav-menu a {
-    font-size: 0.95rem;
-    font-weight: 500;
-    color: var(--text-light);
-    padding: 10px 0;
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    position: relative;
-}
-
-/* --- STRUCTURE DES DROPDOWNS (ORDINATEUR) --- */
-.nav-menu li {
-    position: relative; /* Position pivot pour le sous-menu */
-}
-
-.nav-menu .dropdown-menu {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #ffffff;
-    box-shadow: 0 10px 30px rgba(184, 150, 137, 0.12);
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
-    padding: 12px 0;
-    min-width: 200px;
-    z-index: 1000;
-    flex-direction: column;
-    gap: 0;
-}
-
-/* Liens internes du menu déroulant */
-.nav-menu .dropdown-menu li a {
-    display: block;
-    padding: 10px 20px;
-    color: var(--text-dark);
-    font-size: 0.9rem;
-    font-weight: 400;
-    white-space: nowrap;
-    width: 100%;
-    transition: background-color 0.2s, color 0.2s;
-}
-
-.nav-menu .dropdown-menu li a:hover,
-.nav-menu .dropdown-menu li a.active {
-    background-color: var(--bg-soft);
-    color: var(--primary-color);
-}
-
-/* Flèche indicative */
-.dropdown-trigger::after {
-    content: '▾';
-    font-size: 0.8rem;
-    color: var(--text-light);
-    transition: transform 0.3s ease;
-}
-
-.dropdown-trigger:hover::after {
-    color: var(--primary-color);
-}
-
-/* Déclenchement au survol sur écran d'ordinateur */
-@media (min-width: 1025px) {
-    .nav-menu li.dropdown:hover .dropdown-menu {
-        display: flex;
-    }
-}
-
-.nav-menu a:hover, .nav-menu a.active {
-    color: var(--primary-color);
-}
-
-.mobile-cta-item {
-    display: none;
-}
-
-.menu-toggle-checkbox, .menu-burger-label {
-    display: none;
-}
 
 .btn-cta, .btn-primary {
     background-color: var(--primary-color);
@@ -186,12 +54,6 @@ a {
     border: none;
     cursor: pointer;
     text-align: center;
-}
-
-.btn-cta:hover, .btn-primary:hover {
-    background-color: var(--text-dark);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-    transform: translateY(-1px);
 }
 
 .btn-primary {
@@ -277,11 +139,9 @@ a {
     box-shadow: 0 5px 20px rgba(184, 150, 137, 0.03);
     transition: transform 0.3s ease;
 }
-
 .info-card:hover {
     transform: translateY(-5px);
 }
-
 .info-card .icon {
     font-size: 2.5rem;
     margin-bottom: 20px;
@@ -396,7 +256,6 @@ a {
     font-size: 1.1rem;
     color: #1877f2; /* Couleur officielle bleu Facebook pour l'icône */
 }
-
 .btn-secondary:hover {
     background-color: var(--primary-color);
     color: #ffffff;
@@ -405,7 +264,6 @@ a {
 
 .btn-secondary:hover i {
     color: #ffffff; /* L'icône devient blanche au survol pour l'esthétique */
-}
 }
 /* ==========================================================================
    FOOTER
@@ -619,6 +477,197 @@ a {
 
 .footer-legal-links a:hover {
     color: var(--accent-color);
+}
+
+/* Section Google Maps */
+.map-section {
+    padding: 40px 0;
+    width: 100%;
+    background-color: var(--bg-light, #fff); /* S'adapte à ta couleur de fond */
+}
+
+.map-container {
+    max-width: 1200px; /* Aligné sur la largeur maximale de ton site */
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.map-container iframe {
+    width: 100%;
+    border-radius: 12px; /* Pour un rendu plus doux et moderne */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); /* Ombre légère pour le relief */
+}
+
+.btn-cta, .btn-primary {
+    display: inline-block;
+    background-color: #b89689;
+    color: #ffffff;
+    padding: 14px 28px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(184, 150, 137, 0.15);
+    border: none;
+    cursor: pointer;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 30px;
+    font-family: 'Playfair Display', serif;
+    color: #4a3e3d;
+    font-size: 1.8rem;
+}
+/* ==========================================================================
+  				NAVIGATION RESPONSIVE
+   ========================================================================== */
+.main-header {
+    background-color: #ffffff;
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    flex-direction: column;
+    z-index: 1010;
+}
+
+.logo-main {
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--primary-color);
+    line-height: 1;
+}
+
+.logo-sub {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--text-light);
+    margin-top: 4px;
+}
+/* ==========================================================================
+   NOUVEAU SYSTÈME DE NAVIGATION ÉPURÉ & DROPDOWNS
+   ========================================================================== */
+.nav-menu ul {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+    align-items: center;
+}
+
+.nav-menu a {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text-light);
+    padding: 10px 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    position: relative;
+}
+
+/* --- STRUCTURE DES DROPDOWNS (ORDINATEUR) --- */
+.nav-menu li {
+    position: relative; /* Position pivot pour le sous-menu */
+}
+
+.nav-menu .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #ffffff;
+    box-shadow: 0 10px 30px rgba(184, 150, 137, 0.12);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 12px 0;
+    min-width: 200px;
+    z-index: 1000;
+    flex-direction: column;
+    gap: 0;
+}
+
+/* Liens internes du menu déroulant */
+.nav-menu .dropdown-menu li a {
+    display: block;
+    padding: 10px 20px;
+    color: var(--text-dark);
+    font-size: 0.9rem;
+    font-weight: 400;
+    white-space: nowrap;
+    width: 100%;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.nav-menu .dropdown-menu li a:hover,
+.nav-menu .dropdown-menu li a.active {
+    background-color: var(--bg-soft);
+    color: var(--primary-color);
+}
+
+/* Flèche indicative */
+.dropdown-trigger::after {
+    content: '▾';
+    font-size: 0.8rem;
+    color: var(--text-light);
+    transition: transform 0.3s ease;
+}
+
+.dropdown-trigger:hover::after {
+    color: var(--primary-color);
+}
+
+/* Déclenchement au survol sur écran d'ordinateur */
+@media (min-width: 1025px) {
+    .nav-menu li.dropdown:hover .dropdown-menu {
+        display: flex;
+    }
+}
+
+.nav-menu a:hover, .nav-menu a.active {
+    color: var(--primary-color);
+}
+
+.mobile-cta-item {
+    display: none;
+}
+
+.menu-toggle-checkbox, .menu-burger-label {
+    display: none;
+}
+
+.btn-cta:hover, .btn-primary:hover {
+    background-color: var(--text-dark);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    transform: translateY(-1px);
+}
+.info-card:hover {
+    transform: translateY(-5px);
+}
+.btn-secondary:hover {
+    background-color: var(--primary-color);
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(184, 150, 137, 0.15);
+}
+
+.btn-secondary:hover i {
+    color: #ffffff; /* L'icône devient blanche au survol pour l'esthétique */
 }
 
 /* Réajustement responsive pour mobile (les blocs se remettent l'un sous l'autre) */
@@ -1113,24 +1162,6 @@ a {
         background-color: rgba(255, 255, 255, 0.95);
     }
 }
-/* Section Google Maps */
-.map-section {
-    padding: 40px 0;
-    width: 100%;
-    background-color: var(--bg-light, #fff); /* S'adapte à ta couleur de fond */
-}
-
-.map-container {
-    max-width: 1200px; /* Aligné sur la largeur maximale de ton site */
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-.map-container iframe {
-    width: 100%;
-    border-radius: 12px; /* Pour un rendu plus doux et moderne */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); /* Ombre légère pour le relief */
-}
 /* Ajustement des menus déroulants pour le volet mobile */
     .nav-menu .dropdown-menu {
         display: none; 
@@ -1154,6 +1185,766 @@ a {
         padding: 8px 0;
         color: var(--text-light);
     }
+/* ==========================================================================
+   PAGE DÉTAIL CILS - CONFIGURATION GÉNÉRALE & HERO
+   ========================================================================== */
+.prestation-hero-section.section-lashes {
+    background: #faf6f5;
+    padding: 80px 20px;
+    text-align: center;
+    border-bottom: 1px solid #e8d8d4;
+}
+
+.hero-prestation-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Le sous-titre tout en haut (ex: Beauté du Regard, Soin du corps) */
+.prestation-subtitle {
+    color: #b89689;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.9rem;
+    display: block;
+    margin: 0 auto 10px auto; /* Centre le bloc de texte */
+    text-align: center;       /* Centre le texte à l'intérieur */
+    width: 100%;
+}
+
+/* Le titre principal H1 */
+.prestation-hero-section h1 {
+    font-family: 'Playfair Display', serif;
+    color: #4a3e3d;
+    font-size: 2.8rem;
+    margin: 0 auto 15px auto; /* Centre le bloc de texte */
+    text-align: center;       /* Centre le texte à l'intérieur */
+    width: 100%;
+}
+
+/* Le premier paragraphe d'accroche */
+.prestation-lead-text {
+    color: #7a6b68;
+    font-size: 1.2rem;
+    margin: 0 auto 10px auto;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    text-align: center;
+    width: 100%;
+}
+
+/* Le deuxième paragraphe d'accroche (en rose et italique) */
+.prestation-lead-text.highlight-text {
+    font-size: 1.1rem;
+    font-style: italic;
+    color: #b89689;
+    margin: 0 auto;
+    text-align: center;
+    width: 100%;
+}
+/* ==========================================================================
+   PAGE SPA PARTY - HERO & EN-TÊTE
+   ========================================================================== */
+.prestation-hero-section.section-kids {
+    background: #fff9fa;
+    padding: 80px 20px;
+    text-align: center;
+    border-bottom: 1px solid #fce4e8;
+}
+
+.hero-prestation-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.prestation-subtitle {
+    color: #f7a8b8; /* Applique la couleur rose d'origine */
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.9rem;
+    display: block;
+    margin: 0 auto 10px auto;
+    text-align: center;
+    width: 100%;
+}
+
+.prestation-hero-section h1 {
+    font-family: 'Playfair Display', serif;
+    color: #4a3e3d;
+    font-size: 2.8rem;
+    margin: 0 auto 15px auto;
+    text-align: center;
+    width: 100%;
+}
+
+.badge-price {
+    background: #f7a8b8;
+    color: white;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-weight: 500;
+    margin-bottom: 15px;
+    display: inline-block;
+}
+
+.prestation-lead-text {
+    color: #7a6b68;
+    font-size: 1.2rem;
+    margin: 0 auto 10px auto;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    text-align: center;
+    width: 100%;
+}
+
+.prestation-lead-text.highlight-text {
+    font-size: 1.1rem;
+    font-style: italic;
+    color: #f7a8b8;
+    margin: 0 auto;
+    text-align: center;
+    width: 100%;
+}
+
+/* ==========================================================================
+   SECTION CONTENU & GRILLE SUR 2 LIGNES
+   ========================================================================== */
+.spa-content {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.spa-content h3 {
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    color: #4a3e3d;
+    margin-bottom: 30px;
+}
+
+/* Grille calibrée pour afficher 3 éléments par ligne (donc 2 lignes au total) */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 20px;
+}
+
+/* Responsive : passage sur 1 seule colonne sur mobile pour rester lisible */
+@media (max-width: 768px) {
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ==========================================================================
+   BLOC INFOS CONDITIONS & BOUTON CTA
+   ========================================================================== */
+.spa-conditions-block {
+    margin-top: 40px;
+    text-align: center;
+    background: #faf6f5;
+    padding: 30px;
+    border-radius: 16px;
+}
+
+.cta-container {
+    text-align: center;
+    margin-bottom: 50px;
+}
+/* ==========================================================================
+   SECTION CONTENU (PRESTATIONS & GALERIE)
+   ========================================================================== */
+.prestation-menu-section {
+    padding-bottom: 0;
+}
+
+.prestation-category-block h2 i {
+    color: #b89689;
+    margin-right: 10px;
+}
+
+/* ==========================================================================
+   SECTION BASSE - CONSEILS & RENDRE-VOUS
+   ========================================================================== */
+.bottom-booking-section {
+    width: 100%;
+    max-width: 1200px;
+    margin: 40px auto 60px auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+.bottom-booking-section h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-family: 'Playfair Display', serif;
+    color: #4a3e3d;
+    font-size: 1.8rem;
+}
+
+/* Grille des conseils */
+.bottom-booking-section .info-grid {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 50px;
+    flex-wrap: wrap;
+}
+
+/* Boîtes de rappel de qualité (Avant / Après) */
+.quality-callout-box {
+    flex: 1;
+    min-width: 280px;
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 0 16px 16px 0;
+    box-shadow: 0 4px 15px rgba(74, 62, 61, 0.02);
+}
+
+/* Personnalisation des bordures gauches */
+.quality-callout-box.before-care {
+    border-left: 4px solid #b89689;
+}
+
+.quality-callout-box.after-care {
+    border-left: 4px solid #8fa89b;
+}
+
+.quality-callout-box h4 {
+    font-family: 'Playfair Display', serif;
+    color: #4a3e3d;
+    font-size: 1.15rem;
+    margin: 0 0 15px 0;
+}
+
+.quality-callout-box h4 i.icon-before {
+    color: #b89689;
+    margin-right: 6px;
+}
+
+.quality-callout-box h4 i.icon-after {
+    color: #8fa89b;
+    margin-right: 6px;
+}
+
+.quality-callout-box ul {
+    margin: 0;
+    padding-left: 20px;
+    color: #706260;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.quality-callout-box ul li {
+    margin-bottom: 8px;
+}
+	/* ==========================================================================
+   STRUCTURE GÉNÉRALE & TYPOGRAPHIE
+   ========================================================================== */
+.prestation-detail-page {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    color: #4a3e3d;
+}
+
+/* ==========================================================================
+   SECTIONS HERO
+   ========================================================================== */
+.prestation-hero-section {
+    padding: 80px 20px;
+    text-align: center;
+}
+
+.hero-prestation-content {
+    max-width: 850px;
+    margin: 0 auto;
+}
+
+.prestation-subtitle {
+    display: block;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 25px;
+    font-size: 0.9rem;
+}
+
+.prestation-hero-section h1 {
+    font-family: 'Playfair Display', serif;
+    color: #4a3e3d;
+    font-size: 3.2rem;
+    font-weight: 700;
+    margin: 0 0 25px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    line-height: 1.2;
+}
+
+.prestation-hero-section h1 .title-emoji {
+    font-size: 3rem;
+    filter: drop-shadow(0 4px 6px rgba(74, 62, 61, 0.12));
+    display: inline-block;
+    transform: rotate(-5deg);
+}
+
+.prestation-lead-text {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    color: #7a6b68;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin: 0 auto 15px auto;
+    max-width: 700px;
+    font-weight: 400;
+}
+
+.prestation-highlight-text {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    color: #b89689;
+    font-size: 1.15rem;
+    font-style: italic;
+    margin: 0 auto 35px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-weight: 400;
+}
+
+/* Variations de thèmes couleurs pour les Heros */
+.section-nails, .section-lashes, .section-modelage {
+    background: #faf6f5;
+    border-bottom: 1px solid #e8d8d4;
+}
+.section-nails .prestation-subtitle, .section-lashes .prestation-subtitle {
+    color: #b89689;
+}
+
+.section-kids {
+    background: #fff9fa;
+    border-bottom: 1px solid #fce4e8;
+}
+.section-kids .prestation-subtitle {
+    color: #f7a8b8;
+}
+
+/* ==========================================================================
+   COMPOSANTS REUTILISABLES (BADGES & BOUTONS)
+   ========================================================================== */
+.badge-price {
+    display: inline-block;
+    background: #f7a8b8;
+    color: white;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+
+.btn-cta:hover, .btn-primary:hover {
+    background-color: #a38175;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(184, 150, 137, 0.25);
+}
+
+/* ==========================================================================
+   LISTE DES MENUS & PRESTATIONS
+   ========================================================================== */
+.prestation-menu-section {
+    padding-bottom: 15px;
+}
+.prestation-menu-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.prestation-category-block h2 {
+    font-family: 'Playfair Display', serif;
+    color: #4a3e3d;
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+.category-intro-text {
+    color: #8c7e7c;
+    margin-bottom: 30px;
+}
+.menu-item-row {
+    margin-bottom: 20px;
+}
+.item-title-dots {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+.item-title {
+    font-family: 'Playfair Display', serif;
+    color: #4a3e3d;
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+.item-dots {
+    flex: 1;
+    border-bottom: 1px dotted #ccc;
+    margin: 0 10px;
+}
+.item-description {
+    color: #7a6b68;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* ==========================================================================
+   GRILLE DES SERVICES & CARTES
+   ========================================================================== */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+.service-card {
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 14px;
+    border: 1px solid #eae1de;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(74, 62, 61, 0.02);
+}
+.service-card h4 {
+    margin: 10px 0 5px 0;
+    font-family: 'Playfair Display', serif;
+    color: #4a3e3d;
+}
+
+.spa-conditions-box {
+    margin-top: 40px;
+    text-align: center;
+    background: #faf6f5;
+    padding: 30px;
+    border-radius: 16px;
+}
+
+/* ==========================================================================
+   SECTION ENCADRÉ DE RÉSERVATION (BOOKING)
+   ========================================================================== */
+.booking-section {
+    padding: 40px 20px;
+}
+.services-selection {
+    max-width: 600px;
+    margin: 20px auto;
+    text-align: left;
+}
+.services-selection-title {
+    color: #8c7e7c;
+    font-size: 0.9rem;
+    text-align: center;
+    margin-bottom: 15px;
+}
+.service-option {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background: #ffffff;
+    border: 2px solid #eae1de;
+    border-radius: 12px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.service-option:hover {
+    border-color: #b89689;
+}
+.service-option-price {
+    color: #b89689;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+.booking-container {
+    max-width: 550px;
+    margin: 20px auto;
+    padding: 30px;
+    background-color: #faf6f5;
+    border-radius: 16px;
+    border: 1px solid #f3ece9;
+    text-align: center;
+}
+.policy-label {
+    display: flex;
+    align-items: flex-start;
+    text-align: left;
+    gap: 12px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    color: #7a6b68;
+    margin-bottom: 25px;
+    background: #ffffff;
+    padding: 15px;
+    border-radius: 12px;
+    border: 1px solid #eae1de;
+    line-height: 1.5;
+}
+.policy-checkbox {
+    margin-top: 3px;
+    width: 16px;
+    height: 16px;
+    accent-color: #b89689;
+    cursor: pointer;
+}
+.btn-submit-booking {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 16px 20px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #ffffff;
+    background-color: #cbd5e1;
+    border-radius: 10px;
+    text-decoration: none;
+    pointer-events: none;
+    opacity: 0.7;
+    transition: all 0.3s;
+}
+
+/* ==========================================================================
+   BLOCS CONSEILS & INFOS (AVANT/APRÈS)
+   ========================================================================== */
+.bottom-booking-section {
+    width: 100%;
+    max-width: 1200px;
+    margin: 60px auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+.quality-callout-box {
+    flex: 1;
+    min-width: 280px;
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 0 16px 16px 0;
+    box-shadow: 0 4px 15px rgba(74, 62, 61, 0.02);
+}
+.box-before { border-left: 4px solid #b89689; }
+.box-after { border-left: 4px solid #8fa89b; }
+
+.quality-callout-box h4 {
+    font-family: 'Playfair Display', serif;
+    color: #4a3e3d;
+    font-size: 1.15rem;
+    margin: 0 0 15px 0;
+}
+.quality-callout-box ul {
+    margin: 0;
+    padding-left: 20px;
+    color: #706260;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+.quality-callout-box li {
+    margin-bottom: 8px;
+}
+/* ==========================================================================
+   SECTION DE RÉSERVATION & SÉLECTION
+   ========================================================================== */
+.booking-section {
+    padding: 40px 20px;
+}
+
+.services-selection {
+    max-width: 600px;
+    margin: 20px auto;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    text-align: left;
+}
+
+.services-selection-title {
+    color: #8c7e7c;
+    font-size: 0.9rem;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+/* Options de soins interactives */
+.service-option {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background: #ffffff;
+    border: 2px solid #eae1de;
+    border-radius: 12px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+/* Gestion du survol native en CSS (remplace le JS inline) */
+.service-option:hover {
+    border-color: #b89689 !important;
+}
+
+.service-icon {
+    font-size: 1.2rem;
+    margin-right: 8px;
+}
+
+.service-title {
+    color: #4a3e3d;
+    font-size: 0.95rem;
+}
+
+.service-acompte {
+    color: #b89689;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+/* Conteneur global de validation */
+.booking-container {
+    max-width: 550px;
+    margin: 20px auto;
+    padding: 30px;
+    background-color: #faf6f5;
+    border-radius: 16px;
+    border: 1px solid #f3ece9;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    text-align: center;
+}
+
+/* Case à cocher & texte réglementaire */
+.policy-label {
+    display: flex;
+    align-items: flex-start;
+    text-align: left;
+    gap: 12px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    color: #7a6b68;
+    margin-bottom: 25px;
+    background: #ffffff;
+    padding: 15px;
+    border-radius: 12px;
+    border: 1px solid #eae1de;
+    line-height: 1.5;
+}
+
+.policy-checkbox {
+    margin-top: 3px;
+    width: 16px;
+    height: 16px;
+    accent-color: #b89689;
+    cursor: pointer;
+}
+
+/* Bouton d'action principal (Désactivé par défaut) */
+.btn-booking {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 16px 20px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #ffffff;
+    background-color: #cbd5e1;
+    border-radius: 10px;
+    text-decoration: none;
+    pointer-events: none;
+    opacity: 0.7;
+    transition: all 0.3s;
+}
+/* ==========================================================================
+   SLIDER INTERACTIF D'IMAGES
+   ========================================================================== */
+.slider-container {
+    position: relative;
+    width: 100%;
+    max-width: 450px;
+    height: 450px;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(74, 62, 61, 0.08);
+}
+.slides {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s ease-in-out;
+}
+.slide {
+    min-width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.slide-tag {
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    background: rgba(255, 255, 255, 0.95);
+    color: #4a3e3d;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    box-shadow: 0 4px 10px rgba(74, 62, 61, 0.05);
+}
+.slider-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.9);
+    color: #4a3e3d;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    z-index: 10;
+}
+.slider-arrow:hover {
+    background: #b89689;
+    color: #ffffff;
+}
+.arrow-left { left: 15px; }
+.arrow-right { right: 15px; }
+
+.slide-dots {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 10;
+}
+.dot {
+    width: 8px;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.dot.active {
+    background: #b89689;
+    width: 20px;
+    border-radius: 4px;
+}
+.gallery-help-text {
+    text-align: center;
+    font-size: 0.8rem;
+    margin-top: 10px;
+    color: #7a6b68;
+}
 /* ==========================================================================
    PAGE : MODELAGE CORPS & DOS (Mise en page dédiée)
    ========================================================================== */
@@ -1475,7 +2266,7 @@ a {
 .prestation-hero-section h1 {
     font-family: 'Playfair Display', serif;
     color: #4a3e3d;
-    font-size: 3.2rem;
+    font-size: 2.8rem;
     margin: 0 0 25px 0;
     display: flex;
     align-items: center;
