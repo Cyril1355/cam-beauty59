@@ -1322,16 +1322,27 @@ a {
     margin-bottom: 30px;
 }
 
-/* Grille calibrée pour afficher 3 éléments par ligne (donc 2 lignes au total) */
-.services-grid {
+.spa-services-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); 
+    /* Force l'affichage sur 3 colonnes égales (donc 2 lignes pour 6 éléments) */
+    grid-template-columns: repeat(3, 1fr);
     gap: 20px;
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 0 20px;
 }
 
-/* Responsive : passage sur 1 seule colonne sur mobile pour rester lisible */
-@media (max-width: 768px) {
-    .services-grid {
+/* Ajustement pour que le rendu reste propre sur tablette et mobile */
+@media (max-width: 850px) {
+    .spa-services-grid {
+        /* Passe sur 2 colonnes (3 lignes) sur tablette */
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 576px) {
+    .spa-services-grid {
+        /* Passe sur 1 seule colonne sur téléphone pour éviter d'écraser le texte */
         grid-template-columns: 1fr;
     }
 }
