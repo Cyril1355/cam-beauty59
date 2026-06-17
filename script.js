@@ -71,3 +71,41 @@ window.addEventListener('click', function(event) {
     if (event.target.id === 'legal-modal') closeModal('legal-modal');
     if (event.target.id === 'rgpd-modal') closeModal('rgpd-modal');
 });
+// Sélection Prestations & Bouton Réservation
+let selectedServiceUrl = "";
+
+function selectService(url, element) {
+    if (selectedServiceUrl === url) {
+        element.style.borderColor = "#eae1de";
+        element.style.background = "#ffffff";
+        selectedServiceUrl = ""; 
+    } else {
+        document.querySelectorAll('.service-option').forEach(opt => {
+            opt.style.borderColor = "#eae1de";
+            opt.style.background = "#ffffff";
+        });
+        
+        element.style.borderColor = "#b89689";
+        element.style.background = "#fdfbfb";
+        selectedServiceUrl = url; 
+    }
+    
+    toggleBookingButton();
+}
+
+function toggleBookingButton() {
+    const checkbox = document.getElementById('agree-policy');
+    const btn = document.getElementById('booking-btn');
+    
+    if (checkbox.checked && selectedServiceUrl !== "") {
+        btn.href = selectedServiceUrl;
+        btn.style.backgroundColor = "#b89689"; 
+        btn.style.pointerEvents = "auto";
+        btn.style.opacity = "1";
+    } else {
+        btn.href = "#";
+        btn.style.backgroundColor = "#cbd5e1"; 
+        btn.style.pointerEvents = "none";
+        btn.style.opacity = "0.7";
+    }
+}
