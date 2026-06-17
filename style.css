@@ -2459,3 +2459,22 @@ a {
     border-color: #e8d8d4;
     transform: translateY(-3px);
 }
+.btn-page-cta {
+    display: inline-block;
+    padding: 14px 28px;
+    background-color: var(--primary-color);
+    color: #ffffff;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.btn-page-cta:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+}
