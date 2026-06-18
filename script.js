@@ -112,15 +112,13 @@ function toggleBookingButton() {
 /* ==========================================================================
    FERMETURE DU MENU BURGER AU CLIC EN DEHORS
    ========================================================================== */
-document.addEventListener('click', function(event) {
+document.addEventListener('pointerdown', function(event) {
     const checkbox = document.querySelector('.menu-toggle-checkbox');
     const navMenu = document.querySelector('.nav-menu');
     const burgerLabel = document.querySelector('.menu-burger-label');
 
-    // Si le menu est ouvert (la case est cochée)
     if (checkbox && checkbox.checked) {
-        /* Si le clic n'est NI dans le menu blanc, NI sur le bouton burger, 
-           on décoche la case pour fermer le volet automatiquement */
+        // Si on clique en dehors du menu ET du bouton burger
         if (!navMenu.contains(event.target) && !burgerLabel.contains(event.target)) {
             checkbox.checked = false;
         }
