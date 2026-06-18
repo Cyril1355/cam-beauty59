@@ -703,7 +703,7 @@ a {
         width: 30px;
         height: 21px;
         cursor: pointer;
-        z-index: 1010;
+        z-index: 10000;
     }
 
     .menu-burger-label span {
