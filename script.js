@@ -109,3 +109,20 @@ function toggleBookingButton() {
         btn.style.opacity = "0.7";
     }
 }
+/* ==========================================================================
+   FERMETURE DU MENU BURGER AU CLIC EN DEHORS
+   ========================================================================== */
+document.addEventListener('click', function(event) {
+    const checkbox = document.querySelector('.menu-toggle-checkbox');
+    const navMenu = document.querySelector('.nav-menu');
+    const burgerLabel = document.querySelector('.menu-burger-label');
+
+    // Si le menu est ouvert (la case est cochée)
+    if (checkbox && checkbox.checked) {
+        /* Si le clic n'est NI dans le menu blanc, NI sur le bouton burger, 
+           on décoche la case pour fermer le volet automatiquement */
+        if (!navMenu.contains(event.target) && !burgerLabel.contains(event.target)) {
+            checkbox.checked = false;
+        }
+    }
+});
