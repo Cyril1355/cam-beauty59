@@ -693,7 +693,9 @@ a {
     .btn-cta {
         display: none;
     }
-
+.mobile-cta-item .btn-primary {
+        color: #ffffff;
+    }
     .menu-burger-label {
         display: flex;
         flex-direction: column;
