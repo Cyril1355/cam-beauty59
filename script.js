@@ -128,5 +128,5 @@ document.addEventListener('pointerdown', function(event) {
 const favicon = document.createElement('link');
 favicon.rel = 'icon';
 favicon.type = 'image/jpeg';
-favicon.href = 'https://cyril1355.github.io/Cyril-freelance/favicon.jpg'; 
+favicon.href = 'https://cyril1355.github.io/cam-beauty59/favicon.jpg'; 
 document.head.appendChild(favicon);
