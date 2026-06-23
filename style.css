@@ -2491,12 +2491,12 @@ a {
 @media (max-width: 768px) {
   /* On force le conteneur du menu à utiliser toute la hauteur disponible sans écraser */
   .site-header, .header-inner {
-    height: 83px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center; /* Aligne verticalement le logo et le burger au centre */
-    overflow: visible; /* Permet au menu de se déployer sans être coupé */
-    padding: 0 15px;
+    height: 83px !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important; /* Aligne verticalement le logo et le burger au centre */
+    overflow: visible !important; /* Permet au menu de se déployer sans être coupé */
+    padding: 0 15px !important;
   }
 
   /* Stabilisation des éléments pour éviter qu'ils ne se chevauchent */
@@ -2508,7 +2508,7 @@ a {
 
   /* Force le bouton burger (et la croix) à garder ses proportions d'origine */
   .menu-burger-label, #menu-burger-toggle, .nav-menu-close {
-    display: flex;
+    display: flex !important;
     align-items: center;
     justify-content: center;
     min-width: 30px;
