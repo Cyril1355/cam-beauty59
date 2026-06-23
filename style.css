@@ -2480,3 +2480,15 @@ a {
     background-color: var(--primary-dark);
     transform: translateY(-2px);
 }
+/* Fixation de la hauteur du Header pour détruire le CLS Mobile */
+#header-placeholder {
+  display: block;
+  min-height: 83px;
+}
+
+@media (max-width: 768px) {
+  /* On s'assure que le menu burger et le logo ne forcent pas un redimensionnement brutal */
+  .logo, .menu-burger-label {
+    display: inline-block;
+  }
+}
