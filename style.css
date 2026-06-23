@@ -2480,15 +2480,39 @@ a {
     background-color: var(--primary-dark);
     transform: translateY(-2px);
 }
-/* Fixation de la hauteur du Header pour détruire le CLS Mobile */
+/* ==========================================================================
+   CORRECTION FINALE : HEADER & MENU BURGER MOBILE
+   ========================================================================== */
 #header-placeholder {
   display: block;
-  min-height: 83px;
+  min-height: 83px; /* Conserve l'espace pour le CLS */
 }
 
 @media (max-width: 768px) {
-  /* On s'assure que le menu burger et le logo ne forcent pas un redimensionnement brutal */
-  .logo, .menu-burger-label {
-    display: inline-block;
+  /* On force le conteneur du menu à utiliser toute la hauteur disponible sans écraser */
+  .site-header, .header-inner {
+    height: 83px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Aligne verticalement le logo et le burger au centre */
+    overflow: visible; /* Permet au menu de se déployer sans être coupé */
+    padding: 0 15px;
+  }
+
+  /* Stabilisation des éléments pour éviter qu'ils ne se chevauchent */
+  .logo {
+    display: flex;
+    flex-direction: column; /* Garde le titre et le sous-titre l'un sous l'autre */
+    justify-content: center;
+  }
+
+  /* Force le bouton burger (et la croix) à garder ses proportions d'origine */
+  .menu-burger-label, #menu-burger-toggle, .nav-menu-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 30px;
+    min-height: 30px;
+    flex-shrink: 0; /* Interdit au navigateur d'écraser l'icône */
   }
 }
