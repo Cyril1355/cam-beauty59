@@ -820,24 +820,22 @@ a {
         padding: 40px 20px;
     }
 
-.hero-container {
-        display: flex;
-        flex-direction: column; /* Aligne l'image au-dessus du texte */
-        align-items: center;    /* Centre le contenu horizontalement */
-        text-align: center;     /* Centre le texte pour un rendu mobile harmonieux */
-        gap: 20px;              /* Crée un espace sain entre l'image et le titre */
+    .hero-container {
+        display: flex; /* <-- L'élément manquant qui réactive tout le reste */
+        flex-direction: column;
+        text-align: center;
+        gap: 30px;
     }
 
-.hero-image {
-        width: 100%;
-        max-width: 300px;       /* Limite la taille de la photo pour qu'elle ne prenne pas tout l'écran */
-        margin: 0 auto;
+    .hero-image {
+        order: -1;
+        width: 100%; /* Assure que le conteneur prend sa place au centre */
     }
 
-.hero-image img {
-        width: 100%;
+    .hero-image img {
+        max-width: 85%;
         height: auto;
-        display: block;
+        display: inline-block;
     }
 
     .hero-content h1 {
