@@ -820,18 +820,24 @@ a {
         padding: 40px 20px;
     }
 
-    .hero-container {
-        flex-direction: column;
-        text-align: center;
-        gap: 30px;
+.hero-container {
+        display: flex;
+        flex-direction: column; /* Aligne l'image au-dessus du texte */
+        align-items: center;    /* Centre le contenu horizontalement */
+        text-align: center;     /* Centre le texte pour un rendu mobile harmonieux */
+        gap: 20px;              /* Crée un espace sain entre l'image et le titre */
     }
 
-    .hero-image {
-        order: -1;
+.hero-image {
+        width: 100%;
+        max-width: 300px;       /* Limite la taille de la photo pour qu'elle ne prenne pas tout l'écran */
+        margin: 0 auto;
     }
 
-    .hero-image img {
-        max-width: 85%;
+.hero-image img {
+        width: 100%;
+        height: auto;
+        display: block;
     }
 
     .hero-content h1 {
