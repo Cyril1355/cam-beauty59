@@ -706,14 +706,16 @@ a {
         z-index: 10000;
     }
 
-    .menu-burger-label span {
-        display: block;
-        height: 3px;
-        width: 100%;
-        background-color: var(--primary-color);
-        border-radius: 3px;
-        transition: all 0.3s ease;
-    }
+.menu-burger-label span {
+    display: block;
+    height: 3px;
+    width: 30px;
+    background-color: var(--primary-color);
+    border-radius: 3px;
+    transition: all 0.3s ease;
+    margin: 0;
+    box-sizing: border-box;
+}
 
     .nav-menu {
         position: fixed;
