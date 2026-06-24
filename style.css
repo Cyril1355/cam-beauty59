@@ -686,33 +686,12 @@ a {
     .logos-grid {
         justify-content: flex-start;
     }
-	.cta-container a.btn-page-cta {
+.cta-container a.btn-page-cta {
     font-size: 14px;       
     padding: 12px 24px;    
     display: inline-block; 
 }
-.hero-prestation-content .badge-price {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    min-width: 90px;
-    height: 24px;
-    padding: 0 10px; 
-    line-height: normal; 
-    margin: 0;
 }
-
-.menu-burger-label {
-    width: 30px;
-    height: 21px;
-}
-
-.hero-prestation-content p,
-.service-card p {
-    word-break: keep-all;
-}
-}
-
 
 @media (max-width: 1024px) {
     .btn-cta {
