@@ -835,14 +835,6 @@ a {
     .reviews-section h2 {
         font-size: 1.8rem;
     }
-/* Empêche les titres longs de déborder et réduit légèrement leur taille sur petit écran */
-h1, h2, h3, .service-title, .hero-content h1 {
-    overflow-wrap: break-word !important;
-    word-wrap: break-word !important;
-    word-break: normal !important;
-    hyphens: auto !important;
-    font-size: clamp(1.8rem, 6vw, 2.4rem) !important; /* Adapte la taille de la police dynamiquement à l'écran */
-}
 
     .footer-container {
         flex-direction: column;
@@ -2486,6 +2478,5 @@ h1, h2, h3, .service-title, .hero-content h1 {
 
 .btn-page-cta:hover {
     background-color: var(--primary-dark);
-    color: #ffffff; /* <-- Force le texte à rester blanc au survol */
     transform: translateY(-2px);
 }
