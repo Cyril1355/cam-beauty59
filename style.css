@@ -696,25 +696,26 @@ a {
 .mobile-cta-item .btn-primary {
         color: #ffffff;
     }
-    .menu-burger-label {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        width: 30px;
-        height: 21px;
-        cursor: pointer;
-        z-index: 10000;
-    }
+.menu-burger-label {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Aligne les barres au centre */
+    gap: 6px !important;     /* Force un espace EXACT de 6px entre chaque barre, éliminant le bug d'arrondi */
+    width: 30px;
+    height: 21px;
+    cursor: pointer;
+    z-index: 10000;
+}
 
 .menu-burger-label span {
     display: block;
     height: 3px;
-    width: 30px;
+    width: 30px !important;  /* Verrouille la largeur à 30px */
     background-color: var(--primary-color);
-    border-radius: 3px;
+    border-radius: 3px !important;
     transition: all 0.3s ease;
-    margin: 0;
-    box-sizing: border-box;
+    margin: 0 !important;
+    box-sizing: border-box !important;
 }
 
     .nav-menu {
