@@ -690,12 +690,32 @@ a {
 
 
 @media (max-width: 1024px) {
+    /* 1. ON AJOUTE : Stabilisation du conteneur pour le CLS et l'alignement */
+    .site-header, .header-inner {
+        height: 83px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 15px;
+        box-sizing: border-box;
+    }
+
+    /* 2. ON AJOUTE : On force le logo à rester vertical à gauche */
+    .logo {
+        display: flex;
+        flex-direction: column;
+    }
+
     .btn-cta {
         display: none;
     }
-.mobile-cta-item .btn-primary {
+
+    .mobile-cta-item .btn-primary {
         color: #ffffff;
     }
+    
+    /* 3. MODIFIÉ : Le burger garde sa boîte de 30x21px intacte pour les spans, sans s'écraser */
     .menu-burger-label {
         display: flex;
         flex-direction: column;
@@ -704,6 +724,7 @@ a {
         height: 21px;
         cursor: pointer;
         z-index: 10000;
+        flex-shrink: 0; /* Empêche le navigateur de l'écraser dans le flex du header */
     }
 
     .menu-burger-label span {
@@ -715,10 +736,11 @@ a {
         transition: all 0.3s ease;
     }
 
+    /* --- Le reste de votre code existant reste inchangé --- */
     .nav-menu {
         position: fixed;
         top: 0;
-        right: -100%; /* Caché à droite par défaut */
+        right: -100%; 
         width: 80%;
         max-width: 400px;
         height: 100vh;
@@ -767,7 +789,7 @@ a {
     .menu-toggle-checkbox:checked ~ .menu-burger-label span:nth-child(3) {
         transform: translateY(-9px) rotate(-45deg);
     }
-	/* Ajustement des menus déroulants pour le volet mobile */
+
     .nav-menu .dropdown-menu {
         display: none; 
         position: static;
@@ -778,6 +800,7 @@ a {
         background: transparent;
         min-width: auto;
     }
+}
 
     /* Affiche le sous-menu sur mobile au clic/survol */
     .nav-menu li.dropdown:hover .dropdown-menu,
@@ -2479,52 +2502,4 @@ a {
 .btn-page-cta:hover {
     background-color: var(--primary-dark);
     transform: translateY(-2px);
-}
-/* ==========================================================================
-   STABILISATION ET RESPONSIVE DU HEADER MOBILE (PROPRE)
-   ========================================================================= */
-
-#header-placeholder {
-  display: block;
-  min-height: 83px; /* Bloque le CLS sur mobile */
-}
-
-@media (max-width: 768px) {
-  /* En ajoutant "body", le sélecteur devient plus fort que l'ancien CSS sans utiliser !important */
-  body .site-header, 
-  body .header-inner {
-    height: 83px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 15px;
-    box-sizing: border-box;
-  }
-
-  body .logo {
-    display: flex;
-    flex-direction: column;
-    max-width: 70%;
-  }
-
-  /* Gestion de la zone du bouton burger */
-  body .menu-burger-label {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 35px;
-    height: 35px;
-    padding: 0;
-    margin: 0;
-    flex-shrink: 0; /* Empêche l'icône de s'écraser */
-    cursor: pointer;
-  }
-
-  /* Si le burger est une icône FontAwesome (<i>) */
-  body .menu-burger-label i {
-    font-size: 24px;
-    line-height: 1;
-    display: block;
-  }
 }
