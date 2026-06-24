@@ -2489,30 +2489,38 @@ a {
 }
 
 @media (max-width: 768px) {
-  /* On force le conteneur du menu à utiliser toute la hauteur disponible sans écraser */
-  .site-header, .header-inner {
-    height: 83px !important;
+  /* On force le conteneur à respirer */
+  .site-header, .header-inner, #header-placeholder {
+    height: 90px !important; /* On augmente légèrement à 90px pour donner de l'air au sous-titre */
+    min-height: 90px !important;
     display: flex !important;
     justify-content: space-between !important;
-    align-items: center !important; /* Aligne verticalement le logo et le burger au centre */
-    overflow: visible !important; /* Permet au menu de se déployer sans être coupé */
-    padding: 0 15px !important;
+    align-items: center !important;
+    overflow: visible !important;
   }
 
-  /* Stabilisation des éléments pour éviter qu'ils ne se chevauchent */
+  /* On isole le logo pour qu'il ne pousse pas le bouton */
   .logo {
-    display: flex;
-    flex-direction: column; /* Garde le titre et le sous-titre l'un sous l'autre */
-    justify-content: center;
+    display: flex !important;
+    flex-direction: column !important;
+    max-width: 70% !important;
   }
 
-  /* Force le bouton burger (et la croix) à garder ses proportions d'origine */
-  .menu-burger-label, #menu-burger-toggle, .nav-menu-close {
-    display: flex !important;
-    align-items: center;
-    justify-content: center;
-    min-width: 30px;
-    min-height: 30px;
-    flex-shrink: 0; /* Interdit au navigateur d'écraser l'icône */
+  /* CIBLAGE ABSOLU : On force le bouton burger ET ses icônes internes (croix, barres) à reprendre leur forme */
+  .menu-burger-label, 
+  .menu-burger-label *, 
+  [class*="burger"], 
+  [class*="toggle"],
+  .fa-bars,
+  .fa-xmark {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    height: 32px !important; /* Taille standard d'une icône mobile tactile */
+    width: 32px !important;
+    font-size: 24px !important; /* Taille de l'icône FontAwesome */
+    line-height: 1 !important;
+    flex-shrink: 0 !important;
+    transform: none !important; /* Annule un éventuel écrasement par transformation */
   }
 }
