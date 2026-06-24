@@ -691,6 +691,19 @@ a {
     padding: 12px 24px;    
     display: inline-block; 
 }
+    .badge-price {
+        display: inline-block;
+        min-width: 80px;
+        height: 24px;
+        text-align: center;
+        line-height: 24px;
+    }
+
+    .hero-prestation-content p,
+    .service-card p {
+        word-break: keep-all;
+    }
+}
 }
 
 
