@@ -691,18 +691,27 @@ a {
     padding: 12px 24px;    
     display: inline-block; 
 }
-    .badge-price {
-        display: inline-block;
-        min-width: 80px;
-        height: 24px;
-        text-align: center;
-        line-height: 24px;
-    }
+/* Stabilisation du badge "Sur Devis" */
+.badge-price {
+    display: inline-block;
+    width: auto;
+    min-width: 80px;
+    height: 24px;        
+    text-align: center;
+    line-height: 24px;
+}
 
-    .hero-prestation-content p,
-    .service-card p {
-        word-break: keep-all;
-    }
+/* Stabilisation définitive du menu burger */
+.menu-burger-label {
+    width: 30px;  /* Fige la largeur */
+    height: 21px; /* Fige la hauteur exacte */
+    /* N'utilisez PAS margin-top/bottom ici pour ne pas décaler */
+}
+
+/* Stabilisation des textes de cartes (Spa Party...) */
+.hero-prestation-content p,
+.service-card p {
+    word-break: keep-all; /* Évite les coupures de mots vilaines */
 }
 }
 
