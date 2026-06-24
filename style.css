@@ -2481,46 +2481,64 @@ a {
     transform: translateY(-2px);
 }
 /* ==========================================================================
-   CORRECTION FINALE : HEADER & MENU BURGER MOBILE
+   NETTOYAGE ET RESTRUCTURATION DU HEADER MOBILE
    ========================================================================== */
 #header-placeholder {
   display: block;
-  min-height: 83px; /* Conserve l'espace pour le CLS */
+  min-height: 83px; /* On garde l'espace pour le CLS */
 }
 
 @media (max-width: 768px) {
-  /* On force le conteneur à respirer */
-  .site-header, .header-inner, #header-placeholder {
-    height: 90px !important; /* On augmente légèrement à 90px pour donner de l'air au sous-titre */
-    min-height: 90px !important;
+  /* On réinitialise proprement le conteneur du header */
+  .site-header, .header-inner {
+    height: auto !important;
+    min-height: 83px !important;
     display: flex !important;
+    flex-direction: row !important;
     justify-content: space-between !important;
     align-items: center !important;
-    overflow: visible !important;
+    padding: 10px 15px !important;
+    box-sizing: border-box !important;
   }
 
-  /* On isole le logo pour qu'il ne pousse pas le bouton */
+  /* Le logo prend sa place à gauche sans forcer */
   .logo {
-    display: flex !important;
-    flex-direction: column !important;
+    display: block !important;
     max-width: 70% !important;
   }
 
-  /* CIBLAGE ABSOLU : On force le bouton burger ET ses icônes internes (croix, barres) à reprendre leur forme */
-  .menu-burger-label, 
-  .menu-burger-label *, 
-  [class*="burger"], 
-  [class*="toggle"],
-  .fa-bars,
-  .fa-xmark {
-    display: inline-flex !important;
+  /* Le label du burger : on lui donne une taille fixe SANS toucher à ses enfants */
+  .menu-burger-label {
+    display: block !important;
+    width: 35px !important;
+    height: 30px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    flex-shrink: 0 !important;
+    cursor: pointer;
+    position: relative !important;
+  }
+
+  /* Si vos lignes de burger sont des spans CSS à l'intérieur */
+  .menu-burger-label span {
+    display: block !important;
+    width: 100% !important;
+    height: 4px !important;
+    background-color: #be9688 !important; /* Votre couleur marron/rose */
+    margin: 5px 0 !important;
+    border-radius: 2px !important;
+  }
+
+  /* Si votre burger utilise une icône FontAwesome (fa-bars) */
+  .menu-burger-label i, 
+  .menu-burger-label .fa-bars, 
+  .menu-burger-label .fa-xmark {
+    display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    height: 32px !important; /* Taille standard d'une icône mobile tactile */
-    width: 32px !important;
-    font-size: 24px !important; /* Taille de l'icône FontAwesome */
-    line-height: 1 !important;
-    flex-shrink: 0 !important;
-    transform: none !important; /* Annule un éventuel écrasement par transformation */
+    font-size: 26px !important;
+    color: #be9688 !important;
+    width: 100% !important;
+    height: 100% !important;
   }
 }
