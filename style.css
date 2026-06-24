@@ -692,9 +692,9 @@ a {
     display: inline-block; 
 }
 .badge-price {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
+    display: inline-flex !important; /* Utilise Flexbox pour un centrage parfait */
+    justify-content: center !important; /* Centre horizontalement */
+    align-items: center !important;     /* Centre verticalement */
     min-width: 80px;
     height: 24px;
     text-align: center;
