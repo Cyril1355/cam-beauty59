@@ -1264,9 +1264,10 @@ a {
    ========================================================================== */
 .prestation-hero-section.section-kids {
     background: #fff9fa;
-    padding: 80px 20px;
+    padding: 30px 20px;
     text-align: center;
     border-bottom: 1px solid #fce4e8;
+	padding-top: 30px;
 }
 
 .hero-prestation-content {
