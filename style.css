@@ -2156,7 +2156,7 @@ a {
     color: #b89689;
     font-size: 1.15rem;
     font-style: italic;
-    margin: 15px auto 35px auto;
+    margin-inline: auto;
     display: flex;
     align-items: center;
     justify-content: center;
