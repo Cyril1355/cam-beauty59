@@ -1452,7 +1452,7 @@ a {
    SECTIONS HERO
    ========================================================================== */
 .prestation-hero-section {
-    padding: 80px 20px;
+    padding: 30px 20px;
     text-align: center;
 }
 
@@ -2158,6 +2158,7 @@ a {
     font-style: italic;
     margin-inline: auto;
     display: flex;
+	padding-top: 30px;
     align-items: center;
     justify-content: center;
     gap: 8px;
