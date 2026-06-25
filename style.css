@@ -1349,10 +1349,6 @@
  .prestation-menu-section {
      padding-bottom: 15px;
 }
- .prestation-menu-container {
-     max-width: 1200px;
-     margin: 0 auto;
-}
  .prestation-category-block h2 {
      font-family: 'Playfair Display', serif;
      color: #4a3e3d;
@@ -1765,7 +1761,7 @@
  .prestation-media-gallery {
      display: table-cell;
      width: 40%;
-     vertical-align: top;
+     vertical-align: middle;
 }
  .interactive-slider {
      position: relative;
