@@ -1061,24 +1061,6 @@ a {
     box-shadow: 0 10px 25px rgba(184, 150, 137, 0.12);
 }
 
-.service-img-holder {
-    width: 100%;
-    height: 200px;
-    overflow: hidden;
-    background-color: #f5f5f5;
-}
-
-.service-img-holder img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-}
-
-.service-visual-card:hover .service-img-holder img {
-    transform: scale(1.06);
-}
-
 .service-card-info {
     padding: 20px;
     text-align: center;
@@ -1229,12 +1211,6 @@ a {
 /* ==========================================================================
    PAGE DÉTAIL CILS - CONFIGURATION GÉNÉRALE & HERO
    ========================================================================== */
-.prestation-hero-section.section-lashes {
-    background: #faf6f5;
-    padding: 80px 20px;
-    text-align: center;
-    border-bottom: 1px solid #e8d8d4;
-}
 
 .hero-prestation-content {
     max-width: 800px;
@@ -1361,31 +1337,6 @@ a {
     font-family: 'Playfair Display', serif;
     color: #4a3e3d;
     margin-bottom: 30px;
-}
-
-.spa-services-grid {
-    display: grid;
-    /* Force l'affichage sur 3 colonnes égales (donc 2 lignes pour 6 éléments) */
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    max-width: 1000px;
-    margin: 40px auto;
-    padding: 0 20px;
-}
-
-/* Ajustement pour que le rendu reste propre sur tablette et mobile */
-@media (max-width: 850px) {
-    .spa-services-grid {
-        /* Passe sur 2 colonnes (3 lignes) sur tablette */
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 576px) {
-    .spa-services-grid {
-        /* Passe sur 1 seule colonne sur téléphone pour éviter d'écraser le texte */
-        grid-template-columns: 1fr;
-    }
 }
 
 /* ==========================================================================
@@ -1533,13 +1484,6 @@ a {
     line-height: 1.2;
 }
 
-.prestation-hero-section h1 .title-emoji {
-    font-size: 3rem;
-    filter: drop-shadow(0 4px 6px rgba(74, 62, 61, 0.12));
-    display: inline-block;
-    transform: rotate(-5deg);
-}
-
 .prestation-lead-text {
     font-family: 'Plus Jakarta Sans', sans-serif;
     color: #7a6b68;
@@ -1550,25 +1494,12 @@ a {
     font-weight: 400;
 }
 
-.prestation-highlight-text {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    color: #b89689;
-    font-size: 1.15rem;
-    font-style: italic;
-    margin: 0 auto 35px auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    font-weight: 400;
-}
-
 /* Variations de thèmes couleurs pour les Heros */
-.section-nails, .section-lashes, .section-modelage {
+.section-nails{
     background: #faf6f5;
     border-bottom: 1px solid #e8d8d4;
 }
-.section-nails .prestation-subtitle, .section-lashes .prestation-subtitle {
+.section-nails .prestation-subtitle{
     color: #b89689;
 }
 
@@ -1666,14 +1597,6 @@ a {
     color: #4a3e3d;
 }
 
-.spa-conditions-box {
-    margin-top: 40px;
-    text-align: center;
-    background: #faf6f5;
-    padding: 30px;
-    border-radius: 16px;
-}
-
 /* ==========================================================================
    SECTION ENCADRÉ DE RÉSERVATION (BOOKING)
    ========================================================================== */
@@ -1706,11 +1629,6 @@ a {
 .service-option:hover {
     border-color: #b89689;
 }
-.service-option-price {
-    color: #b89689;
-    font-weight: 600;
-    font-size: 0.95rem;
-}
 .booking-container {
     max-width: 550px;
     margin: 20px auto;
@@ -1742,23 +1660,6 @@ a {
     accent-color: #b89689;
     cursor: pointer;
 }
-.btn-submit-booking {
-    display: block;
-    width: 100%;
-    box-sizing: border-box;
-    padding: 16px 20px;
-    font-size: 1rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: #ffffff;
-    background-color: #cbd5e1;
-    border-radius: 10px;
-    text-decoration: none;
-    pointer-events: none;
-    opacity: 0.7;
-    transition: all 0.3s;
-}
 
 /* ==========================================================================
    BLOCS CONSEILS & INFOS (AVANT/APRÈS)
@@ -1778,8 +1679,6 @@ a {
     border-radius: 0 16px 16px 0;
     box-shadow: 0 4px 15px rgba(74, 62, 61, 0.02);
 }
-.box-before { border-left: 4px solid #b89689; }
-.box-after { border-left: 4px solid #8fa89b; }
 
 .quality-callout-box h4 {
     font-family: 'Playfair Display', serif;
@@ -1832,9 +1731,9 @@ a {
     transition: all 0.2s ease;
 }
 
-/* Gestion du survol native en CSS (remplace le JS inline) */
+/* Gestion du survol native en CSS */
 .service-option:hover {
-    border-color: #b89689 !important;
+    border-color: #b89689;
 }
 
 .service-icon {
@@ -1911,27 +1810,6 @@ a {
 /* ==========================================================================
    SLIDER INTERACTIF D'IMAGES
    ========================================================================== */
-.slider-container {
-    position: relative;
-    width: 100%;
-    max-width: 450px;
-    height: 450px;
-    margin: 0 auto;
-    overflow: hidden;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(74, 62, 61, 0.08);
-}
-.slides {
-    display: flex;
-    width: 100%;
-    height: 100%;
-    transition: transform 0.5s ease-in-out;
-}
-.slide {
-    min-width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
 .slide-tag {
     position: absolute;
     bottom: 15px;
@@ -1969,28 +1847,6 @@ a {
 .arrow-left { left: 15px; }
 .arrow-right { right: 15px; }
 
-.slide-dots {
-    position: absolute;
-    bottom: 15px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 8px;
-    z-index: 10;
-}
-.dot {
-    width: 8px;
-    height: 8px;
-    background: rgba(255, 255, 255, 0.5);
-    border-radius: 50%;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-.dot.active {
-    background: #b89689;
-    width: 20px;
-    border-radius: 4px;
-}
 .gallery-help-text {
     text-align: center;
     font-size: 0.8rem;
@@ -1998,26 +1854,8 @@ a {
     color: #7a6b68;
 }
 /* ==========================================================================
-   PAGE : MODELAGE CORPS & DOS (Mise en page dédiée)
+   PAGE : MODELAGE CORPS & DOS
    ========================================================================== */
-
-.prestation-hero-section.section-modelage {
-    background: #faf6f5; /* Le beige clair identique à vos autres pages */
-    padding: 100px 20px;
-    text-align: center;
-}
-
-/* Force la couleur sombre sur le titre, le sous-titre et la description */
-.prestation-hero-section.section-modelage h1,
-.prestation-hero-section.section-modelage .prestation-lead-text,
-.prestation-hero-section.section-modelage .prestation-subtitle {
-    color: #4a3e3d !important;
-}
-
-/* Conserve la couleur dorée/rosée uniquement pour le texte d'introduction si besoin */
-.prestation-hero-section.section-modelage .prestation-subtitle {
-    color: #b89689 !important;
-}
 
 .hero-prestation-content {
     max-width: 800px;
@@ -2161,10 +1999,6 @@ a {
     vertical-align: top;
 }
 
-.sticky-gallery-wrapper {
-    position: relative;
-}
-
 .interactive-slider {
     position: relative;
     border-radius: 20px;
@@ -2280,11 +2114,7 @@ a {
     }
 }
 
-@media (max-width: 576px) {
-    .prestation-hero-section.section-modelage {
-        padding: 60px 15px;
-    }
-    
+@media (max-width: 576px) {    
     .hero-prestation-content h1 {
         font-size: 2.2rem;
     }
@@ -2297,12 +2127,7 @@ a {
         display: none; /* Supprimé sur petit mobile pour éviter le chevauchement */
     }
 }
-/* Bannière Spécifique Mise en Beauté */
-.prestation-hero-section.section-makeup {
-    background: #faf6f5; /* Le beige clair identique à vos autres pages */
-    padding: 100px 20px;
-    text-align: center;
-}
+
 /* Style du sous-titre */
 .prestation-hero-section .prestation-subtitle {
     display: block;
@@ -2327,7 +2152,7 @@ a {
 }
 
 /* Style de la deuxième ligne de texte en italique */
-.prestation-hero-section .prestation-highlight-text {
+.prestation-hero-section{
     color: #b89689;
     font-size: 1.15rem;
     font-style: italic;
@@ -2338,19 +2163,6 @@ a {
     gap: 8px;
 }
 
-/* Force la couleur sombre sur le titre, le sous-titre et la description */
-.prestation-hero-section.section-makeup h1,
-.prestation-hero-section.section-makeup .prestation-lead-text,
-.prestation-hero-section.section-makeup .prestation-highlight-text,
-.prestation-hero-section.section-makeup .prestation-subtitle {
-    color: #4a3e3d !important;
-}
-
-/* Conserve la couleur dorée/rosée uniquement pour le texte d'introduction si besoin */
-.prestation-hero-section.section-modelage .prestation-subtitle {
-    color: #b89689 !important;
-}
-
 .hero-prestation-content {
     max-width: 800px;
     margin: 0 auto;
@@ -2359,68 +2171,45 @@ a {
 .static-gallery-wrapper {
     position: relative;
 }
-/* Bannière Spécifique Extensions de Cils */
-.prestation-hero-section.section-lashes {
-    background: linear-gradient(rgba(42, 35, 34, 0.5), rgba(42, 35, 34, 0.6)), 
-                url('images/hero-cils.jpg') center/cover no-repeat;
-    padding: 100px 20px;
-    text-align: center;
-    color: #ffffff;
-}
-.presentation-container {
-    text-align: center;
-    padding: 60px 20px;
-    background-color: #fdfaf9; /* Couleur de fond propre à l'image */
-}
 
-.sub-title {
-    color: #b89689; 
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
+/* --- Mise en page Animations Enfants --- */
+.services-grid { 
+	display: grid; 
+	grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+	gap: 20px; 
+	max-width: 1000px; 
+	margin: 40px auto; 
+	padding: 0 20px; 
 }
-
-.main-title {
-    font-family: 'Playfair Display', serif; /* Ou votre police titre */
-    color: #4a3e3d;
-    margin: 15px 0;
+.service-card { 
+	background: #ffffff; 
+	padding: 25px; 
+	border-radius: 12px; 
+	border: 1px solid #eae1de; 
+	text-align: center; 
+	transition: all 0.3s ease; 
+	cursor: pointer; 
 }
-
-.intro-text {
-    color: #5c4e4c;
-    margin-bottom: 20px;
+.service-card:hover { 
+	transform: translateY(-5px); 
+	border-color: #b89689; 
+	box-shadow: 0 8px 20px rgba(184, 150, 137, 0.1); 
 }
-
-.clean-list {
-    list-style: none;
-    display: inline-block;
-    text-align: left;
-    padding: 0;
-    line-height: 2;
+.slides-container { 
+	position: relative; 
+	max-width: 800px; 
+	margin: 40px auto; 
+	overflow: hidden; 
+	border-radius: 16px; 
+	height: 400px; 
+	box-shadow: 0 4px 20px rgba(0,0,0,0.05); 
 }
-
-.final-quote {
-    color: #b89689;
-    font-style: italic;
-    margin-top: 20px;
-}
-/* --- Mise en page épurée (Animations Enfants) --- */
-.prestation-hero { background: #faf6f5; padding: 60px 20px; text-align: center; border-bottom: 1px solid #e8d8d4; }
-.services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; max-width: 1000px; margin: 40px auto; padding: 0 20px; }
-.service-card { background: #ffffff; padding: 25px; border-radius: 12px; border: 1px solid #eae1de; text-align: center; transition: all 0.3s ease; cursor: pointer; }
-.service-card:hover { transform: translateY(-5px); border-color: #b89689; box-shadow: 0 8px 20px rgba(184, 150, 137, 0.1); }
-.slides-container { position: relative; max-width: 800px; margin: 40px auto; overflow: hidden; border-radius: 16px; height: 400px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
-.kids-slide { display: none; width: 100%; height: 100%; }
-.slide-caption { position: absolute; bottom: 0; width: 100%; background: linear-gradient(transparent, rgba(42,35,34,0.8)); padding: 20px; color: #fff; text-align: center; }
-.event-badges { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; margin: 30px 0; }
-.badge { background: #ffffff; padding: 12px 24px; border-radius: 30px; border: 1px solid #eae1de; cursor: pointer; transition: all 0.2s; }
-.badge:hover { border-color: #b89689; background: #fdfbfb; transform: scale(1.03); }
 
 /* Conteneur du slider : fixe la taille et cache ce qui dépasse */
 .slider-container {
     position: relative;
     width: 100%;
-    max-width: 600px; /* Ajustez selon vos besoins */
+    max-width: 600px;
     margin: 20px auto;
     overflow: hidden; /* C'est ce qui masque les images suivantes */
     border-radius: 12px;
@@ -2440,20 +2229,6 @@ a {
     display: block;
 }
 
-/* Positionnement des flèches par-dessus le slider */
-.slide-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(255, 255, 255, 0.7);
-    border: none;
-    cursor: pointer;
-    padding: 10px;
-    z-index: 10;
-}
-.slide-prev { left: 10px; }
-.slide-next { right: 10px; }
-
 /* Style pour le badge "Sur Devis" */
 .badge-price {
     display: inline-block;
@@ -2467,18 +2242,11 @@ a {
     text-transform: uppercase;
 }
 
-/* Ajustement pour la cohérence des titres */
-.prestation-hero h1 {
-    font-family: 'Playfair Display', serif;
-    color: #4a3e3d;
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-}
 /* Badge prix */
 .badge-price {
     display: inline-block;
     padding: 6px 16px;
-    background-color: #fce4e4; /* Rose très doux */
+    background-color: #fce4e4;
     color: #4a3e3d;
     font-size: 0.85rem;
     font-weight: 600;
