@@ -130,3 +130,52 @@ favicon.rel = 'icon';
 favicon.type = 'image/jpeg';
 favicon.href = 'https://cyril1355.github.io/cam-beauty59/favicon.jpg'; 
 document.head.appendChild(favicon);
+
+document.addEventListener("DOMContentLoaded", function () {
+    const slider = document.getElementById("slider-avis-final");
+    const prevBtn = document.getElementById("prev-review-btn");
+    const nextBtn = document.getElementById("next-review-btn");
+    
+    if (slider && prevBtn && nextBtn) {
+        let index = 0;
+        
+        function getCardsPerView() {
+            if (window.innerWidth < 768) return 1;    // Mobile : 1 avis
+            if (window.innerWidth < 1024) return 2;   // Tablette : 2 avis
+            return 3;                                 // PC : 3 avis
+        }
+
+        function updateSlider() {
+            const card = document.querySelector(".final-review-card");
+            if (!card) return;
+            // Calcule la largeur exacte d'une carte + l'espace (gap) de 20px
+            const cardWidth = card.getBoundingClientRect().width + 20; 
+            slider.style.transform = `translateX(${-index * cardWidth}px)`;
+        }
+
+        nextBtn.addEventListener("click", function () {
+            const maxIndex = slider.children.length - getCardsPerView();
+            if (index < maxIndex) {
+                index++;
+            } else {
+                index = 0; // Revient au début
+            }
+            updateSlider();
+        });
+
+        prevBtn.addEventListener("click", function () {
+            if (index > 0) {
+                index--;
+            } else {
+                index = slider.children.length - getCardsPerView(); // Va à la fin
+            }
+            updateSlider();
+        });
+
+        // Réaligne le slider proprement si on redimensionne la fenêtre
+        window.addEventListener("resize", function() {
+            index = 0; // Reset pour éviter les décalages de calcul
+            updateSlider();
+        });
+    }
+});
