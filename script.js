@@ -244,6 +244,6 @@ function toggleBookingButton() {
         button.style.opacity = '0.5';
     } else {
         button.style.pointerEvents = 'auto';
-        button.style.opacity = '50';
+        button.style.opacity = '1';
     }
 }
