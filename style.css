@@ -2038,3 +2038,184 @@
 .hours-col .footer-hours-list .closed-day {
     color: #c97a7a; /* Rouge doux esthétique pour le jour fermé */
 }
+/* ==========================================================================
+   MODULE CARROUSEL AVIS CLIENTS (PUR CSS ET DEFILEMENT AUTOMATIQUE)
+   ========================================================================== */
+
+/* Conteneur principal */
+section.reviews-section .reviews-carousel-container {
+    position: relative;
+    max-width: 1240px;
+    margin: 0 auto;
+    overflow: hidden;
+    padding: 0 60px;
+    box-sizing: border-box;
+}
+
+/* Base commune et design des disques des flèches (Structure Div Neutre) */
+section.reviews-section .reviews-carousel-container #prev-review-btn,
+section.reviews-section .reviews-carousel-container #next-review-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 99;
+    
+    /* Dimensions strictes et forme du disque blanc de l'institut */
+    background: #ffffff;
+    border: 1px solid #f3ece9;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    box-shadow: 0 4px 12px rgba(42, 35, 34, 0.08);
+    
+    /* Centrage parfait de l'icône interne */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-sizing: border-box;
+    transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Positionnements absolus Gauche / Droite */
+section.reviews-section .reviews-carousel-container #prev-review-btn {
+    left: 15px;
+    right: auto;
+}
+
+section.reviews-section .reviews-carousel-container #next-review-btn {
+    right: 15px;
+    left: auto;
+}
+
+/* Dessin du chevron interne en pur CSS (Évite Font Awesome) */
+section.reviews-section .reviews-carousel-container .arrow-icon {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-top: 2px solid #b89689; /* Couleur rose cuivré de ta charte */
+    border-right: 2px solid #b89689;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+/* Inclinaison pour faire une flèche Gauche */
+section.reviews-section .reviews-carousel-container .arrow-icon.left {
+    transform: rotate(-135deg);
+    margin-left: 2px;
+}
+
+/* Inclinaison pour faire une flèche Droite */
+section.reviews-section .reviews-carousel-container .arrow-icon.right {
+    transform: rotate(45deg);
+    margin-right: 2px;
+}
+
+/* Effets graphiques au survol du disque */
+section.reviews-section .reviews-carousel-container #prev-review-btn:hover,
+section.reviews-section .reviews-carousel-container #next-review-btn:hover {
+    background: #b89689;
+    border-color: #b89689;
+    transform: translateY(-50%) scale(1.05);
+    box-shadow: 0 6px 16px rgba(184, 150, 137, 0.2);
+}
+
+/* Le chevron dessiné devient blanc au survol */
+section.reviews-section .reviews-carousel-container #prev-review-btn:hover .arrow-icon,
+section.reviews-section .reviews-carousel-container #next-review-btn:hover .arrow-icon {
+    border-color: #ffffff;
+}
+
+/* Effet mécanique de pression au clic */
+section.reviews-section .reviews-carousel-container #prev-review-btn:active,
+section.reviews-section .reviews-carousel-container #next-review-btn:active {
+    transform: translateY(-50%) scale(0.95);
+}
+
+/* Zone de défilement des cartes */
+section.reviews-section .reviews-carousel-container .reviews-slider {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 20px;
+    width: 100%;
+    padding: 25px 5px;
+    box-sizing: border-box;
+    /* Gère la fluidité linéaire de la glisse (Automatique et Manuelle) */
+    transition: transform 0.5s ease-in-out; 
+}
+
+/* Design des cartes d'avis */
+section.reviews-section .reviews-carousel-container .reviews-slider .review-card {
+    flex: 0 0 calc(33.333% - 14px);
+    max-width: calc(33.333% - 14px);
+    min-width: 280px;
+    box-sizing: border-box;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 8px 30px rgba(42, 35, 34, 0.06);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+}
+
+/* Étoiles */
+section.reviews-section .reviews-carousel-container .reviews-slider .review-card .stars {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    color: #ffb800;
+}
+
+/* Texte de l'avis */
+section.reviews-section .reviews-carousel-container .reviews-slider .review-card .review-text {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #5c4e4c;
+    font-style: italic;
+    margin-bottom: 20px;
+    flex-grow: 1;
+}
+
+/* Auteur de l'avis */
+section.reviews-section .reviews-carousel-container .reviews-slider .review-card .review-author {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #4a3e3d;
+    margin: 0;
+}
+
+/* Pied de section */
+section.reviews-section .leave-review-container {
+    margin-top: 40px;
+    text-align: center;
+}
+
+section.reviews-section .review-buttons-group {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 15px;
+}
+
+/* ==========================================================================
+   GESTION RESPONSIVE ADAPTATIVE MOBILE / TABLETTE
+   ========================================================================== */
+@media (max-width: 1024px) {
+    section.reviews-section .reviews-carousel-container .reviews-slider .review-card {
+        flex: 0 0 calc(50% - 10px); /* 2 cartes visibles sur tablette */
+        max-width: calc(50% - 10px);
+    }
+}
+
+@media (max-width: 768px) {
+    section.reviews-section .reviews-carousel-container {
+        padding: 0 40px;
+    }
+    section.reviews-section .reviews-carousel-container .reviews-slider .review-card {
+        flex: 0 0 100%; /* 1 seule carte visible sur mobile */
+        max-width: 100%;
+    }
+}
