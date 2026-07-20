@@ -2425,22 +2425,4 @@ html {
     background-color: #fcf4ee; /* Légère couleur au survol pour indiquer que c'est cliquable */
     border-radius: 8px;
 }
-#booking-btn {
-    /* État désactivé (par défaut) */
-    pointer-events: none;
-    opacity: 0.4;
-    filter: grayscale(100%); /* Rend le bouton gris */
-    background-color: #777;  /* Couleur neutre */
-    transition: all 0.4s ease;
-    cursor: not-allowed;
-}
 
-#booking-btn.active {
-    /* État activé */
-    pointer-events: auto;
-    opacity: 1;
-    filter: grayscale(0%);   /* Rend ses couleurs d'origine */
-    background-color: #d4a373; /* Remplacez par votre couleur principale */
-    cursor: pointer;
-    transform: scale(1.02);  /* Petit effet de zoom pour l'attractivité */
-}
