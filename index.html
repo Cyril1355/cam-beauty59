@@ -64,10 +64,14 @@
     <!-- Conteneur global du carrousel -->
     <div class="reviews-carousel-container">
         
-        <!-- Boutons de navigation -->
-        <button id="prev-review-btn" class="review-nav-arrow">&lt;</button>
+        <!-- Flèche Gauche (Bouton Div Universel - Pur CSS) -->
+        <div id="prev-review-btn" class="review-nav-arrow left-arrow" role="button" aria-label="Précédent">
+            <span class="arrow-icon left"></span>
+        </div>
         
+        <!-- Curseur horizontal des avis -->
         <div class="reviews-slider">
+            
             <!-- Avis 1 : Chloé -->
             <div class="review-card">
                 <div class="stars">⭐⭐⭐⭐⭐</div>
@@ -111,7 +115,10 @@
             </div>
         </div>
 
-        <button id="next-review-btn" class="review-nav-arrow">&gt;</button>
+        <!-- Flèche Droite (Bouton Div Universel - Pur CSS) -->
+        <div id="next-review-btn" class="review-nav-arrow right-arrow" role="button" aria-label="Suivant">
+            <span class="arrow-icon right"></span>
+        </div>
     </div>
 
     <!-- Zone des boutons d'action (Facebook / Google) -->
@@ -121,7 +128,7 @@
             <a href="https://www.facebook.com/profile.php?id=61571877812657&sk=reviews" target="_blank" class="btn-secondary">
                 <i class="fa-brands fa-facebook"></i> Laisser un avis sur Facebook
             </a>
-            <a href="https://www.google.com/search?sca_esv=15584491b0e529db&rlz=1C1ONGR_frFR1036FR1036&sxsrf=APpeQnu36fz4xcagN7CUs5m5W1EQEeeISw:1784572576527&si=APenkKm7iecQ4G6P-TsbSMFKIQtv3EFIqRAFw-i8uEbk55Z-_0I-wgQ3f2MJy4yfJSYX8McTwFVbtZjy3_rmzDtuPb6J5y7gTZwsl5TNJCrI8eVsHfRxyKDAM4VKdabNdCtXvMNG3zJvnQCxmds0wKCJgtabvkHmBQ%3D%3D&q=Institut+Cam%E2%80%99Beauty+Avis&sa=X&ved=2ahUKEwiUrv_z8uGVAxVZ4AIHHearOpgQ0bkNegQIJBAF&biw=1920&bih=911&dpr=1" target="_blank" class="btn-secondary google-btn">
+            <a href="https://search.google.com/local/writereview?placeid=TON_PLACE_ID_ICI" target="_blank" class="btn-secondary google-btn">
                 <i class="fa-brands fa-google"></i> Laisser un avis sur Google
             </a>
         </div>
