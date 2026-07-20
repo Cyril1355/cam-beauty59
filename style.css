@@ -2407,3 +2407,21 @@ section.reviews-section .review-buttons-group {
     color: #b89689;
     font-size: 1.3rem;
 }
+/* Défilement fluide pour toute la page */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Style des liens de prestations */
+.prestation-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.prestation-link:hover .menu-item-row {
+    background-color: #fcf4ee; /* Légère couleur au survol pour indiquer que c'est cliquable */
+    border-radius: 8px;
+}
