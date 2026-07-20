@@ -2374,3 +2374,16 @@ section.reviews-section .review-buttons-group {
         grid-template-columns: 1fr;
     }
 }
+/* Style des titres cliquables de catégories */
+.page-tarifs-institut .price-category-card h2 a.category-link {
+    text-decoration: none;
+    color: #4a3e3d; /* Reste sur le brun foncé d'origine */
+    transition: color 0.3s ease;
+    display: block;
+    width: 100%;
+}
+
+/* Effet de survol : le titre passe doucement à la couleur cuivrée */
+.page-tarifs-institut .price-category-card h2 a.category-link:hover {
+    color: #b89689; 
+}
