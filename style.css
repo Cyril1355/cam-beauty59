@@ -2387,23 +2387,23 @@ section.reviews-section .review-buttons-group {
 .page-tarifs-institut .price-category-card h2 a.category-link:hover {
     color: #b89689; 
 }
-/* --- ACCORDION / BADGE INFO MASSAGES INTERNE --- */
-.page-tarifs-institut .info-clientele-inline {
-    display: inline-flex;
+/* --- BLOC D'INFO HAUTE VISIBILITÉ --- */
+.info-box-highlight {
+    display: flex;
     align-items: center;
-    gap: 8px;
-    background-color: #fcf4ee; /* Fond crème rosé doux */
-    border: 1px solid #f3ece9;
-    border-radius: 20px;
-    padding: 6px 14px;
-    margin-bottom: 25px;
-	margin: 40px auto 60px auto;
-    font-size: 0.85rem;
-    font-weight: 500;
+    gap: 12px;
+    background-color: #fffaf7; /* Fond très clair pour le contraste */
+    border-left: 4px solid #b89689; /* Bordure latérale épaisse pour attirer l'œil */
+    padding: 15px 20px;
+    margin: 20px 0;
+    border-radius: 4px;
     color: #4a3e3d;
+    font-weight: 600; /* Texte plus gras */
+    font-size: 1.05rem; /* Texte légèrement plus grand */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05); /* Légère ombre pour le détacher du fond */
 }
 
-.page-tarifs-institut .info-clientele-inline i {
-    color: #b89689; /* Icône rose cuivré */
-    font-size: 0.9rem;
+.info-box-highlight i {
+    color: #b89689;
+    font-size: 1.3rem;
 }
