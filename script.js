@@ -220,3 +220,30 @@ document.addEventListener("DOMContentLoaded", function () {
     // Lancement initial
     startAutoPlay();
 });
+
+document.querySelectorAll('.prestation-link').forEach(link => {
+    link.addEventListener('click', function(e) {
+        // Récupère l'URL TidyCal de la prestation cliquée
+        const targetUrl = this.getAttribute('data-url');
+        const bookingBtn = document.getElementById('booking-btn');
+        
+        // Applique cette URL au bouton de réservation
+        if (targetUrl) {
+            bookingBtn.setAttribute('href', targetUrl);
+        }
+    });
+});
+
+function toggleBookingButton() {
+    const checkbox = document.getElementById('agree-policy');
+    const button = document.getElementById('booking-btn');
+    
+    // Si la case n'est pas cochée, on empêche le clic
+    if (!checkbox.checked) {
+        button.style.pointerEvents = 'none';
+        button.style.opacity = '0.5';
+    } else {
+        button.style.pointerEvents = 'auto';
+        button.style.opacity = '1';
+    }
+}
