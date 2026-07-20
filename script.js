@@ -221,29 +221,39 @@ document.addEventListener("DOMContentLoaded", function () {
     startAutoPlay();
 });
 
-document.querySelectorAll('.prestation-link').forEach(link => {
-    link.addEventListener('click', function(e) {
-        // Récupère l'URL TidyCal de la prestation cliquée
-        const targetUrl = this.getAttribute('data-url');
-        const bookingBtn = document.getElementById('booking-btn');
-        
-        // Applique cette URL au bouton de réservation
-        if (targetUrl) {
-            bookingBtn.setAttribute('href', targetUrl);
-        }
-    });
-});
-
-function toggleBookingButton() {
+document.addEventListener('DOMContentLoaded', () => {
     const checkbox = document.getElementById('agree-policy');
-    const button = document.getElementById('booking-btn');
+    const bookingBtn = document.getElementById('booking-btn');
+    const prestationLinks = document.querySelectorAll('.prestation-link');
+
+    // 1. Gestion de la sélection d'une prestation (met à jour le lien TidyCal et fait défiler)
+    prestationLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            const targetUrl = this.getAttribute('data-url');
+            if (targetUrl && bookingBtn) {
+                bookingBtn.setAttribute('href', targetUrl);
+            }
+        });
+    });
+
+    // 2. Fonction de gestion de l'état du bouton selon la case à cocher
+    window.toggleBookingButton = function() {
+        if (!checkbox || !bookingBtn) return;
+
+        if (checkbox.checked) {
+            bookingBtn.classList.add('active');
+        } else {
+            bookingBtn.classList.remove('active');
+            // Optionnel : réinitialise le href à "#" si la case est décochée
+            bookingBtn.setAttribute('href', '#');
+        }
+    };
+
+    // 3. Initialisation au chargement de la page (bouton désactivé par défaut)
+    toggleBookingButton();
     
-    // Si la case n'est pas cochée, on empêche le clic
-    if (!checkbox.checked) {
-        button.style.pointerEvents = 'none';
-        button.style.opacity = '0.5';
-    } else {
-        button.style.pointerEvents = 'auto';
-        button.style.opacity = '1';
+    // Écouteur d'événement sur la case à cocher au cas où l'attribut onchange HTML ne suffirait pas
+    if (checkbox) {
+        checkbox.addEventListener('change', toggleBookingButton);
     }
-}
+});
