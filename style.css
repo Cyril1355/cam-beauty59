@@ -164,15 +164,22 @@
  .reviews-grid {
      max-width: 1200px;
      margin: 0 auto;
-     display: grid;
+     display: flex;
      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
      gap: 30px;
+     flex-wrap: wrap;
+     justify-content: center;
+}
 }
  .review-card {
      background: #ffffff;
-     padding: 35px;
-     border-radius: 16px;
-     box-shadow: 0 5px 25px rgba(184, 150, 137, 0.06);
+	 flex: 0 0 calc(33.333% - 14px);
+     min-width: 280px;
+     box-sizing: border-box;
+     padding: 20px;
+     border-radius: 12px;
+     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+	 
 }
  .review-card .stars {
      margin-bottom: 15px;
@@ -195,6 +202,7 @@
      display: flex;
      flex-direction: column;
      align-items: center;
+	 text-align: center;
      gap: 15px;
 }
  .leave-review-container p {
@@ -1955,4 +1963,57 @@
      border-radius: 30px;
      letter-spacing: 0.5px;
      text-transform: uppercase;
+}
+/* ==========================================================================
+   MODULE CARROUSEL AVIS CLIENTS
+   ========================================================================== */
+
+.reviews-carousel-container {
+    position: relative;
+    max-width: 1000px;
+    margin: 0 auto;
+    overflow: hidden;
+    padding: 0 50px;
+}
+
+/* Flèches de navigation */
+.review-nav-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: #b392ac;
+    z-index: 10;
+    transition: color 0.2s ease;
+}
+
+.review-nav-arrow:hover {
+    color: #a17fa2;
+}
+
+#prev-review-btn {
+    left: 10px;
+}
+
+#next-review-btn {
+    right: 10px;
+}
+
+/* Grille animée par le JavaScript */
+.reviews-slider {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    width: 100%;
+    transition: transform 0.4s ease-in-out;
+}
+.review-buttons-group {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 15px;
 }
