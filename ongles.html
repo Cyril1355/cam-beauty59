@@ -36,8 +36,8 @@
                     <p class="category-intro-text">Des poses d'ongles adaptées à vos envies pour des mains impeccables au quotidien.</p>
                     
                     <div class="menu-list">
-                        <!-- Liste des prestations avec lien d'ancrage -->
-                        <a href="#zone-reservation" class="prestation-link">
+                        <!-- Exemple de prestation avec URL TidyCal spécifique -->
+                        <a href="#zone-reservation" class="prestation-link" data-url="https://tidycal.com/votre-compte/semi-permanent">
                             <div class="menu-item-row">
                                 <div class="item-main-info">
                                     <div class="item-title-dots">
@@ -48,7 +48,7 @@
                             </div>
                         </a>
 
-                        <a href="#zone-reservation" class="prestation-link">
+                        <a href="#zone-reservation" class="prestation-link" data-url="https://tidycal.com/votre-compte/semi-permanent-pedicure">
                             <div class="menu-item-row">
                                 <div class="item-main-info">
                                     <div class="item-title-dots">
@@ -59,7 +59,7 @@
                             </div>
                         </a>
 
-                        <a href="#zone-reservation" class="prestation-link">
+                        <a href="#zone-reservation" class="prestation-link" data-url="https://tidycal.com/votre-compte/gainage">
                             <div class="menu-item-row">
                                 <div class="item-main-info">
                                     <div class="item-title-dots">
@@ -70,7 +70,7 @@
                             </div>
                         </a>
 
-                        <a href="#zone-reservation" class="prestation-link">
+                        <a href="#zone-reservation" class="prestation-link" data-url="https://tidycal.com/votre-compte/rallongement-sm">
                             <div class="menu-item-row">
                                 <div class="item-main-info">
                                     <div class="item-title-dots">
@@ -81,7 +81,7 @@
                             </div>
                         </a>
 
-                        <a href="#zone-reservation" class="prestation-link">
+                        <a href="#zone-reservation" class="prestation-link" data-url="https://tidycal.com/votre-compte/rallongement-lxl">
                             <div class="menu-item-row">
                                 <div class="item-main-info">
                                     <div class="item-title-dots">
@@ -92,7 +92,7 @@
                             </div>
                         </a>
 
-                        <a href="#zone-reservation" class="prestation-link">
+                        <a href="#zone-reservation" class="prestation-link" data-url="https://tidycal.com/votre-compte/remplissage">
                             <div class="menu-item-row">
                                 <div class="item-main-info">
                                     <div class="item-title-dots">
@@ -106,7 +106,7 @@
 
                         <h2>Les petits +</h2>
                         
-                        <a href="#zone-reservation" class="prestation-link">
+                        <a href="#zone-reservation" class="prestation-link" data-url="https://tidycal.com/votre-compte/french">
                             <div class="menu-item-row">
                                 <div class="item-main-info">
                                     <div class="item-title-dots">
@@ -117,7 +117,7 @@
                             </div>
                         </a>
 
-                        <a href="#zone-reservation" class="prestation-link">
+                        <a href="#zone-reservation" class="prestation-link" data-url="https://tidycal.com/votre-compte/babyboomer">
                             <div class="menu-item-row">
                                 <div class="item-main-info">
                                     <div class="item-title-dots">
@@ -128,7 +128,7 @@
                             </div>
                         </a>
 
-                        <a href="#zone-reservation" class="prestation-link">
+                        <a href="#zone-reservation" class="prestation-link" data-url="https://tidycal.com/votre-compte/effects">
                             <div class="menu-item-row">
                                 <div class="item-main-info">
                                     <div class="item-title-dots">
@@ -139,7 +139,7 @@
                             </div>
                         </a>
 
-                        <a href="#zone-reservation" class="prestation-link">
+                        <a href="#zone-reservation" class="prestation-link" data-url="https://tidycal.com/votre-compte/strass">
                             <div class="menu-item-row">
                                 <div class="item-main-info">
                                     <div class="item-title-dots">
@@ -150,7 +150,7 @@
                             </div>
                         </a>
 
-                        <a href="#zone-reservation" class="prestation-link">
+                        <a href="#zone-reservation" class="prestation-link" data-url="https://tidycal.com/votre-compte/nailart">
                             <div class="menu-item-row">
                                 <div class="item-main-info">
                                     <div class="item-title-dots">
@@ -161,7 +161,7 @@
                             </div>
                         </a>
 
-                        <a href="#zone-reservation" class="prestation-link">
+                        <a href="#zone-reservation" class="prestation-link" data-url="https://tidycal.com/votre-compte/ongle-casse">
                             <div class="menu-item-row">
                                 <div class="item-main-info">
                                     <div class="item-title-dots">
@@ -192,7 +192,6 @@
                         <button class="slider-arrow arrow-left" onclick="document.getElementById('nails-photos').scrollBy({left: -320, behavior: 'smooth'})"><i class="fa-solid fa-arrow-left-long"></i></button>
                         <button class="slider-arrow arrow-right" onclick="document.getElementById('nails-photos').scrollBy({left: 320, behavior: 'smooth'})"><i class="fa-solid fa-arrow-right-long"></i></button>
                     </div>
-                    <p class="gallery-help-text">Retrouvez plus de photos sur mes réseaux sociaux&nbsp;!</p>
                 </div>
             </div>
         </div>
@@ -206,7 +205,8 @@
                 <span>J'accepte les conditions de réservation (acompte de 10€ déduit du soin, non remboursable si annulation moins de 48h avant le RDV).</span>
             </label>
 
-            <a href="#" id="booking-btn" target="_blank" class="btn-booking">
+            <!-- URL initiale vide, sera remplie par le script -->
+            <a href="#" id="booking-btn" target="_blank" class="btn-booking" style="pointer-events: none; opacity: 0.5;">
                  Confirmer et prendre RDV
             </a>
         </div>
