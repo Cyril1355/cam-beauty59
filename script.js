@@ -132,50 +132,91 @@ favicon.href = 'https://cyril1355.github.io/cam-beauty59/favicon.jpg';
 document.head.appendChild(favicon);
 
 document.addEventListener("DOMContentLoaded", function () {
-    const slider = document.getElementById("slider-avis-final");
+    const slider = document.querySelector(".reviews-section .reviews-slider");
+    const container = document.querySelector(".reviews-section .reviews-carousel-container");
     const prevBtn = document.getElementById("prev-review-btn");
     const nextBtn = document.getElementById("next-review-btn");
     
-    if (slider && prevBtn && nextBtn) {
-        let index = 0;
+    if (!slider || !container) return;
+
+    let currentIndex = 0;
+    let autoPlayTimer = null;
+
+    // Calcule dynamiquement le nombre de cartes visibles selon l'écran
+    function getVisibleCardsCount() {
+        if (window.innerWidth <= 768) return 1;  // Mobile
+        if (window.innerWidth <= 1024) return 2; // Tablette
+        return 3;                                // Bureau
+    }
+
+    // Fonction principale de déplacement
+    function moveSlider() {
+        const cards = document.querySelectorAll(".reviews-section .review-card");
+        if (cards.length === 0) return;
+
+        const visibleCards = getVisibleCardsCount();
+        const maxIndex = cards.length - visibleCards;
+
+        // Boucle infinie si on dépasse le maximum
+        if (currentIndex > maxIndex) {
+            currentIndex = 0;
+        } else if (currentIndex < 0) {
+            currentIndex = maxIndex;
+        }
+
+        // Calcule la largeur d'une carte + le gap (20px)
+        const cardWidth = cards[0].getBoundingClientRect().width + 20;
         
-        function getCardsPerView() {
-            if (window.innerWidth < 768) return 1;    // Mobile : 1 avis
-            if (window.innerWidth < 1024) return 2;   // Tablette : 2 avis
-            return 3;                                 // PC : 3 avis
-        }
+        // Applique la translation
+        slider.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
+    }
 
-        function updateSlider() {
-            const card = document.querySelector(".final-review-card");
-            if (!card) return;
-            // Calcule la largeur exacte d'une carte + l'espace (gap) de 20px
-            const cardWidth = card.getBoundingClientRect().width + 20; 
-            slider.style.transform = `translateX(${-index * cardWidth}px)`;
-        }
-
-        nextBtn.addEventListener("click", function () {
-            const maxIndex = slider.children.length - getCardsPerView();
-            if (index < maxIndex) {
-                index++;
-            } else {
-                index = 0; // Revient au début
-            }
-            updateSlider();
-        });
-
-        prevBtn.addEventListener("click", function () {
-            if (index > 0) {
-                index--;
-            } else {
-                index = slider.children.length - getCardsPerView(); // Va à la fin
-            }
-            updateSlider();
-        });
-
-        // Réaligne le slider proprement si on redimensionne la fenêtre
-        window.addEventListener("resize", function() {
-            index = 0; // Reset pour éviter les décalages de calcul
-            updateSlider();
+    // Gestionnaires de clics sur les flèches
+    if (nextBtn) {
+        nextBtn.addEventListener("click", () => {
+            currentIndex++;
+            moveSlider();
+            resetAutoPlay();
         });
     }
+
+    if (prevBtn) {
+        prevBtn.addEventListener("click", () => {
+            currentIndex--;
+            moveSlider();
+            resetAutoPlay();
+        });
+    }
+
+    // Fonctions d'automatisation
+    function startAutoPlay() {
+        if (autoPlayTimer === null) {
+            autoPlayTimer = setInterval(() => {
+                currentIndex++;
+                moveSlider();
+            }, 4000); // Défilement toutes les 4000ms (4 secondes)
+        }
+    }
+
+    function stopAutoPlay() {
+        if (autoPlayTimer !== null) {
+            clearInterval(autoPlayTimer);
+            autoPlayTimer = null;
+        }
+    }
+
+    function resetAutoPlay() {
+        stopAutoPlay();
+        startAutoPlay();
+    }
+
+    // Sécurité : recalcule les positions si on tourne l'écran ou redimensionne
+    window.addEventListener("resize", moveSlider);
+
+    // Arrêt du défilement au survol de la souris (confort de lecture)
+    container.addEventListener("mouseenter", stopAutoPlay);
+    container.addEventListener("mouseleave", startAutoPlay);
+
+    // Lancement initial
+    startAutoPlay();
 });
