@@ -2219,3 +2219,158 @@ section.reviews-section .review-buttons-group {
         max-width: 100%;
     }
 }
+/* ==========================================================================
+   ISOLATION COMPLÈTE : GRILLE DES TARIFS (SANS CONFLIT DE NOM)
+   ========================================================================== */
+
+/* Variables locales appliquées uniquement à cette page */
+.page-tarifs-institut {
+    background-color: #fcf9f7 !important;
+    font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+}
+
+.page-tarifs-institut .prices-page-section {
+    max-width: 1200px;
+    margin: 0 auto 60px;
+    padding: 60px 20px 0;
+    box-sizing: border-box;
+}
+
+.page-tarifs-institut .section-title-block {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.page-tarifs-institut .section-title-block h1 {
+    font-size: 2.6rem;
+    color: #4a3e3d;
+    margin: 0 0 10px 0;
+}
+
+.page-tarifs-institut .section-subtitle {
+    color: #b89689;
+    font-style: italic;
+    margin: 5px 0 0 0;
+}
+
+/* Grille et Cartes isolées */
+.page-tarifs-institut .prices-grid-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+}
+
+.page-tarifs-institut .price-category-card {
+    background: #ffffff !important;
+    border: 1px solid #f3ece9 !important;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 10px 30px rgba(42, 35, 34, 0.02);
+    box-sizing: border-box;
+}
+
+.page-tarifs-institut .price-category-card h2 {
+    font-size: 1.4rem;
+    color: #4a3e3d;
+    border-bottom: 2px solid #f3ece9;
+    padding-bottom: 15px;
+    margin: 0 0 30px 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Lignes de prix */
+.page-tarifs-institut .price-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.page-tarifs-institut .price-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 26px;
+    position: relative;
+}
+
+.page-tarifs-institut .price-item:last-child {
+    margin-bottom: 0;
+}
+
+.page-tarifs-institut .price-details {
+    flex-grow: 1;
+    padding-right: 20px;
+}
+
+.page-tarifs-institut .item-title {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #4a3e3d;
+    background: #ffffff;
+    position: relative;
+    z-index: 2;
+    padding-right: 6px;
+}
+
+.page-tarifs-institut .item-description {
+    font-size: 0.88rem;
+    color: #5c4e4c;
+    margin: 5px 0 0 0;
+    line-height: 1.4;
+}
+
+.page-tarifs-institut .item-price {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #b89689;
+    white-space: nowrap;
+    background: #ffffff;
+    padding-left: 6px;
+    position: relative;
+    z-index: 2;
+}
+
+/* Pointillés d'alignement */
+.page-tarifs-institut .price-item::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 14px;
+    border-bottom: 1px dotted #e1d5d2;
+    z-index: 1;
+}
+
+/* Bas de page & Bouton unique */
+.page-tarifs-institut .prices-cta-block {
+    margin-top: 60px;
+    text-align: center;
+    background: #ffffff;
+    border: 1px solid #f3ece9;
+    padding: 40px;
+    border-radius: 20px;
+}
+
+.page-tarifs-institut .btn-primary-tarifs {
+    display: inline-block;
+    background: #b89689;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 14px 30px;
+    border-radius: 30px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.page-tarifs-institut .btn-primary-tarifs:hover {
+    background: #a38174;
+}
+
+/* Mode mobile responsive */
+@media (max-width: 968px) {
+    .page-tarifs-institut .prices-grid-container {
+        grid-template-columns: 1fr;
+    }
+}
