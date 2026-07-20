@@ -2425,29 +2425,30 @@ html {
     background-color: #fcf4ee; /* Légère couleur au survol pour indiquer que c'est cliquable */
     border-radius: 8px;
 }
-/* 1. État par défaut (inactif, grisé et transparent) */
+/* Style de base (état inactif - grisé) */
 #booking-btn {
     pointer-events: none;
     opacity: 0.3;
     filter: grayscale(100%);
-    background-color: #333333; /* Fond très neutre et sombre par défaut */
+    background-color: #333333; /* Gris par défaut */
     color: #ffffff;
-    transition: all 0.4s ease;
     cursor: not-allowed;
+    transition: all 0.4s ease;
+    display: inline-block;
+    text-decoration: none; /* Pour éviter le soulignement du lien */
 }
 
-/* 2. État activé (quand la case est cochée) : BIEN FONCÉ ET VISIBLE */
+/* État actif (bleu profond - case cochée) */
 #booking-btn.active {
     pointer-events: auto;
     opacity: 1;
-    filter: none; /* On retire le gris */
-    
-    /* MODIFIEZ CETTE LIGNE : Mettez la couleur sombre de votre choix */
-    background-color: #2b2b2b; /* Noir profond / Anthracite très foncé */
-    /* OU si vous préférez un marron très foncé : background-color: #3d2c1e; */
-    
-    color: #ffffff; /* Texte en blanc pour un contraste maximal */
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4); /* Ombre portée prononcée pour donner du relief */
-    transform: scale(1.02);
+    filter: none; /* Supprime le gris */
+    background-color: #0056b3; /* Bleu profond */
     cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 86, 179, 0.3); /* Ombre bleutée légère */
+}
+
+/* Effet au survol pour rendre le bleu plus vivant */
+#booking-btn.active:hover {
+    background-color: #007bff; /* Bleu plus clair au survol */
 }
