@@ -61,32 +61,70 @@
     <h2>Ce que disent mes clientes</h2>
     <p class="reviews-subtitle">Votre satisfaction est ma plus belle récompense</p>
     
-    <!-- Grille des avis fixes -->
-    <div class="reviews-grid">
-        <div class="review-card">
-            <div class="stars">⭐⭐⭐⭐⭐</div>
-            <p class="review-text">"Un moment magique ! Camille est d'une douceur incroyable et son travail sur mes ongles est parfait. L'institut privé est un vrai cocon de sérénité."</p>
-            <p class="review-author">- Marine D.</p>
-        </div>
+    <!-- Conteneur global du carrousel -->
+    <div class="reviews-carousel-container">
         
-        <div class="review-card">
-            <div class="stars">⭐⭐⭐⭐⭐</div>
-            <p class="review-text">"Très professionnelle et ponctuelle pour la prestation à domicile. Mes extensions de cils sont superbes et le résultat est très naturel. Je recommande à 100% !"</p>
-            <p class="review-author">- Sophie L.</p>
+        <!-- Boutons de navigation -->
+        <button id="prev-review-btn" class="review-nav-arrow">&lt;</button>
+        
+        <div class="reviews-slider">
+            <!-- Avis 1 : Chloé -->
+            <div class="review-card">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p class="review-text">"Camille est très professionnelle, je suis toujours ravie du résultat obtenu 😊 C'est toujours un plaisir de prendre un moment pour se faire chouchouter par Camille, je recommande 😉"</p>
+                <p class="review-author">- Chloé</p>
+            </div>
+            
+            <!-- Avis 2 : Tiphaine -->
+            <div class="review-card">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p class="review-text">"Coucou comment ça va ? Petit retour sur les cils, franchement impeccable la tenue et super, pour tout dire j'ai été à la piscine le jour même où tu me les as faits et ils sont toujours là 👍🤩"</p>
+                <p class="review-author">- Tiphaine</p>
+            </div>
+
+            <!-- Avis 3 : Lolita -->
+            <div class="review-card">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p class="review-text">"Je recommande à 100%. Agréable, fait du bon boulot. Propose plusieurs services. À l'écoute de sa clientèle et très douce. Jamais de bobo 😉"</p>
+                <p class="review-author">- Lolita</p>
+            </div>
+
+            <!-- Avis 4 : Alyssa -->
+            <div class="review-card">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p class="review-text">"Je vous recommande Camille, très professionnelle et très douce 🫶 Encore merci pour mes cils j'adore ! 💅"</p>
+                <p class="review-author">- Alyssa</p>
+            </div>
+
+            <!-- Avis 5 : Carole -->
+            <div class="review-card">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p class="review-text">"Une perle Camille ! Premier nail art pour ma fille, elle a transformé les doigts de ma princesse. Première épilation des aisselles aussi et tout s'est très bien passé avec beaucoup de douceur et de conseils. Je recommande à 100% ! Merci Camille et à très vite !"</p>
+                <p class="review-author">- Carole</p>
+            </div>
+
+            <!-- Avis 6 : Lana -->
+            <div class="review-card">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p class="review-text">"Camille est douce et soigneuse, rien à redire franchement foncez !"</p>
+                <p class="review-author">- Lana</p>
+            </div>
         </div>
 
-        <div class="review-card">
-            <div class="stars">⭐⭐⭐⭐⭐</div>
-            <p class="review-text">"Camille s'est occupée de l'anniversaire de ma fille avec la formule Spa Party. Les enfants ont adoré le maquillage et les soins des pieds. Un super souvenir !"</p>
-            <p class="review-author">- Julie M.</p>
-        </div>
+        <button id="next-review-btn" class="review-nav-arrow">&gt;</button>
     </div>
 
+    <!-- Zone des boutons d'action (Facebook / Google) -->
     <div class="leave-review-container">
         <p>Vous avez visité l'institut ? Partagez votre expérience !</p>
-        <a href="https://www.facebook.com/profile.php?id=61571877812657&sk=reviews" target="_blank" class="btn-secondary">
-            <i class="fa-brands fa-facebook"></i> Laisser un avis sur Facebook
-        </a>
+        <div class="review-buttons-group">
+            <a href="https://www.facebook.com/profile.php?id=61571877812657&sk=reviews" target="_blank" class="btn-secondary">
+                <i class="fa-brands fa-facebook"></i> Laisser un avis sur Facebook
+            </a>
+            <a href="https://www.google.com/search?sca_esv=15584491b0e529db&rlz=1C1ONGR_frFR1036FR1036&sxsrf=APpeQnu36fz4xcagN7CUs5m5W1EQEeeISw:1784572576527&si=APenkKm7iecQ4G6P-TsbSMFKIQtv3EFIqRAFw-i8uEbk55Z-_0I-wgQ3f2MJy4yfJSYX8McTwFVbtZjy3_rmzDtuPb6J5y7gTZwsl5TNJCrI8eVsHfRxyKDAM4VKdabNdCtXvMNG3zJvnQCxmds0wKCJgtabvkHmBQ%3D%3D&q=Institut+Cam%E2%80%99Beauty+Avis&sa=X&ved=2ahUKEwiUrv_z8uGVAxVZ4AIHHearOpgQ0bkNegQIJBAF&biw=1920&bih=911&dpr=1" target="_blank" class="btn-secondary google-btn">
+                <i class="fa-brands fa-google"></i> Laisser un avis sur Google
+            </a>
+        </div>
     </div>
 </section>
 
@@ -108,5 +146,6 @@
     </main>
 	<div id="footer-placeholder"></div>
 	<script src="script.js"></script>
+	
 </body>
 </html>
