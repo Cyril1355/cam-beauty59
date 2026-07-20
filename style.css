@@ -2425,4 +2425,7 @@ html {
     background-color: #fcf4ee; /* Légère couleur au survol pour indiquer que c'est cliquable */
     border-radius: 8px;
 }
-
+#booking-btn.active {
+    opacity: 1;
+    filter: brightness(1.2) saturate(1.5);
+}
