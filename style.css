@@ -2504,3 +2504,35 @@ html {
         flex-shrink: 0;
     }
 }
+/* --- CORRECTION FINALE MOBILE --- */
+@media screen and (max-width: 768px) {
+    .page-tarifs-institut .price-item {
+        display: block;
+        margin-bottom: 24px;
+        position: relative;
+    }
+
+    .page-tarifs-institut .price-details {
+        padding-right: 0;
+        width: 100%;
+    }
+
+    .page-tarifs-institut .item-title {
+        display: inline-block;
+        padding-right: 0;
+        background: transparent;
+    }
+
+    .page-tarifs-institut .price-item::after,
+    .page-tarifs-institut .price-details::after {
+        display: none;
+    }
+
+    .page-tarifs-institut .item-price {
+        display: block;
+        text-align: right;
+        margin-top: 4px;
+        background: transparent;
+        padding-left: 0;
+    }
+}
