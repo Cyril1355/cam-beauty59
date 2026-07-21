@@ -2464,7 +2464,7 @@ html {
     pointer-events: auto;
     opacity: 1;
     filter: none; /* Supprime le gris */
-    background-color: #0056b3; /* Bleu profond */
+    background-color: #b89689;
     cursor: pointer;
     box-shadow: 0 4px 10px rgba(0, 86, 179, 0.3); /* Ombre bleutée légère */
 }
