@@ -2343,7 +2343,16 @@ section.reviews-section .review-buttons-group {
     position: relative;
     z-index: 2;
 }
-
+.item-price {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #b89689;
+    white-space: nowrap;
+    background: #ffffff;
+    padding-left: 6px;
+    position: relative;
+    z-index: 2;
+}
 /* Pointillés d'alignement */
 .page-tarifs-institut .price-item::after {
     content: "";
@@ -2463,4 +2472,35 @@ html {
 /* Effet au survol pour rendre le bleu plus vivant */
 #booking-btn.active:hover {
     background-color: #007bff; /* Bleu plus clair au survol */
+}
+/* Ajustements pour les écrans mobiles */
+@media screen and (max-width: 768px) {
+    /* Permet au bloc principal de s'adapter sans dépasser */
+    .prestation-menu-container, 
+    .prestation-items-details, 
+    .menu-item-row {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    /* Empêche les points de suspension de pousser le prix hors champ */
+    .item-title-dots {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
+
+    .item-dots {
+        flex-grow: 1;
+        margin: 0 10px;
+        /* Réduit les points si l'écran est trop petit pour éviter la cassure */
+        min-width: 10px; 
+    }
+
+    /* S'assure que le prix reste toujours bien calé à droite et visible */
+    .item-price {
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
 }
