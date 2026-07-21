@@ -1283,6 +1283,11 @@
  .prestation-detail-page {
      font-family: 'Plus Jakarta Sans', sans-serif;
      color: #4a3e3d;
+	 width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    padding-left: 0;
+    padding-right: 0;
 }
 /* ========================================================================== SECTIONS HERO ========================================================================== */
  .prestation-hero-section {
@@ -1551,14 +1556,18 @@
 }
 /* Conteneur global de validation */
  .booking-container {
-     max-width: 550px;
-     margin: 20px auto;
+	 max-width: 1200px;
      padding: 30px;
      background-color: #faf6f5;
      border-radius: 16px;
      border: 1px solid #f3ece9;
      font-family: 'Plus Jakarta Sans', sans-serif;
      text-align: center;
+	 width: 100%;
+    margin: 0 auto;
+    padding-left: 15px;
+    padding-right: 15px;
+    box-sizing: border-box;
 }
 /* Case à cocher & texte réglementaire */
  .policy-label {
@@ -1659,10 +1668,13 @@
      padding: 80px 20px;
 }
  .prestation-menu-container {
-     max-width: 1200px;
-     margin: 0 auto;
      display: table;
      width: 100%;
+    max-width: 1200px; /* Limite sur grand écran */
+    margin: 0 auto;
+    padding-left: 15px;  /* Petit espace de sécurité pour le texte */
+    padding-right: 15px;
+    box-sizing: border-box;
 }
 /* Colonne de Gauche : Prestations */
  .prestation-items-details {
@@ -2367,7 +2379,6 @@ section.reviews-section .review-buttons-group {
 .page-tarifs-institut .btn-primary-tarifs:hover {
     background: #a38174;
 }
-
 /* Mode mobile responsive */
 @media (max-width: 968px) {
     .page-tarifs-institut .prices-grid-container {
@@ -2410,6 +2421,7 @@ section.reviews-section .review-buttons-group {
 /* Défilement fluide pour toute la page */
 html {
     scroll-behavior: smooth;
+	overflow-x: hidden;
 }
 
 /* Style des liens de prestations */
