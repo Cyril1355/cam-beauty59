@@ -2471,7 +2471,7 @@ html {
 
 /* Effet au survol pour rendre le bleu plus vivant */
 #booking-btn.active:hover {
-    background-color: #007bff; /* Bleu plus clair au survol */
+    background-color: #9E7B6E; /* Bleu plus clair au survol */
 }
 /* Ajustements pour les écrans mobiles */
 @media screen and (max-width: 768px) {
