@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="icon" type="image/png" href="favicon.png">
 </head>
 <body>
 <div id="header-placeholder"></div>	
@@ -42,6 +43,7 @@
     <p class="category-intro-text">Chaque soin est réalisé avec une gestuelle douce et enveloppante pour une déconnexion totale en institut privé ou à domicile.</p>
                     
                     <div class="menu-list">
+                        <a href="#zone-reservation" class="prestation-link" data-url="https://tidycal.com/votre-compte/semi-permanent">
                         <div class="menu-item-row">
                             <div class="item-main-info">
                                 <div class="item-title-dots">
@@ -55,6 +57,7 @@
                             </div>
                         </div>
                         <!-- Prestation 1 -->
+                        <a href="#zone-reservation" class="prestation-link" data-url="https://tidycal.com/votre-compte/semi-permanent">
                         <div class="menu-item-row">
                             <div class="item-main-info">
                                 <div class="item-title-dots">
@@ -69,6 +72,7 @@
                         </div>
 
                         <!-- Prestation 2 -->
+                        <a href="#zone-reservation" class="prestation-link" data-url="https://tidycal.com/votre-compte/semi-permanent">
                         <div class="menu-item-row">
                             <div class="item-main-info">
                                 <div class="item-title-dots">
@@ -92,13 +96,14 @@
                         <div class="slider-slides-container" id="lashes-photos">
                             <!-- Photo 1 -->
                             <div class="slide-picture-item">
-                                <img src="images/cils-presentation.jpg" alt="Extensions de cils - Cam'Beauty59" onerror="this.src='https://images.unsplash.com/photo-1583001931096-959e9a1a6223?q=80&w=600'">
-                                <span class="slide-tag">Pose Extensions</span>
+                                <img src="images/massage1.jpg" alt="massage1 - Cam'Beauty59">
                             </div>
                             <!-- Photo 2 -->
                             <div class="slide-picture-item">
-                                <img src="images/cils-regard.jpg" alt="Beauté du regard Cam'Beauty59" onerror="this.src='https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?q=80&w=600'">
-                                <span class="slide-tag">Regard Sublime</span>
+                                <img src="images/massage2.jpg" alt="massage2 Cam'Beauty59">
+                            </div>
+                            <div class="slide-picture-item">
+                                <img src="images/massage3.jpg" alt="massage3 Cam'Beauty59">
                             </div>
                         </div>
                         <!-- Flèches de navigation du curseur -->
@@ -108,6 +113,20 @@
                     <p class="gallery-help-text">Retrouvez plus de photos sur mes réseaux sociaux&nbsp;!</p>
                 </div>
             </div>
+        </div>
+    </section>
+ <!-- SECTION RÉSERVATION (ID CIBLE) -->
+    <section class="booking-section" id="zone-reservation">
+        <div class="booking-container">
+            <label class="policy-label">
+                <input type="checkbox" id="agree-policy" class="policy-checkbox" onchange="toggleBookingButton()">
+                <span>J'accepte les conditions de réservation (acompte de 10€ déduit du soin, non remboursable si annulation moins de 48h avant le RDV).</span>
+            </label>
+
+            <!-- URL initiale vide, sera remplie par le script -->
+            <a href="#" id="booking-btn" target="_blank" class="btn-booking">
+                 Confirmer et prendre RDV
+            </a>
         </div>
     </section>
 </main>
