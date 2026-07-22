@@ -231,7 +231,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const selectedMain = document.querySelector('.prestation-link.selected:not(.addon)');
         const selectedAddon = document.querySelector('.prestation-link.selected.addon');
         
-        // Priorité au lien de l'addon s'il est sélectionné (ex: pack sourcils ou remplissage ciblé), sinon prestation principale
         const activeSelection = selectedAddon || selectedMain;
         
         if (activeSelection) {
@@ -249,38 +248,66 @@ document.addEventListener('DOMContentLoaded', () => {
             const titleText = this.querySelector('.item-title')?.textContent.toLowerCase() || '';
             const isOngleCasse = titleText.includes('ongle cassé');
             const isPackSourcils = titleText.includes('pack sourcils') || titleText.includes('création de la ligne');
-            const isRemplissage = titleText.includes('remplissage');
-            const isAddon = titleText.includes('french') || titleText.includes('baby') || titleText.includes('effects') || titleText.includes('strass') || isOngleCasse || isPackSourcils || isRemplissage;
+            const isRemplissageGel = titleText.includes('remplissage gel');
+            
+            // Détection des deux types de remplissage cils
+            const isRemplissage3Semaines = titleText.includes('remplissage 3 semaines') && !titleText.includes('+');
+            const isRemplissagePlus3Semaines = titleText.includes('remplissage  + 3 semaines') || titleText.includes('remplissage + 3 semaines');
+            
+            const isRemplissage = isRemplissageGel || isRemplissage3Semaines || isRemplissagePlus3Semaines;
+            
+            const isAddon = titleText.includes('french') || titleText.includes('baby') || titleText.includes('effects') || titleText.includes('strass') || titleText.includes('dépose') || titleText.includes('teinture') || isOngleCasse || isPackSourcils || isRemplissage;
 
             if (this.classList.contains('selected')) {
-                // Permet d'enlever la sélection si on clique à nouveau dessus
                 this.classList.remove('selected');
             } else {
                 if (isAddon) {
                     const selectedMain = document.querySelector('.prestation-link.selected:not(.addon)');
-                    
-                    // Règle : Le pack sourcils et les ongles cassés peuvent être sélectionnés sans prestation principale. 
-                    // Les remplissages et autres petits + exigent une prestation principale.
+                    const currentAddon = document.querySelector('.prestation-link.selected.addon');
+
+                    // Règle : Interdiction de sélectionner plusieurs "petits +" en simultané (un seul actif au max)
+                    if (currentAddon) {
+                        currentAddon.classList.remove('selected');
+                    }
+
+                    // Règle : Interdiction de sélectionner un remplissage en même temps que le pack sourcils
+                    if (isRemplissage) {
+                        const activePack = document.querySelector('.prestation-link.selected.addon');
+                        const activeTitle = activePack ? activePack.querySelector('.item-title')?.textContent.toLowerCase() || '' : '';
+                        if (activeTitle.includes('pack sourcils') || activeTitle.includes('création de la ligne')) {
+                            return; 
+                        }
+                    }
+
+                    // Règle : Interdiction de sélectionner les ongles cassés en même temps que le remplissage gel
+                    if (isOngleCasse) {
+                        const activeAddon = document.querySelector('.prestation-link.selected.addon');
+                        const activeTitle = activeAddon ? activeAddon.querySelector('.item-title')?.textContent.toLowerCase() || '' : '';
+                        if (activeTitle.includes('remplissage gel')) {
+                            return; 
+                        }
+                    }
+                    if (isRemplissageGel) {
+                        const activeAddon = document.querySelector('.prestation-link.selected.addon');
+                        const activeTitle = activeAddon ? activeAddon.querySelector('.item-title')?.textContent.toLowerCase() || '' : '';
+                        if (activeTitle.includes('ongle cassé')) {
+                            return; 
+                        }
+                    }
+
+                    // Règle : Les ongles cassés et le pack sourcils peuvent être sélectionnés sans prestation, mais pas les autres petits + / remplissages
                     if (!selectedMain && !isOngleCasse && !isPackSourcils) {
                         return; 
                     }
 
-                    // Règle : Si on sélectionne le pack sourcils, on ne peut pas sélectionner autre chose en même temps
+                    // Règle : Si on sélectionne le pack sourcils, on ne peut pas l'avoir en même temps qu'une prestation principale ou un autre addon
                     if (isPackSourcils) {
                         document.querySelectorAll('.prestation-link').forEach(l => l.classList.remove('selected'));
-                    } else {
-                        // Si on sélectionne un autre addon, on désélectionne le pack sourcils s'il était actif
-                        document.querySelectorAll('.prestation-link.addon').forEach(l => {
-                            const lTitle = l.querySelector('.item-title')?.textContent.toLowerCase() || '';
-                            if (lTitle.includes('pack sourcils') || lTitle.includes('création de la ligne')) {
-                                l.classList.remove('selected');
-                            }
-                        });
                     }
 
                     this.classList.add('selected');
                 } else {
-                    // Prestation principale : si on clique dessus, cela désactive le pack sourcils exclusif
+                    // Prestation principale : si on clique dessus, cela désactive le pack sourcils exclusif s'il était actif
                     document.querySelectorAll('.prestation-link.addon').forEach(l => {
                         const lTitle = l.querySelector('.item-title')?.textContent.toLowerCase() || '';
                         if (lTitle.includes('pack sourcils') || lTitle.includes('création de la ligne')) {
