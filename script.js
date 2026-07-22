@@ -240,14 +240,14 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault(); 
 
             const titleText = this.querySelector('.item-title')?.textContent.toLowerCase() || '';
-            const isPackSourcils = titleText.includes('pack sourcils') || titleText.includes('création de la ligne');
-            const isAddon = titleText.includes('remplissage') || titleText.includes('dépose') || titleText.includes('teinture') || isPackSourcils;
+            const isOngleCasse = titleText.includes('ongle cassé');
+            const isAddon = titleText.includes('french') || titleText.includes('baby') || titleText.includes('effects') || titleText.includes('strass') || isOngleCasse;
 
             if (isAddon) {
-                // SÉCURITÉ : Le pack sourcils peut être sélectionné sans prestation, mais pas le remplissage / autres options
+                // SÉCURITÉ MODIFIÉE : Les ongles cassés peuvent être sélectionnés sans prestation, mais pas les autres petits +
                 const selectedMain = document.querySelector('.prestation-link.selected:not(.addon)');
-                if (!selectedMain && !isPackSourcils) {
-                    return; // Stoppe l'action si c'est un remplissage sans pose de cils principale
+                if (!selectedMain && !isOngleCasse) {
+                    return; // Stoppe l'action si c'est un autre petit + sans prestation principale
                 }
 
                 document.querySelectorAll('.prestation-link.addon').forEach(l => {
