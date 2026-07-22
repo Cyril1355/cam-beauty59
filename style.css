@@ -2551,5 +2551,7 @@ html {
 .prestation-media-gallery .static-gallery-wrapper {
     width: 100%;
     max-width: 100%;
+	height: auto;
+    object-fit: cover; /* Évite les déformations */
     box-sizing: border-box;
 }
