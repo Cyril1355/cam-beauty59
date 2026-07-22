@@ -231,7 +231,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const selectedMain = document.querySelector('.prestation-link.selected:not(.addon)');
         const selectedAddon = document.querySelector('.prestation-link.selected.addon');
         
-        // Priorité à l'addon sélectionné (ex: pack sourcils, remplissage) ou à la prestation principale
+        // Priorité au lien de l'addon s'il est sélectionné (ex: pack sourcils ou remplissage ciblé), sinon prestation principale
         const activeSelection = selectedAddon || selectedMain;
         
         if (activeSelection) {
@@ -249,13 +249,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const titleText = this.querySelector('.item-title')?.textContent.toLowerCase() || '';
             const isOngleCasse = titleText.includes('ongle cassé');
             const isPackSourcils = titleText.includes('pack sourcils') || titleText.includes('création de la ligne');
-            const isRemplissageGel = titleText.includes('remplissage gel');
-            const isRemplissageCils3Semaines = titleText.includes('remplissage 3 semaines');
-            const isRemplissageCilsPlus3Semaines = titleText.includes('remplissage  + 3 semaines') || titleText.includes('remplissage + 3 semaines');
-            const isRemplissage = isRemplissageGel || isRemplissageCils3Semaines || isRemplissageCilsPlus3Semaines;
-            
-            // Définition de ce qui est considéré comme un petit + (addon)
-            const isAddon = titleText.includes('french') || titleText.includes('baby') || titleText.includes('effects') || titleText.includes('strass') || titleText.includes('dépose') || titleText.includes('teinture') || isOngleCasse || isPackSourcils || isRemplissage;
+            const isRemplissage = titleText.includes('remplissage');
+            const isAddon = titleText.includes('french') || titleText.includes('baby') || titleText.includes('effects') || titleText.includes('strass') || isOngleCasse || isPackSourcils || isRemplissage;
 
             if (this.classList.contains('selected')) {
                 // Permet d'enlever la sélection si on clique à nouveau dessus
@@ -263,50 +258,9 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 if (isAddon) {
                     const selectedMain = document.querySelector('.prestation-link.selected:not(.addon)');
-                    const currentAddon = document.querySelector('.prestation-link.selected.addon');
-
-                    // Règle : Seul un petit + actif au maximum à la fois
-                    if (currentAddon) {
-                        currentAddon.classList.remove('selected');
-                    }
-
-                    // Règle : Interdiction de sélectionner le remplissage gel si l'ongle cassé est sélectionné (et inversement)
-                    if (isRemplissageGel) {
-                        const activeOngleCasse = document.querySelector('.prestation-link.selected.addon');
-                        const activeTitle = activeOngleCasse ? activeOngleCasse.querySelector('.item-title')?.textContent.toLowerCase() || '' : '';
-                        if (activeTitle.includes('ongle cassé')) {
-                            return; // Stoppe l'action
-                        }
-                    }
-                    if (isOngleCasse) {
-                        const activeGel = document.querySelector('.prestation-link.selected.addon');
-                        const activeTitle = activeGel ? activeGel.querySelector('.item-title')?.textContent.toLowerCase() || '' : '';
-                        if (activeTitle.includes('remplissage gel')) {
-                            return; // Stoppe l'action
-                        }
-                    }
-
-                    // Règle : Interdiction de sélectionner les deux remplissages (cils) en même temps
-                    if (isRemplissageCils3Semaines) {
-                        const otherRemplissage = Array.from(document.querySelectorAll('.prestation-link.addon')).find(l => {
-                            const lTitle = l.querySelector('.item-title')?.textContent.toLowerCase() || '';
-                            return lTitle.includes('remplissage  + 3 semaines') || lTitle.includes('remplissage + 3 semaines');
-                        });
-                        if (otherRemplissage && otherRemplissage.classList.contains('selected')) {
-                            return; // Stoppe l'action
-                        }
-                    }
-                    if (isRemplissageCilsPlus3Semaines) {
-                        const otherRemplissage = Array.from(document.querySelectorAll('.prestation-link.addon')).find(l => {
-                            const lTitle = l.querySelector('.item-title')?.textContent.toLowerCase() || '';
-                            return lTitle.includes('remplissage 3 semaines');
-                        });
-                        if (otherRemplissage && otherRemplissage.classList.contains('selected')) {
-                            return; // Stoppe l'action
-                        }
-                    }
-
-                    // Règle : Les ongles cassés et le pack sourcils peuvent être sélectionnés sans prestation, mais pas les autres petits + / remplissages
+                    
+                    // Règle : Le pack sourcils et les ongles cassés peuvent être sélectionnés sans prestation principale. 
+                    // Les remplissages et autres petits + exigent une prestation principale.
                     if (!selectedMain && !isOngleCasse && !isPackSourcils) {
                         return; 
                     }
@@ -365,3 +319,4 @@ document.addEventListener('DOMContentLoaded', () => {
         checkbox.addEventListener('change', toggleBookingButton);
     }
 });
+
