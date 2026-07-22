@@ -2692,10 +2692,8 @@ html {
 
 .price-item {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column; /* Force le prix à passer systématiquement sous le texte sur tous les écrans */
     align-items: flex-start;
-    flex-wrap: wrap; /* INDISPENSABLE : permet au prix de descendre en dessous si l'écran est trop étroit */
-    gap: 5px 15px;
     padding: 14px 0;
     border-bottom: 1px dashed #f0f0f0;
 }
@@ -2705,8 +2703,7 @@ html {
 }
 
 .price-details {
-    flex: 1;
-    min-width: 65%; /* Laisse de la place au texte pour qu'il ne soit pas tronqué */
+    width: 100%;
 }
 
 .item-title {
@@ -2714,19 +2711,20 @@ html {
     color: #444;
     font-size: 0.95rem;
     display: block;
+    margin-bottom: 2px;
 }
 
 .item-description {
     font-size: 0.85rem;
     color: #777;
-    margin-top: 4px;
+    margin-top: 2px;
+    margin-bottom: 6px;
 }
 
 .item-price {
-    font-weight: 600;
-    color: #333;
-    font-size: 0.95rem;
-    text-align: right;
-    white-space: normal; /* Autorise les prix longs (comme +5 € / 2 mains) à s'adapter */
-    margin-left: auto; /* Pousse joliment le prix vers la droite */
+    font-weight: 700;
+    color: #d4a373;
+    font-size: 1rem;
+    align-self: flex-end; /* Aligne joliment le prix à droite, en dessous du texte */
+    margin-top: 4px;
 }
