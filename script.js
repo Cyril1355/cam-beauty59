@@ -224,35 +224,57 @@ document.addEventListener("DOMContentLoaded", function () {
 document.addEventListener('DOMContentLoaded', () => {
     const checkbox = document.getElementById('agree-policy');
     const bookingBtn = document.getElementById('booking-btn');
-    const prestationLinks = document.querySelectorAll('.prestation-link');
+    const mainRadios = document.querySelectorAll('input[name="main-prestation"]');
+    const addonCheckboxes = document.querySelectorAll('input[name="addon-prestation"]');
 
-    // 1. Gestion de la sélection d'une prestation (met à jour le lien TidyCal et fait défiler)
-    prestationLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            const targetUrl = this.getAttribute('data-url');
-            if (targetUrl && bookingBtn) {
-                bookingBtn.setAttribute('href', targetUrl);
-            }
-        });
+    // 1. Gestion de la mise à jour de l'URL du bouton de réservation
+    function updateBookingSelection() {
+        if (!bookingBtn) return;
+
+        const selectedMain = document.querySelector('input[name="main-prestation"]:checked');
+        
+        if (selectedMain) {
+            let targetUrl = selectedMain.getAttribute('data-url');
+            
+            // Optionnel : Si vous souhaitez inclure les "petits +" sélectionnés dans l'URL ou le suivi
+            const selectedAddons = Array.from(addonCheckboxes)
+                .filter(cb => cb.checked)
+                .map(cb => cb.value);
+
+            // Met à jour le lien du bouton
+            bookingBtn.setAttribute('href', targetUrl);
+        }
+    }
+
+    // Écoute les changements sur les radios et les checkboxes
+    mainRadios.forEach(radio => {
+        radio.addEventListener('change', updateBookingSelection);
     });
 
-    // 2. Fonction de gestion de l'état du bouton selon la case à cocher
+    addonCheckboxes.forEach(addon => {
+        addon.addEventListener('change', updateBookingSelection);
+    });
+
+    // 2. Fonction de gestion de l'état du bouton selon la case à cocher des conditions
     window.toggleBookingButton = function() {
         if (!checkbox || !bookingBtn) return;
 
         if (checkbox.checked) {
             bookingBtn.classList.add('active');
+            // Réapplique l'URL de la prestation sélectionnée lors du coche
+            updateBookingSelection();
         } else {
             bookingBtn.classList.remove('active');
-            // Optionnel : réinitialise le href à "#" si la case est décochée
+            // Réinitialise le href à "#" si la case est décochée
             bookingBtn.setAttribute('href', '#');
         }
     };
 
-    // 3. Initialisation au chargement de la page (bouton désactivé par défaut)
+    // 3. Initialisation au chargement de la page
+    updateBookingSelection();
     toggleBookingButton();
     
-    // Écouteur d'événement sur la case à cocher au cas où l'attribut onchange HTML ne suffirait pas
+    // Écouteur d'événement sur la case à cocher des conditions
     if (checkbox) {
         checkbox.addEventListener('change', toggleBookingButton);
     }
