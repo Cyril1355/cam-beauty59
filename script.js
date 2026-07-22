@@ -247,7 +247,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const titleText = this.querySelector('.item-title')?.textContent.toLowerCase() || '';
             
-            // Identification des types spécifiques
+            // Identification précise des éléments
             const isOngleCasseMoins1 = titleText.includes('ongle cassé -1 semaine');
             const isOngleCassePlus1 = titleText.includes('ongle cassé + 1 semaine') || titleText.includes('ongle cassé +1 semaine');
             const isOngleCasse = isOngleCasseMoins1 || isOngleCassePlus1;
@@ -260,7 +260,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const isRemplissageCils = isRemplissage3SemainesCils || isRemplissagePlus3SemainesCils;
             
             const isRemplissage = isRemplissageGel || isRemplissageCils;
-            const isAddon = titleText.includes('french') || titleText.includes('baby') || titleText.includes('effects') || titleText.includes('strass') || titleText.includes('dépose') || titleText.includes('teinture') || isOngleCasse || isPackSourcils || isRemplissage;
+            
+            // Un add-on classique (French, Baby, Effets, Strass, Dépose, Teinture)
+            const isClassicAddon = titleText.includes('french') || titleText.includes('baby') || titleText.includes('effects') || titleText.includes('strass') || titleText.includes('dépose') || titleText.includes('teinture');
+            
+            const isAddon = isClassicAddon || isOngleCasse || isPackSourcils || isRemplissage;
 
             if (this.classList.contains('selected')) {
                 this.classList.remove('selected');
@@ -268,17 +272,56 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (isAddon) {
                     const selectedMain = document.querySelector('.prestation-link.selected:not(.addon)');
 
-                    // RÈGLE 1 : Interdiction de sélectionner plusieurs "petits +" en simultané (on désélectionne les autres addons actifs)
-                    document.querySelectorAll('.prestation-link.selected.addon').forEach(addon => {
-                        addon.classList.remove('selected');
-                    });
+                    // RÈGLE : Interdiction de sélectionner plusieurs add-ons classiques en simultané (ex: French et Baby boomers)
+                    if (isClassicAddon) {
+                        document.querySelectorAll('.prestation-link.selected.addon').forEach(addon => {
+                            const aTitle = addon.querySelector('.item-title')?.textContent.toLowerCase() || '';
+                            if (aTitle.includes('french') || aTitle.includes('baby') || aTitle.includes('effects') || aTitle.includes('strass') || aTitle.includes('dépose') || aTitle.includes('teinture')) {
+                                addon.classList.remove('selected');
+                            }
+                        });
+                    }
 
-                    // RÈGLE 2 : Interdiction de sélectionner un remplissage en même temps que le pack sourcils
+                    // RÈGLE : Interdiction de sélectionner les deux remplissages 3 semaines (cils) en simultané
+                    if (isRemplissageCils) {
+                        document.querySelectorAll('.prestation-link.selected.addon').forEach(addon => {
+                            const aTitle = addon.querySelector('.item-title')?.textContent.toLowerCase() || '';
+                            if (aTitle.includes('remplissage 3 semaines') || aTitle.includes('remplissage + 3 semaines')) {
+                                addon.classList.remove('selected');
+                            }
+                        });
+                    }
+
+                    // RÈGLE : Interdiction de sélectionner les deux options d'ongles cassés en même temps
+                    if (isOngleCasse) {
+                        document.querySelectorAll('.prestation-link.selected.addon').forEach(addon => {
+                            const aTitle = addon.querySelector('.item-title')?.textContent.toLowerCase() || '';
+                            if (aTitle.includes('ongle cassé')) {
+                                addon.classList.remove('selected');
+                            }
+                        });
+                    }
+
+                    // RÈGLE : Interdiction de sélectionner un remplissage en même temps que le pack sourcils
                     if (isRemplissage && isPackSourcils) {
                         return; 
                     }
 
-                    // RÈGLE 3 : Interdiction de sélectionner les ongles cassés en même temps que le remplissage gel
+                    // RÈGLE : Interdiction de sélectionner un autre élément (prestation ou add-on) quand le pack sourcils est déjà sélectionné
+                    const activePackSourcils = Array.from(document.querySelectorAll('.prestation-link.addon')).some(l => {
+                        const lTitle = l.querySelector('.item-title')?.textContent.toLowerCase() || '';
+                        return l.classList.contains('selected') && (lTitle.includes('pack sourcils') || lTitle.includes('création de la ligne'));
+                    });
+                    if (activePackSourcils && !isPackSourcils) {
+                        return;
+                    }
+
+                    // RÈGLE : Si on sélectionne le pack sourcils, il devient exclusif et désactive tout le reste
+                    if (isPackSourcils) {
+                        document.querySelectorAll('.prestation-link').forEach(l => l.classList.remove('selected'));
+                    }
+
+                    // RÈGLE : Interdiction de sélectionner les ongles cassés en même temps que le remplissage gel
                     if (isOngleCasse) {
                         const activeGel = Array.from(document.querySelectorAll('.prestation-link.addon')).some(l => {
                             const lTitle = l.querySelector('.item-title')?.textContent.toLowerCase() || '';
@@ -294,19 +337,15 @@ document.addEventListener('DOMContentLoaded', () => {
                         if (activeCasse) return;
                     }
 
-                    // Les ongles cassés et le pack sourcils peuvent être sélectionnés sans prestation, mais pas les autres petits + / remplissages
+                    // Les ongles cassés et le pack sourcils peuvent être sélectionnés sans prestation principale, mais pas les autres add-ons/remplissages
                     if (!selectedMain && !isOngleCasse && !isPackSourcils) {
                         return; 
                     }
 
-                    // Si on sélectionne le pack sourcils, on nettoie tout le reste
-                    if (isPackSourcils) {
-                        document.querySelectorAll('.prestation-link').forEach(l => l.classList.remove('selected'));
-                    }
-
                     this.classList.add('selected');
                 } else {
-                    // Prestation principale : si on clique dessus, cela désactive le pack sourcils exclusif s'il était actif
+                    // Si on clique sur une prestation principale, on vérifie d'abord si le pack sourcils exclusif est actif (auquel cas on bloque, ou on nettoie selon le besoin)
+                    // Ici, si une prestation principale est choisie, on nettoie le pack sourcils et les autres prestations principales
                     document.querySelectorAll('.prestation-link.addon').forEach(l => {
                         const lTitle = l.querySelector('.item-title')?.textContent.toLowerCase() || '';
                         if (lTitle.includes('pack sourcils') || lTitle.includes('création de la ligne')) {
@@ -314,7 +353,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                     });
 
-                    // Sélection unique de la prestation principale
                     document.querySelectorAll('.prestation-link:not(.addon)').forEach(l => l.classList.remove('selected'));
                     this.classList.add('selected');
                 }
