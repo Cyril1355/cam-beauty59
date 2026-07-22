@@ -2655,11 +2655,10 @@ html {
 }
 
 
-/* --- ADAPTATION MOBILE (Responsive Design) --- */
-
+/* --- ADAPTATION MOBILE & GRILLE --- */
 @media screen and (max-width: 900px) {
     .prices-grid-container {
-        grid-template-columns: 1fr; /* Passage à 1 seule colonne sur tablette et mobile */
+        grid-template-columns: 1fr;
         gap: 20px;
     }
 }
@@ -2676,42 +2675,30 @@ html {
     .price-category-card {
         padding: 15px;
     }
+}
+
+/* --- AFFICHAGE PROPRE DES PRIX (Sans coupure) --- */
+.price-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
 
 .price-item {
     display: flex;
-    flex-direction: column;
-    align-items: stretch;
+    justify-content: space-between;
+    align-items: baseline; /* Aligne proprement le texte et le prix sur la même ligne de base */
+    gap: 15px;
     padding: 14px 0;
+    border-bottom: 1px dashed #f0f0f0;
+}
+
+.price-item:last-child {
+    border-bottom: none;
 }
 
 .price-details {
-    padding-right: 0;
-    width: 100%;
-}
-
-.item-price {
-    margin-top: 8px;
-    align-self: flex-end;
-    font-weight: 600;
-    color: #333;
-    font-size: 0.95rem;
-    text-align: right;
-    white-space: normal; /* Empêche le texte d'être coupé */
-    word-break: break-word;
-}
-	.price-item {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: flex-end !important; /* Force tout le contenu à droite */
-    text-align: right !important;
-    padding: 14px 0 !important;
-    width: 100% !important;
-}
-
-.price-details {
-    width: 100% !important;
-    padding-right: 0 !important;
-    text-align: left !important; /* Garde le titre aligné à gauche */
+    flex: 1; /* Prend tout l'espace disponible à gauche */
 }
 
 .item-title {
@@ -2719,15 +2706,19 @@ html {
     color: #444;
     font-size: 0.95rem;
     display: block;
-    width: 100%;
+}
+
+.item-description {
+    font-size: 0.85rem;
+    color: #777;
+    margin-top: 4px;
 }
 
 .item-price {
-    margin-top: 6px !important;
     font-weight: 600;
     color: #333;
     font-size: 0.95rem;
-    white-space: normal !important;
-    display: inline-block !important;
-}
+    text-align: right;
+    white-space: nowrap; /* Empêche le prix court de se casser */
+    flex-shrink: 0; /* Empêche le prix d'être écrasé */
 }
