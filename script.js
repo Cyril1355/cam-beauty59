@@ -240,13 +240,14 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault(); 
 
             const titleText = this.querySelector('.item-title')?.textContent.toLowerCase() || '';
-            const isAddon = titleText.includes('french') || titleText.includes('baby') || titleText.includes('effects') || titleText.includes('strass') || titleText.includes('ongle cassé');
+            const isOngleCasse = titleText.includes('ongle cassé');
+            const isAddon = titleText.includes('french') || titleText.includes('baby') || titleText.includes('effects') || titleText.includes('strass') || isOngleCasse;
 
             if (isAddon) {
-                // SÉCURITÉ : Vérifie si une prestation principale est bien sélectionnée avant d'autoriser le petit +
+                // SÉCURITÉ MODIFIÉE : Les ongles cassés peuvent être sélectionnés sans prestation, mais pas les autres petits +
                 const selectedMain = document.querySelector('.prestation-link.selected:not(.addon)');
-                if (!selectedMain) {
-                    return; // Stoppe l'action si aucune prestation n'est choisie
+                if (!selectedMain && !isOngleCasse) {
+                    return; // Stoppe l'action si c'est un autre petit + sans prestation principale
                 }
 
                 document.querySelectorAll('.prestation-link.addon').forEach(l => {
