@@ -2536,3 +2536,9 @@ html {
         padding-left: 0;
     }
 }
+.prestation-link.selected .menu-item-row {
+    background-color: #fce4ec; /* Rose très doux */
+    border-color: #d81b60;     /* Bordure rose plus prononcée */
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
