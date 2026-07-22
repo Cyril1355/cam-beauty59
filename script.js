@@ -226,59 +226,54 @@ document.addEventListener('DOMContentLoaded', () => {
     const bookingBtn = document.getElementById('booking-btn');
     const prestationLinks = document.querySelectorAll('.prestation-link[data-url]');
 
-    // 1. Gestion de la mise à jour de l'URL du bouton et du style visuel
-    function updateBookingSelection(selectedElement) {
+    function updateBookingSelection() {
         if (!bookingBtn) return;
-
-        // Met à jour l'URL du bouton de réservation avec l'élément cliqué
-        let targetUrl = selectedElement.getAttribute('data-url');
-        bookingBtn.setAttribute('href', targetUrl);
+        const selectedMain = document.querySelector('.prestation-link.selected:not(.addon)');
+        if (selectedMain) {
+            let targetUrl = selectedMain.getAttribute('data-url');
+            bookingBtn.setAttribute('href', targetUrl);
+        }
     }
 
-    // Gestion des clics sur les prestations pour le visuel et l'URL
     prestationLinks.forEach(link => {
         link.addEventListener('click', function(e) {
-            // Empêche le saut de page brutal si vous préférez une sélection fluide
-            // (retirez preventDefault() si vous voulez absolument que la page saute vers #zone-reservation)
             e.preventDefault(); 
 
-            // Retire la classe 'selected' de tous les liens
-            prestationLinks.forEach(l => l.classList.remove('selected'));
-            
-            // Ajoute la classe 'selected' sur l'élément cliqué
-            this.classList.add('selected');
+            const titleText = this.querySelector('.item-title')?.textContent.toLowerCase() || '';
+            const isAddon = titleText.includes('french') || titleText.includes('baby') || titleText.includes('effects') || titleText.includes('strass') || titleText.includes('ongle cassé');
 
-            // Met à jour l'URL du bouton
-            updateBookingSelection(this);
+            if (isAddon) {
+                document.querySelectorAll('.prestation-link.addon').forEach(l => {
+                    if (l !== this) l.classList.remove('selected');
+                });
+                this.classList.toggle('selected');
+            } else {
+                document.querySelectorAll('.prestation-link:not(.addon)').forEach(l => l.classList.remove('selected'));
+                this.classList.add('selected');
+            }
 
-            // Optionnel : fait défiler doucement vers la zone de réservation
-            document.getElementById('zone-reservation').scrollIntoView({ behavior: 'smooth' });
+            updateBookingSelection();
+            // La ligne de défilement (scrollIntoView) a été retirée ici
         });
     });
 
-    // 2. Fonction de gestion de l'état du bouton selon la case à cocher des conditions
     window.toggleBookingButton = function() {
         if (!checkbox || !bookingBtn) return;
-
         const currentSelected = document.querySelector('.prestation-link.selected');
 
         if (checkbox.checked) {
             bookingBtn.classList.add('active');
-            // Si une prestation était déjà sélectionnée, on réassocie son URL
             if (currentSelected) {
-                updateBookingSelection(currentSelected);
+                updateBookingSelection();
             }
         } else {
             bookingBtn.classList.remove('active');
-            // Réinitialise le href à "#" si la case est décochée
             bookingBtn.setAttribute('href', '#');
         }
     };
 
-    // 3. Initialisation au chargement de la page
     toggleBookingButton();
     
-    // Écouteur d'événement sur la case à cocher des conditions
     if (checkbox) {
         checkbox.addEventListener('change', toggleBookingButton);
     }
