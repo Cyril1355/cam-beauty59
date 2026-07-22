@@ -224,45 +224,50 @@ document.addEventListener("DOMContentLoaded", function () {
 document.addEventListener('DOMContentLoaded', () => {
     const checkbox = document.getElementById('agree-policy');
     const bookingBtn = document.getElementById('booking-btn');
-    const mainRadios = document.querySelectorAll('input[name="main-prestation"]');
-    const addonCheckboxes = document.querySelectorAll('input[name="addon-prestation"]');
+    const prestationLinks = document.querySelectorAll('.prestation-link[data-url]');
 
-    // 1. Gestion de la mise à jour de l'URL du bouton de réservation
-    function updateBookingSelection() {
+    // 1. Gestion de la mise à jour de l'URL du bouton et du style visuel
+    function updateBookingSelection(selectedElement) {
         if (!bookingBtn) return;
 
-        const selectedMain = document.querySelector('input[name="main-prestation"]:checked');
-        
-        if (selectedMain) {
-            let targetUrl = selectedMain.getAttribute('data-url');
-            
-            // Optionnel : Si vous souhaitez inclure les "petits +" sélectionnés dans l'URL ou le suivi
-            const selectedAddons = Array.from(addonCheckboxes)
-                .filter(cb => cb.checked)
-                .map(cb => cb.value);
-
-            // Met à jour le lien du bouton
-            bookingBtn.setAttribute('href', targetUrl);
-        }
+        // Met à jour l'URL du bouton de réservation avec l'élément cliqué
+        let targetUrl = selectedElement.getAttribute('data-url');
+        bookingBtn.setAttribute('href', targetUrl);
     }
 
-    // Écoute les changements sur les radios et les checkboxes
-    mainRadios.forEach(radio => {
-        radio.addEventListener('change', updateBookingSelection);
-    });
+    // Gestion des clics sur les prestations pour le visuel et l'URL
+    prestationLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            // Empêche le saut de page brutal si vous préférez une sélection fluide
+            // (retirez preventDefault() si vous voulez absolument que la page saute vers #zone-reservation)
+            e.preventDefault(); 
 
-    addonCheckboxes.forEach(addon => {
-        addon.addEventListener('change', updateBookingSelection);
+            // Retire la classe 'selected' de tous les liens
+            prestationLinks.forEach(l => l.classList.remove('selected'));
+            
+            // Ajoute la classe 'selected' sur l'élément cliqué
+            this.classList.add('selected');
+
+            // Met à jour l'URL du bouton
+            updateBookingSelection(this);
+
+            // Optionnel : fait défiler doucement vers la zone de réservation
+            document.getElementById('zone-reservation').scrollIntoView({ behavior: 'smooth' });
+        });
     });
 
     // 2. Fonction de gestion de l'état du bouton selon la case à cocher des conditions
     window.toggleBookingButton = function() {
         if (!checkbox || !bookingBtn) return;
 
+        const currentSelected = document.querySelector('.prestation-link.selected');
+
         if (checkbox.checked) {
             bookingBtn.classList.add('active');
-            // Réapplique l'URL de la prestation sélectionnée lors du coche
-            updateBookingSelection();
+            // Si une prestation était déjà sélectionnée, on réassocie son URL
+            if (currentSelected) {
+                updateBookingSelection(currentSelected);
+            }
         } else {
             bookingBtn.classList.remove('active');
             // Réinitialise le href à "#" si la case est décochée
@@ -271,7 +276,6 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // 3. Initialisation au chargement de la page
-    updateBookingSelection();
     toggleBookingButton();
     
     // Écouteur d'événement sur la case à cocher des conditions
