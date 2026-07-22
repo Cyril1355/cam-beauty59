@@ -2699,4 +2699,35 @@ html {
     white-space: normal; /* Empêche le texte d'être coupé */
     word-break: break-word;
 }
+	.price-item {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-end !important; /* Force tout le contenu à droite */
+    text-align: right !important;
+    padding: 14px 0 !important;
+    width: 100% !important;
+}
+
+.price-details {
+    width: 100% !important;
+    padding-right: 0 !important;
+    text-align: left !important; /* Garde le titre aligné à gauche */
+}
+
+.item-title {
+    font-weight: 600;
+    color: #444;
+    font-size: 0.95rem;
+    display: block;
+    width: 100%;
+}
+
+.item-price {
+    margin-top: 6px !important;
+    font-weight: 600;
+    color: #333;
+    font-size: 0.95rem;
+    white-space: normal !important;
+    display: inline-block !important;
+}
 }
