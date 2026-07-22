@@ -2679,16 +2679,24 @@ html {
 
 .price-item {
     display: flex;
-    flex-direction: column; /* Place le texte au-dessus et le prix en dessous */
-    align-items: flex-start;
-    padding: 12px 0;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 14px 0;
+}
+
+.price-details {
+    padding-right: 0;
+    width: 100%;
 }
 
 .item-price {
-    margin-top: 6px;
-    align-self: flex-end; /* Aligne joliment le prix à droite en bas de l'élément */
+    margin-top: 8px;
+    align-self: flex-end;
+    font-weight: 600;
+    color: #333;
     font-size: 0.95rem;
-    white-space: normal; /* Permet au texte long (comme +5 € / 2 mains...) de passer à la ligne si besoin */
     text-align: right;
+    white-space: normal; /* Empêche le texte d'être coupé */
+    word-break: break-word;
 }
 }
