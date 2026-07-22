@@ -2655,7 +2655,13 @@ html {
 }
 
 
-/* --- ADAPTATION MOBILE & GRILLE --- */
+/* --- GRILLE & ADAPTATION MOBILE --- */
+.prices-grid-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+}
+
 @media screen and (max-width: 900px) {
     .prices-grid-container {
         grid-template-columns: 1fr;
@@ -2677,7 +2683,7 @@ html {
     }
 }
 
-/* --- AFFICHAGE PROPRE DES PRIX (Sans coupure) --- */
+/* --- AFFICHAGE DES LIGNES DE PRIX (ANTI-COUPURE) --- */
 .price-list {
     list-style: none;
     padding: 0;
@@ -2687,8 +2693,9 @@ html {
 .price-item {
     display: flex;
     justify-content: space-between;
-    align-items: baseline; /* Aligne proprement le texte et le prix sur la même ligne de base */
-    gap: 15px;
+    align-items: flex-start;
+    flex-wrap: wrap; /* INDISPENSABLE : permet au prix de descendre en dessous si l'écran est trop étroit */
+    gap: 5px 15px;
     padding: 14px 0;
     border-bottom: 1px dashed #f0f0f0;
 }
@@ -2698,7 +2705,8 @@ html {
 }
 
 .price-details {
-    flex: 1; /* Prend tout l'espace disponible à gauche */
+    flex: 1;
+    min-width: 65%; /* Laisse de la place au texte pour qu'il ne soit pas tronqué */
 }
 
 .item-title {
@@ -2719,6 +2727,6 @@ html {
     color: #333;
     font-size: 0.95rem;
     text-align: right;
-    white-space: nowrap; /* Empêche le prix court de se casser */
-    flex-shrink: 0; /* Empêche le prix d'être écrasé */
+    white-space: normal; /* Autorise les prix longs (comme +5 € / 2 mains) à s'adapter */
+    margin-left: auto; /* Pousse joliment le prix vers la droite */
 }
