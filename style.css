@@ -1780,10 +1780,13 @@
      line-height: 1.6;
 }
 /* Colonne de Droite : Galerie Photo interactive */
- .prestation-media-gallery {
-     display: table-cell;
-     width: 40%;
-     vertical-align: middle;
+.prestation-media-gallery {
+    flex: 0 0 50%;
+    max-width: 500px; /* Limite la largeur maximale du cadre à 500px par exemple */
+    margin: 0 auto;    /* Centre le cadre dans sa colonne si besoin */
+    position: sticky;
+    top: 20px;
+    box-sizing: border-box;
 }
 
  .interactive-slider {
