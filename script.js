@@ -229,9 +229,16 @@ document.addEventListener('DOMContentLoaded', () => {
     function updateBookingSelection() {
         if (!bookingBtn) return;
         const selectedMain = document.querySelector('.prestation-link.selected:not(.addon)');
-        if (selectedMain) {
-            let targetUrl = selectedMain.getAttribute('data-url');
+        const selectedAddon = document.querySelector('.prestation-link.selected.addon');
+        
+        // Priorité au lien de l'addon s'il est sélectionné (ex: pack sourcils ou remplissage ciblé), sinon prestation principale
+        const activeSelection = selectedAddon || selectedMain;
+        
+        if (activeSelection) {
+            let targetUrl = activeSelection.getAttribute('data-url');
             bookingBtn.setAttribute('href', targetUrl);
+        } else {
+            bookingBtn.setAttribute('href', '#');
         }
     }
 
@@ -241,23 +248,50 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const titleText = this.querySelector('.item-title')?.textContent.toLowerCase() || '';
             const isOngleCasse = titleText.includes('ongle cassé');
-            const isAddon = titleText.includes('french') || titleText.includes('baby') || titleText.includes('effects') || titleText.includes('strass') || isOngleCasse;
+            const isPackSourcils = titleText.includes('pack sourcils') || titleText.includes('création de la ligne');
+            const isRemplissage = titleText.includes('remplissage');
+            const isAddon = titleText.includes('french') || titleText.includes('baby') || titleText.includes('effects') || titleText.includes('strass') || titleText.includes('dépose') || titleText.includes('teinture') || isOngleCasse || isPackSourcils || isRemplissage;
 
-            if (isAddon) {
-                // SÉCURITÉ MODIFIÉE : Les ongles cassés peuvent être sélectionnés sans prestation, mais pas les autres petits +
-                const selectedMain = document.querySelector('.prestation-link.selected:not(.addon)');
-                if (!selectedMain && !isOngleCasse) {
-                    return; // Stoppe l'action si c'est un autre petit + sans prestation principale
-                }
-
-                document.querySelectorAll('.prestation-link.addon').forEach(l => {
-                    if (l !== this) l.classList.remove('selected');
-                });
-                this.classList.toggle('selected');
+            if (this.classList.contains('selected')) {
+                // Permet d'enlever la sélection si on clique à nouveau dessus
+                this.classList.remove('selected');
             } else {
-                // Prestation principale (sélection unique)
-                document.querySelectorAll('.prestation-link:not(.addon)').forEach(l => l.classList.remove('selected'));
-                this.classList.add('selected');
+                if (isAddon) {
+                    const selectedMain = document.querySelector('.prestation-link.selected:not(.addon)');
+                    
+                    // Règle : Le pack sourcils et les ongles cassés peuvent être sélectionnés sans prestation principale. 
+                    // Les remplissages et autres petits + exigent une prestation principale.
+                    if (!selectedMain && !isOngleCasse && !isPackSourcils) {
+                        return; 
+                    }
+
+                    // Règle : Si on sélectionne le pack sourcils, on ne peut pas sélectionner autre chose en même temps
+                    if (isPackSourcils) {
+                        document.querySelectorAll('.prestation-link').forEach(l => l.classList.remove('selected'));
+                    } else {
+                        // Si on sélectionne un autre addon, on désélectionne le pack sourcils s'il était actif
+                        document.querySelectorAll('.prestation-link.addon').forEach(l => {
+                            const lTitle = l.querySelector('.item-title')?.textContent.toLowerCase() || '';
+                            if (lTitle.includes('pack sourcils') || lTitle.includes('création de la ligne')) {
+                                l.classList.remove('selected');
+                            }
+                        });
+                    }
+
+                    this.classList.add('selected');
+                } else {
+                    // Prestation principale : si on clique dessus, cela désactive le pack sourcils exclusif
+                    document.querySelectorAll('.prestation-link.addon').forEach(l => {
+                        const lTitle = l.querySelector('.item-title')?.textContent.toLowerCase() || '';
+                        if (lTitle.includes('pack sourcils') || lTitle.includes('création de la ligne')) {
+                            l.classList.remove('selected');
+                        }
+                    });
+
+                    // Sélection unique de la prestation principale
+                    document.querySelectorAll('.prestation-link:not(.addon)').forEach(l => l.classList.remove('selected'));
+                    this.classList.add('selected');
+                }
             }
 
             updateBookingSelection();
