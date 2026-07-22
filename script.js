@@ -243,17 +243,23 @@ document.addEventListener('DOMContentLoaded', () => {
             const isAddon = titleText.includes('french') || titleText.includes('baby') || titleText.includes('effects') || titleText.includes('strass') || titleText.includes('ongle cassé');
 
             if (isAddon) {
+                // SÉCURITÉ : Vérifie si une prestation principale est bien sélectionnée avant d'autoriser le petit +
+                const selectedMain = document.querySelector('.prestation-link.selected:not(.addon)');
+                if (!selectedMain) {
+                    return; // Stoppe l'action si aucune prestation n'est choisie
+                }
+
                 document.querySelectorAll('.prestation-link.addon').forEach(l => {
                     if (l !== this) l.classList.remove('selected');
                 });
                 this.classList.toggle('selected');
             } else {
+                // Prestation principale (sélection unique)
                 document.querySelectorAll('.prestation-link:not(.addon)').forEach(l => l.classList.remove('selected'));
                 this.classList.add('selected');
             }
 
             updateBookingSelection();
-            // La ligne de défilement (scrollIntoView) a été retirée ici
         });
     });
 
