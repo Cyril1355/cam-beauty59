@@ -179,7 +179,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (this.classList.contains('selected')) {
                 this.classList.remove('selected');
             } else {
-                // RÈGLE : Si le Pack Sourcils est déjà actif, interdiction de sélectionner un remplissage 3 semaines (ou autre add-on nécessitant une pose principale)
+                // RÈGLE : Si le Pack Sourcils est actif, interdiction de sélectionner un remplissage 3 semaines ou une option de style
                 const activePackSourcils = Array.from(document.querySelectorAll('.prestation-link.selected')).some(l => {
                     const t = l.querySelector('.item-title')?.textContent.toLowerCase() || '';
                     return t.includes('pack sourcils') || t.includes('création de la ligne');
@@ -213,7 +213,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     return;
                 }
 
-                // RÈGLE : Si on clique sur l'un des deux remplissages 3 semaines, il remplace l'autre et nécessite une prestation principale
+                // RÈGLE : Gestion mutuelle des deux remplissages 3 semaines (cils)
                 if (isRemplissageCils) {
                     const selectedMain = document.querySelector('.prestation-link.selected:not(.addon)');
                     if (!selectedMain) {
