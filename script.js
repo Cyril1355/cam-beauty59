@@ -132,8 +132,8 @@ favicon.href = 'https://cyril1355.github.io/cam-beauty59/favicon.jpg';
 document.head.appendChild(favicon);
 
 document.addEventListener('DOMContentLoaded', () => {
-    const checkboxes = document.querySelectorAll('#agree-policy, .policy-checkbox');
-    const bookingBtns = document.querySelectorAll('#booking-btn, .btn-booking');
+    const checkbox = document.getElementById('agree-policy');
+    const bookingBtn = document.getElementById('booking-btn');
     const prestationLinks = document.querySelectorAll('.prestation-link[data-url]');
 
     function updateBookingSelection() {
@@ -272,25 +272,23 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     window.toggleBookingButton = function() {
-        const isChecked = Array.from(checkboxes).some(cb => cb.checked);
+        if (!checkbox || !bookingBtn) return;
         const currentSelected = document.querySelector('.prestation-link.selected');
 
-        bookingBtns.forEach(bookingBtn => {
-            if (!bookingBtn) return;
-            if (isChecked) {
-                bookingBtn.classList.add('active');
-                if (currentSelected) {
-                    updateBookingSelection();
-                }
-            } else {
-                bookingBtn.classList.remove('active');
-                bookingBtn.setAttribute('href', '#');
+        if (checkbox.checked) {
+            bookingBtn.classList.add('active');
+            if (currentSelected) {
+                updateBookingSelection();
             }
-        });
+        } else {
+            bookingBtn.classList.remove('active');
+            bookingBtn.setAttribute('href', '#');
+        }
     };
 
     toggleBookingButton();
     
-    checkboxes.forEach(checkbox => {
+    if (checkbox) {
         checkbox.addEventListener('change', toggleBookingButton);
-    });
+    }
+});
