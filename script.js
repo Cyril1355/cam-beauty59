@@ -136,11 +136,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const bookingBtn = document.getElementById('booking-btn') || document.getElementById('booking-btn-2');
     const prestationLinks = document.querySelectorAll('.prestation-link[data-url]');
 
-    function updateBookingSelection() {
+    function updateBookingLink() {
         if (!bookingBtn) return;
         const selectedMain = document.querySelector('.prestation-link.selected:not(.addon)');
         const selectedAddon = document.querySelector('.prestation-link.selected.addon');
-        
         const activeSelection = selectedAddon || selectedMain;
         
         if (activeSelection) {
@@ -157,7 +156,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const titleText = this.querySelector('.item-title')?.textContent.toLowerCase() || '';
             
-            // Identification précise des éléments
             const isOngleCasseMoins1 = titleText.includes('ongle cassé - 1 semaine') || titleText.includes('ongle cassé -1 semaine');
             const isOngleCassePlus1 = titleText.includes('ongle cassé + 1 semaine') || titleText.includes('ongle cassé +1 semaine');
             const isOngleCasse = isOngleCasseMoins1 || isOngleCassePlus1;
@@ -165,63 +163,57 @@ document.addEventListener('DOMContentLoaded', () => {
             const isPackSourcils = titleText.includes('pack sourcils') || titleText.includes('création de la ligne');
             const isRemplissageGel = titleText.includes('remplissage gel');
             
-            // Distinction rigoureuse entre les deux remplissages cils
             const isRemplissageSimple = (titleText.includes('remplissage 3 semaines') || titleText.includes('remplissage  3 semaines')) && !titleText.includes('+');
-            const isRemplissagePlus = titleText.includes('remplissage + 3 semaines') || titleText.includes('remplissage  + 3 semaines');
+            const isRemplissagePlus = titleText.includes('remplissage  + 3 semaines') || titleText.includes('remplissage + 3 semaines');
             const isRemplissageCils = isRemplissageSimple || isRemplissagePlus;
             
             const isClassicAddon = titleText.includes('french') || titleText.includes('baby') || titleText.includes('effects') || titleText.includes('strass');
             const isTeintureOuDepose = titleText.includes('teinture') || titleText.includes('dépose');
             
             const isExclusiveOption = isClassicAddon || isRemplissageCils;
-            
             const isAddon = isExclusiveOption || isTeintureOuDepose || isOngleCasse || isPackSourcils || isRemplissageGel;
 
             if (this.classList.contains('selected')) {
                 this.classList.remove('selected');
             } else {
-                // RÈGLE : Si le Pack Sourcils est actif, interdiction de sélectionner un remplissage ou une option de style
                 const activePackSourcils = Array.from(document.querySelectorAll('.prestation-link.selected')).some(l => {
                     const t = l.querySelector('.item-title')?.textContent.toLowerCase() || '';
                     return t.includes('pack sourcils') || t.includes('création de la ligne');
                 });
 
                 if (activePackSourcils && (isRemplissageCils || isClassicAddon)) {
+                    updateBookingLink();
                     return;
                 }
 
-                // RÈGLE : Pack Sourcils exclusif global
                 if (isPackSourcils) {
                     document.querySelectorAll('.prestation-link').forEach(l => l.classList.remove('selected'));
                     this.classList.add('selected');
-                    updateBookingSelection();
+                    updateBookingLink();
                     return;
                 }
 
-                // RÈGLE : Ongles cassés exclusifs globaux
                 if (isOngleCasse) {
                     document.querySelectorAll('.prestation-link').forEach(l => l.classList.remove('selected'));
                     this.classList.add('selected');
-                    updateBookingSelection();
+                    updateBookingLink();
                     return;
                 }
 
-                // RÈGLE : Teinture ou Dépose exclusives globales
                 if (isTeintureOuDepose) {
                     document.querySelectorAll('.prestation-link').forEach(l => l.classList.remove('selected'));
                     this.classList.add('selected');
-                    updateBookingSelection();
+                    updateBookingLink();
                     return;
                 }
 
-                // RÈGLE : Gestion croisée et exclusive entre les deux remplissages 3 semaines
                 if (isRemplissageCils) {
                     const selectedMain = document.querySelector('.prestation-link.selected:not(.addon)');
                     if (!selectedMain) {
+                        updateBookingLink();
                         return; 
                     }
                     
-                    // Désélectionner impérativement TOUT autre remplissage cils existant
                     document.querySelectorAll('.prestation-link.selected').forEach(addon => {
                         const aTitle = addon.querySelector('.item-title')?.textContent.toLowerCase() || '';
                         const isOtherSimple = (aTitle.includes('remplissage 3 semaines') || aTitle.includes('remplissage  3 semaines')) && !aTitle.includes('+');
@@ -233,7 +225,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     });
 
                     this.classList.add('selected');
-                    updateBookingSelection();
+                    updateBookingLink();
                     return;
                 }
 
@@ -253,10 +245,14 @@ document.addEventListener('DOMContentLoaded', () => {
                         const activeCasse = Array.from(document.querySelectorAll('.prestation-link.selected')).some(l => {
                             return l.querySelector('.item-title')?.textContent.toLowerCase().includes('ongle cassé');
                         });
-                        if (activeCasse) return;
+                        if (activeCasse) {
+                            updateBookingLink();
+                            return;
+                        }
                     }
 
                     if (!selectedMain) {
+                        updateBookingLink();
                         return; 
                     }
 
@@ -266,8 +262,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     this.classList.add('selected');
                 }
             }
-
-            updateBookingSelection();
+            updateBookingLink();
         });
     });
 
