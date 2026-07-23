@@ -165,9 +165,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const isPackSourcils = titleText.includes('pack sourcils') || titleText.includes('création de la ligne');
             const isRemplissageGel = titleText.includes('remplissage gel');
             
-            const isRemplissage3SemainesCils = titleText.includes('remplissage 3 semaines') && !titleText.includes('+');
-            const isRemplissagePlus3SemainesCils = titleText.includes('remplissage + 3 semaines') || titleText.includes('remplissage  + 3 semaines');
-            const isRemplissageCils = isRemplissage3SemainesCils || isRemplissagePlus3SemainesCils;
+            // Distinction rigoureuse entre les deux remplissages cils
+            const isRemplissageSimple = (titleText.includes('remplissage 3 semaines') || titleText.includes('remplissage  3 semaines')) && !titleText.includes('+');
+            const isRemplissagePlus = titleText.includes('remplissage + 3 semaines') || titleText.includes('remplissage  + 3 semaines');
+            const isRemplissageCils = isRemplissageSimple || isRemplissagePlus;
             
             const isClassicAddon = titleText.includes('french') || titleText.includes('baby') || titleText.includes('effects') || titleText.includes('strass');
             const isTeintureOuDepose = titleText.includes('teinture') || titleText.includes('dépose');
@@ -179,7 +180,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (this.classList.contains('selected')) {
                 this.classList.remove('selected');
             } else {
-                // RÈGLE : Si le Pack Sourcils est actif, interdiction de sélectionner un remplissage 3 semaines ou une option de style
+                // RÈGLE : Si le Pack Sourcils est actif, interdiction de sélectionner un remplissage ou une option de style
                 const activePackSourcils = Array.from(document.querySelectorAll('.prestation-link.selected')).some(l => {
                     const t = l.querySelector('.item-title')?.textContent.toLowerCase() || '';
                     return t.includes('pack sourcils') || t.includes('création de la ligne');
@@ -213,19 +214,24 @@ document.addEventListener('DOMContentLoaded', () => {
                     return;
                 }
 
-                // RÈGLE : Gestion mutuelle des deux remplissages 3 semaines (cils)
+                // RÈGLE : Gestion croisée et exclusive entre les deux remplissages 3 semaines
                 if (isRemplissageCils) {
                     const selectedMain = document.querySelector('.prestation-link.selected:not(.addon)');
                     if (!selectedMain) {
                         return; 
                     }
-                    // Désélectionner l'autre remplissage 3 semaines s'il est actif
+                    
+                    // Désélectionner impérativement TOUT autre remplissage cils existant
                     document.querySelectorAll('.prestation-link.selected').forEach(addon => {
                         const aTitle = addon.querySelector('.item-title')?.textContent.toLowerCase() || '';
-                        if (aTitle.includes('remplissage 3 semaines') || aTitle.includes('remplissage + 3 semaines')) {
+                        const isOtherSimple = (aTitle.includes('remplissage 3 semaines') || aTitle.includes('remplissage  3 semaines')) && !aTitle.includes('+');
+                        const isOtherPlus = aTitle.includes('remplissage + 3 semaines') || aTitle.includes('remplissage  + 3 semaines');
+                        
+                        if (isOtherSimple || isOtherPlus) {
                             addon.classList.remove('selected');
                         }
                     });
+
                     this.classList.add('selected');
                     updateBookingSelection();
                     return;
