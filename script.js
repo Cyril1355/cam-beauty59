@@ -294,35 +294,38 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 function updateBookingLink() {
         if (!bookingBtn) return;
-        const selectedMain = document.querySelector('.prestation-link.selected:not(.addon)');
         
-        // On récupère TOUTES les prestations sélectionnées pour chercher French ou Baby peu importe leur classe
-        const allSelected = document.querySelectorAll('.prestation-link.selected');
-        let mainTitle = '';
-        let hasFrench = false;
-        let hasBaby = false;
-
-        allSelected.forEach(el => {
-            const t = el.querySelector('.item-title')?.textContent.toLowerCase() || '';
-            if (!el.classList.contains('addon') || t.includes('semi-permanent')) {
-                mainTitle = t;
-            }
-            if (t.includes('french')) hasFrench = true;
-            if (t.includes('baby')) hasBaby = true;
-        });
+        const selectedMain = document.querySelector('.prestation-link.selected:not(.addon)');
+        const selectedAddon = document.querySelector('.prestation-link.selected.addon');
+        
+        const mainTitle = selectedMain ? (selectedMain.querySelector('.item-title')?.textContent.toLowerCase() || '') : '';
+        const addonTitle = selectedAddon ? (selectedAddon.querySelector('.item-title')?.textContent.toLowerCase() || '') : '';
 
         let targetUrl = '#';
 
-        if (mainTitle.includes('semi-permanent')) {
-            if (hasFrench) {
-                targetUrl = "https://tidycal.com/votre-compte/semi-permanent-french";
-            } else if (hasBaby) {
-                targetUrl = "https://tidycal.com/votre-compte/semi-permanent-babyboomer";
-            } else if (selectedMain) {
-                targetUrl = selectedMain.getAttribute('data-url');
+        // 1. Combinaisons avec French
+        if (addonTitle.includes('french')) {
+            if (mainTitle.includes('semi-permanent')) {
+                targetUrl = "https://tidycal.com/votre-compte/semi-permanent-french"; // Lien Semi + French
+            } else if (mainTitle.includes('rallongement')) {
+                targetUrl = "https://tidycal.com/votre-compte/rallongement-french"; // Lien Rallongement + French
+            } else {
+                targetUrl = selectedAddon.getAttribute('data-url');
             }
-        } else {
-            const activeSelection = document.querySelector('.prestation-link.selected');
+        } 
+        // 2. Combinaisons avec Babyboomer
+        else if (addonTitle.includes('baby')) {
+            if (mainTitle.includes('semi-permanent')) {
+                targetUrl = "https://tidycal.com/votre-compte/semi-permanent-baby"; // Lien Semi + Baby
+            } else if (mainTitle.includes('rallongement')) {
+                targetUrl = "https://tidycal.com/votre-compte/rallongement-baby"; // Lien Rallongement + Baby
+            } else {
+                targetUrl = selectedAddon.getAttribute('data-url');
+            }
+        } 
+        // 3. Si aucun supplément spécial, on prend la prestation principale seule (ou le supplément seul)
+        else {
+            const activeSelection = selectedAddon || selectedMain;
             if (activeSelection) {
                 targetUrl = activeSelection.getAttribute('data-url') || '#';
             }
