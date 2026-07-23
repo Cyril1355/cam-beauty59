@@ -175,7 +175,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Les remplissages cils rejoignent le groupe des options exclusives entre elles (comme classicAddon)
             const isExclusiveOption = isClassicAddon || isRemplissageCils;
             
-            const isAddon = isExclusiveOption || isTeintureOuDepose || isOngleCasse || isPackSources || isRemplissageGel;
+            const isAddon = isExclusiveOption || isTeintureOuDepose || isOngleCasse || isPackSourcils || isRemplissageGel;
 
             if (this.classList.contains('selected')) {
                 this.classList.remove('selected');
@@ -204,7 +204,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     return;
                 }
 
-                if (isAddon || isRemplissageCils) {
+                if (isAddon) {
                     const selectedMain = document.querySelector('.prestation-link.selected:not(.addon)');
 
                     // RÈGLE : Interdiction de sélectionner plusieurs options exclusives entre elles (French, Baby, Effects, Strass, et les 2 remplissages 3 semaines)
