@@ -158,7 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const titleText = this.querySelector('.item-title')?.textContent.toLowerCase() || '';
             
             // Identification précise des éléments
-            const isOngleCasseMoins1 = titleText.includes('ongle cassé -1 semaine');
+            const isOngleCasseMoins1 = titleText.includes('ongle cassé - 1 semaine') || titleText.includes('ongle cassé -1 semaine');
             const isOngleCassePlus1 = titleText.includes('ongle cassé + 1 semaine') || titleText.includes('ongle cassé +1 semaine');
             const isOngleCasse = isOngleCasseMoins1 || isOngleCassePlus1;
 
@@ -217,9 +217,9 @@ document.addEventListener('DOMContentLoaded', () => {
                         });
                     }
 
-                    // RÈGLE : Interdiction de sélectionner les deux options d'ongles cassés en même temps
+                    // RÈGLE CORRIGÉE : Désélection mutuelle stricte entre les deux options d'ongles cassés (dans les deux sens)
                     if (isOngleCasse) {
-                        document.querySelectorAll('.prestation-link.selected.addon').forEach(addon => {
+                        document.querySelectorAll('.prestation-link.selected').forEach(addon => {
                             const aTitle = addon.querySelector('.item-title')?.textContent.toLowerCase() || '';
                             if (aTitle.includes('ongle cassé')) {
                                 addon.classList.remove('selected');
