@@ -171,8 +171,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             const isRemplissage = isRemplissageGel || isRemplissageCils;
             
-            // Add-ons de style (French, Baby boomers, Effects, Strass)
-            const isClassicAddon = titleText.includes('french') || titleText.includes('baby') || titleText.includes('effects' ) || titleText.includes('strass');
+            const isClassicAddon = titleText.includes('french') || titleText.includes('baby') || titleText.includes('effects') || titleText.includes('strass');
             const isOtherAddon = titleText.includes('dépose') || titleText.includes('teinture');
             
             const isAddon = isClassicAddon || isOtherAddon || isOngleCasse || isPackSourcils || isRemplissage;
@@ -197,6 +196,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     return;
                 }
 
+                // RÈGLE : Si on clique sur un Ongle cassé, il devient exclusif et désactive TOUT le reste
+                if (isOngleCasse) {
+                    document.querySelectorAll('.prestation-link').forEach(l => l.classList.remove('selected'));
+                    this.classList.add('selected');
+                    updateBookingSelection();
+                    return;
+                }
+
                 if (isAddon) {
                     const selectedMain = document.querySelector('.prestation-link.selected:not(.addon)');
 
@@ -209,7 +216,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         if (existingCilsRemplissage) return;
                     }
 
-                    // RÈGLE CORRIGÉE : Interdiction de sélectionner plusieurs add-ons de style (French, Baby boomers, Effects, Strass) en même temps
+                    // RÈGLE : Interdiction de sélectionner plusieurs add-ons de style (French, Baby boomers, Effects, Strass) en même temps
                     if (isClassicAddon) {
                         document.querySelectorAll('.prestation-link.selected').forEach(addon => {
                             const aTitle = addon.querySelector('.item-title')?.textContent.toLowerCase() || '';
@@ -219,23 +226,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         });
                     }
 
-                    // RÈGLE : Désélection mutuelle stricte entre les deux options d'ongles cassés
-                    if (isOngleCasse) {
-                        document.querySelectorAll('.prestation-link.selected').forEach(addon => {
-                            const aTitle = addon.querySelector('.item-title')?.textContent.toLowerCase() || '';
-                            if (aTitle.includes('ongle cassé')) {
-                                addon.classList.remove('selected');
-                            }
-                        });
-                    }
-
-                    // RÈGLE : Interdiction de sélectionner les ongles cassés en même temps que le remplissage gel (et inversement)
-                    if (isOngleCasse) {
-                        const activeGel = Array.from(document.querySelectorAll('.prestation-link.selected')).some(l => {
-                            return l.querySelector('.item-title')?.textContent.toLowerCase().includes('remplissage gel');
-                        });
-                        if (activeGel) return;
-                    }
+                    // RÈGLE : Interdiction de sélectionner les ongles cassés en même temps que le remplissage gel
                     if (isRemplissageGel) {
                         const activeCasse = Array.from(document.querySelectorAll('.prestation-link.selected')).some(l => {
                             return l.querySelector('.item-title')?.textContent.toLowerCase().includes('ongle cassé');
@@ -243,14 +234,14 @@ document.addEventListener('DOMContentLoaded', () => {
                         if (activeCasse) return;
                     }
 
-                    // Les ongles cassés peuvent être sélectionnés sans prestation principale, mais pas les autres add-ons/remplissages
-                    if (!selectedMain && !isOngleCasse) {
+                    // Les autres add-ons nécessitent une prestation principale
+                    if (!selectedMain) {
                         return; 
                     }
 
                     this.classList.add('selected');
                 } else {
-                    // Si on clique sur une prestation principale, on nettoie les autres prestations principales
+                    // Si on clique sur une prestation principale, on nettoie les autres prestations principales et le pack sourcils
                     document.querySelectorAll('.prestation-link:not(.addon)').forEach(l => l.classList.remove('selected'));
                     this.classList.add('selected');
                 }
