@@ -143,61 +143,64 @@ function updateBookingSelection() {
     const selectedAddon = document.querySelector('.prestation-link.selected.addon');
 
     if (!selectedMain) {
-        bookingBtn.setAttribute("href", "#");
+        bookingBtn.setAttribute('href', '#');
         return;
     }
 
-    const mainTitle = selectedMain.querySelector(".item-title").textContent.trim().toLowerCase();
-    const addonTitle = selectedAddon
-        ? selectedAddon.querySelector(".item-title").textContent.trim().toLowerCase()
-        : "";
-
+    // Lien par défaut de la prestation principale
     let targetUrl = selectedMain.dataset.url;
 
-    const bookingLinks = {
+    if (selectedAddon) {
 
-        // SEMI PERMANENT
-        "semi permanent couleur unie|french":
-            "https://tidycal.com/votre-compte/semi-permanent-french",
+        const mainTitle = selectedMain.querySelector('.item-title').textContent.toLowerCase().trim();
+        const addonTitle = selectedAddon.querySelector('.item-title').textContent.toLowerCase().trim();
 
-        "semi permanent couleur unie|baby boomers / colors":
-            "https://tidycal.com/votre-compte/semi-permanent-baby",
+        // ===== SEMI PERMANENT =====
+        if (mainTitle.includes("semi permanent")) {
 
-        "semi permanent couleur unie|effects":
-            "TON_LIEN_EFFECTS",
+            if (addonTitle.includes("french")) {
+                targetUrl = "https://tidycal.com/votre-compte/semi-permanent-french";
+            }
 
-        "semi permanent couleur unie|strass":
-            "TON_LIEN_STRASS",
+            else if (addonTitle.includes("baby")) {
+                targetUrl = "https://tidycal.com/votre-compte/semi-permanent-baby";
+            }
 
-        // GAINAGE
-        "gainage ongles naturels|french":
-            "TON_LIEN_GAINAGE_FRENCH",
+            else if (addonTitle.includes("effects")) {
+                targetUrl = "TON_LIEN_EFFECTS";
+            }
 
-        "gainage ongles naturels|baby boomers / colors":
-            "TON_LIEN_GAINAGE_BABY",
+            else if (addonTitle.includes("strass")) {
+                targetUrl = "TON_LIEN_STRASS";
+            }
+        }
 
-        // RALLONGEMENT
-        "rallongement gel s-m|french":
-            "TON_LIEN_RALLONGEMENT_SM_FRENCH",
+        // ===== GAINAGE =====
+        else if (mainTitle.includes("gainage")) {
 
-        "rallongement gel s-m|baby boomers / colors":
-            "TON_LIEN_RALLONGEMENT_SM_BABY",
+            if (addonTitle.includes("french")) {
+                targetUrl = "TON_LIEN_GAINAGE_FRENCH";
+            }
 
-        "rallongement gel l-xl|french":
-            "TON_LIEN_RALLONGEMENT_XL_FRENCH",
+            else if (addonTitle.includes("baby")) {
+                targetUrl = "TON_LIEN_GAINAGE_BABY";
+            }
+        }
 
-        "rallongement gel l-xl|baby boomers / colors":
-            "TON_LIEN_RALLONGEMENT_XL_BABY"
+        // ===== RALLONGEMENT =====
+        else if (mainTitle.includes("rallongement")) {
 
-    };
+            if (addonTitle.includes("french")) {
+                targetUrl = "TON_LIEN_RALLONGEMENT_FRENCH";
+            }
 
-    const key = `${mainTitle}|${addonTitle}`;
-
-    if (bookingLinks[key]) {
-        targetUrl = bookingLinks[key];
+            else if (addonTitle.includes("baby")) {
+                targetUrl = "TON_LIEN_RALLONGEMENT_BABY";
+            }
+        }
     }
 
-    bookingBtn.setAttribute("href", targetUrl);
+    bookingBtn.setAttribute('href', targetUrl);
 }
 
     prestationLinks.forEach(link => {
@@ -286,7 +289,7 @@ function updateBookingSelection() {
                     return;
                 }
 
-                if (this.classList.contains("addon")) {
+                if (isAddon) {
                     const selectedMain = document.querySelector('.prestation-link.selected:not(.addon)');
 
                     if (isClassicAddon) {
@@ -309,11 +312,7 @@ function updateBookingSelection() {
                         return; 
                     }
 
-                    document.querySelectorAll('.prestation-link.addon.selected').forEach(a => {
-    a.classList.remove('selected');
-});
-
-this.classList.add('selected');
+                    this.classList.add('selected');
                 } else {
                     document.querySelectorAll('.prestation-link:not(.addon)').forEach(l => l.classList.remove('selected'));
                     this.classList.add('selected');
@@ -345,4 +344,3 @@ this.classList.add('selected');
         checkbox.addEventListener('change', toggleBookingButton);
     }
 });
-
