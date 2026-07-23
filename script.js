@@ -266,15 +266,19 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    window.toggleBookingButton = function() {
-        if (!checkbox || !bookingBtn) return;
-        if (checkbox.checked) {
-            bookingBtn.classList.add('active');
-        } else {
-            bookingBtn.classList.remove('active');
-            bookingBtn.setAttribute('href', '#');
-        }
-    };
+window.toggleBookingButton = function() {
+    const activeBookingBtn = document.getElementById('booking-btn') || document.getElementById('booking-btn-2');
+    const activeCheckbox = document.getElementById('agree-policy') || document.getElementById('agree-policy-2');
+
+    if (!activeCheckbox || !activeBookingBtn) return;
+
+    if (activeCheckbox.checked) {
+        activeBookingBtn.classList.add('active');
+    } else {
+        activeBookingBtn.classList.remove('active');
+        activeBookingBtn.setAttribute('href', '#');
+    }
+};
 
     toggleBookingButton();
     
