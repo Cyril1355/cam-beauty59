@@ -169,19 +169,18 @@ document.addEventListener('DOMContentLoaded', () => {
             const isRemplissagePlus3SemainesCils = titleText.includes('remplissage  + 3 semaines') || titleText.includes('remplissage + 3 semaines');
             const isRemplissageCils = isRemplissage3SemainesCils || isRemplissagePlus3SemainesCils;
             
-            const isRemplissage = isRemplissageGel || isRemplissageCils;
-            
             const isClassicAddon = titleText.includes('french') || titleText.includes('baby') || titleText.includes('effects') || titleText.includes('strass');
-            
-            // Teinture et Dépose basculent en mode "prestation principale" (indépendantes)
             const isTeintureOuDepose = titleText.includes('teinture') || titleText.includes('dépose');
             
-            const isAddon = isClassicAddon || isOngleCasse || isPackSourcils || isRemplissage;
+            // Les remplissages cils rejoignent le groupe des options exclusives entre elles (comme classicAddon)
+            const isExclusiveOption = isClassicAddon || isRemplissageCils;
+            
+            const isAddon = isExclusiveOption || isTeintureOuDepose || isOngleCasse || isPackSources || isRemplissageGel;
 
             if (this.classList.contains('selected')) {
                 this.classList.remove('selected');
             } else {
-                // RÈGLE : Si on clique sur le Pack Sourcils, il devient exclusif et désactive TOUT le reste
+                // RÈGLE : Pack Sourcils exclusif global
                 if (isPackSourcils) {
                     document.querySelectorAll('.prestation-link').forEach(l => l.classList.remove('selected'));
                     this.classList.add('selected');
@@ -189,7 +188,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     return;
                 }
 
-                // RÈGLE : Si on clique sur un Ongle cassé, il devient exclusif et désactive TOUT le reste
+                // RÈGLE : Ongles cassés exclusifs globaux
                 if (isOngleCasse) {
                     document.querySelectorAll('.prestation-link').forEach(l => l.classList.remove('selected'));
                     this.classList.add('selected');
@@ -197,15 +196,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     return;
                 }
 
-                // RÈGLE : Si on clique sur un Remplissage 3 semaines (cils), il devient exclusif et désactive TOUT le reste
-                if (isRemplissageCils) {
-                    document.querySelectorAll('.prestation-link').forEach(l => l.classList.remove('selected'));
-                    this.classList.add('selected');
-                    updateBookingSelection();
-                    return;
-                }
-
-                // RÈGLE : Si on clique sur la Teinture ou la Dépose, elles se comportent comme des extensions (exclusives)
+                // RÈGLE : Teinture ou Dépose exclusives globales
                 if (isTeintureOuDepose) {
                     document.querySelectorAll('.prestation-link').forEach(l => l.classList.remove('selected'));
                     this.classList.add('selected');
@@ -213,14 +204,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     return;
                 }
 
-                if (isAddon) {
+                if (isAddon || isRemplissageCils) {
                     const selectedMain = document.querySelector('.prestation-link.selected:not(.addon)');
 
-                    // RÈGLE : Interdiction de sélectionner plusieurs add-ons de style (French, Baby boomers, Effects, Strass) en même temps
-                    if (isClassicAddon) {
+                    // RÈGLE : Interdiction de sélectionner plusieurs options exclusives entre elles (French, Baby, Effects, Strass, et les 2 remplissages 3 semaines)
+                    if (isExclusiveOption) {
                         document.querySelectorAll('.prestation-link.selected').forEach(addon => {
                             const aTitle = addon.querySelector('.item-title')?.textContent.toLowerCase() || '';
-                            if (aTitle.includes('french') || aTitle.includes('baby') || aTitle.includes('effects') || aTitle.includes('strass')) {
+                            if (aTitle.includes('french') || aTitle.includes('baby') || aTitle.includes('effects') || aTitle.includes('strass') || aTitle.includes('remplissage 3 semaines') || aTitle.includes('remplissage + 3 semaines')) {
                                 addon.classList.remove('selected');
                             }
                         });
@@ -234,14 +225,14 @@ document.addEventListener('DOMContentLoaded', () => {
                         if (activeCasse) return;
                     }
 
-                    // Les autres add-ons nécessitent une prestation principale
+                    // Les add-ons nécessitent une prestation principale sélectionnée au préalable
                     if (!selectedMain) {
                         return; 
                     }
 
                     this.classList.add('selected');
                 } else {
-                    // Si on clique sur une prestation principale (extensions, rehaussement, etc.), on nettoie les autres
+                    // Si on clique sur une prestation principale, on nettoie les autres prestations principales
                     document.querySelectorAll('.prestation-link:not(.addon)').forEach(l => l.classList.remove('selected'));
                     this.classList.add('selected');
                 }
