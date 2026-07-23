@@ -292,3 +292,36 @@ document.addEventListener('DOMContentLoaded', () => {
         checkbox.addEventListener('change', toggleBookingButton);
     }
 });
+function updateBookingLink() {
+        if (!bookingBtn) return;
+        const selectedMain = document.querySelector('.prestation-link.selected:not(.addon)');
+        const selectedAddon = document.querySelector('.prestation-link.selected.addon');
+        
+        // Récupère les titres en minuscules pour identifier les choix
+        const mainTitle = selectedMain ? (selectedMain.querySelector('.item-title')?.textContent.toLowerCase() || '') : '';
+        const addonTitle = selectedAddon ? (selectedAddon.querySelector('.item-title')?.textContent.toLowerCase() || '') : '';
+
+        let targetUrl = '#';
+
+        // 1. Gérer les combinaisons spécifiques
+        if (mainTitle.includes('semi-permanent')) {
+            if (addonTitle.includes('french')) {
+                // Lien spécifique pour Semi-permanent + French
+                targetUrl = "https://tidycal.com/votre-compte/semi-permanent-french"; 
+            } else if (addonTitle.includes('baby')) {
+                // Lien spécifique pour Semi-permanent + Babyboomer
+                targetUrl = "https://tidycal.com/votre-compte/semi-permanent-babyboomer"; 
+            } else if (selectedMain) {
+                // Lien par défaut du semi-permanent seul (ou autre option)
+                targetUrl = selectedMain.getAttribute('data-url');
+            }
+        } else {
+            // Comportement normal pour les autres prestations
+            const activeSelection = selectedAddon || selectedMain;
+            if (activeSelection) {
+                targetUrl = activeSelection.getAttribute('data-url') || '#';
+            }
+        }
+
+        bookingBtn.setAttribute('href', targetUrl);
+    }
