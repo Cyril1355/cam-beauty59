@@ -272,23 +272,25 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     window.toggleBookingButton = function() {
-        if (!checkbox || !bookingBtn) return;
+        const isChecked = Array.from(checkboxes).some(cb => cb.checked);
         const currentSelected = document.querySelector('.prestation-link.selected');
 
-        if (checkbox.checked) {
-            bookingBtn.classList.add('active');
-            if (currentSelected) {
-                updateBookingSelection();
+        bookingBtns.forEach(bookingBtn => {
+            if (!bookingBtn) return;
+            if (isChecked) {
+                bookingBtn.classList.add('active');
+                if (currentSelected) {
+                    updateBookingSelection();
+                }
+            } else {
+                bookingBtn.classList.remove('active');
+                bookingBtn.setAttribute('href', '#');
             }
-        } else {
-            bookingBtn.classList.remove('active');
-            bookingBtn.setAttribute('href', '#');
-        }
+        });
     };
 
     toggleBookingButton();
     
-    if (checkbox) {
+    checkboxes.forEach(checkbox => {
         checkbox.addEventListener('change', toggleBookingButton);
-    }
-});
+    });
