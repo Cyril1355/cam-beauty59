@@ -303,27 +303,17 @@ function updateBookingLink() {
 
         let targetUrl = '#';
 
-        // 1. Combinaisons avec French
-        if (addonTitle.includes('french')) {
-            if (mainTitle.includes('semi-permanent')) {
-                targetUrl = "https://tidycal.com/votre-compte/semi-permanent-french"; // Lien Semi + French
-            } else if (mainTitle.includes('rallongement')) {
-                targetUrl = "https://tidycal.com/votre-compte/rallongement-french"; // Lien Rallongement + French
-            } else {
-                targetUrl = selectedAddon.getAttribute('data-url');
-            }
+        // 1. Vérification des combinaisons exactes en priorité
+        if (mainTitle.includes('semi-permanent') && addonTitle.includes('french')) {
+            targetUrl = "https://tidycal.com/votre-compte/semi-permanent-french"; // Mettez votre lien exact Semi + French
+        } else if (mainTitle.includes('semi-permanent') && addonTitle.includes('baby')) {
+            targetUrl = "https://tidycal.com/votre-compte/semi-permanent-baby"; // Mettez votre lien exact Semi + Baby
+        } else if (mainTitle.includes('rallongement') && addonTitle.includes('french')) {
+            targetUrl = "https://tidycal.com/votre-compte/rallongement-french"; // Mettez votre lien exact Rallongement + French
+        } else if (mainTitle.includes('rallongement') && addonTitle.includes('baby')) {
+            targetUrl = "https://tidycal.com/votre-compte/rallongement-baby"; // Mettez votre lien exact Rallongement + Baby
         } 
-        // 2. Combinaisons avec Babyboomer
-        else if (addonTitle.includes('baby')) {
-            if (mainTitle.includes('semi-permanent')) {
-                targetUrl = "https://tidycal.com/votre-compte/semi-permanent-baby"; // Lien Semi + Baby
-            } else if (mainTitle.includes('rallongement')) {
-                targetUrl = "https://tidycal.com/votre-compte/rallongement-baby"; // Lien Rallongement + Baby
-            } else {
-                targetUrl = selectedAddon.getAttribute('data-url');
-            }
-        } 
-        // 3. Si aucun supplément spécial, on prend la prestation principale seule (ou le supplément seul)
+        // 2. Si pas de combinaison spécifique, on prend le comportement classique
         else {
             const activeSelection = selectedAddon || selectedMain;
             if (activeSelection) {
