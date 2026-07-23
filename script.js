@@ -293,37 +293,69 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 function updateBookingSelection() {
-        if (!bookingBtn) return;
-        
-        const selectedMain = document.querySelector('.prestation-link.selected:not(.addon)');
-        const selectedAddon = document.querySelector('.prestation-link.selected.addon');
-        
-        const mainTitle = selectedMain ? (selectedMain.querySelector('.item-title')?.textContent.toLowerCase() || '') : '';
-        const addonTitle = selectedAddon ? (selectedAddon.querySelector('.item-title')?.textContent.toLowerCase() || '') : '';
+    if (!bookingBtn) return;
 
-        // POUR DEBUGGER : Affiche ce qui est détecté dans la console (F12)
-        console.log("Prestation principale détectée :", mainTitle);
-        console.log("Supplément détecté :", addonTitle);
+    const selectedMain = document.querySelector('.prestation-link.selected:not(.addon)');
+    const selectedAddon = document.querySelector('.prestation-link.selected.addon');
 
-        let targetUrl = '#';
-
-        // Gérer les combinaisons exactes de liens
-        if (mainTitle.includes('semi permanent') && addonTitle.includes('french')) {
-            targetUrl = "https://tidycal.com/votre-compte/semi-permanent-french"; 
-        } else if (mainTitle.includes('semi permanent') && addonTitle.includes('baby')) {
-            targetUrl = "https://tidycal.com/votre-compte/semi-permanent-baby"; 
-        } else if (mainTitle.includes('rallongement') && addonTitle.includes('french')) {
-            targetUrl = "https://tidycal.com/votre-compte/rallongement-french"; 
-        } else if (mainTitle.includes('rallongement') && addonTitle.includes('baby')) {
-            targetUrl = "https://tidycal.com/votre-compte/rallongement-baby"; 
-        } else {
-            // Comportement standard pour le reste
-            const activeSelection = selectedAddon || selectedMain;
-            if (activeSelection) {
-                targetUrl = activeSelection.getAttribute('data-url') || '#';
-            }
-        }
-
-        console.log("URL finale appliquée au bouton :", targetUrl);
-        bookingBtn.setAttribute('href', targetUrl);
+    if (!selectedMain) {
+        bookingBtn.href = "#";
+        return;
     }
+
+    const mainTitle = selectedMain.querySelector('.item-title')?.textContent.trim().toLowerCase() || "";
+    const addonTitle = selectedAddon?.querySelector('.item-title')?.textContent.trim().toLowerCase() || "";
+
+    // Tableau des combinaisons
+    const bookingLinks = {
+
+        // SEMI PERMANENT
+        "semi permanent|french":
+            "https://tidycal.com/votre-compte/semi-permanent-french",
+
+        "semi permanent|baby":
+            "https://tidycal.com/votre-compte/semi-permanent-baby",
+
+        "semi permanent|effects":
+            "https://tidycal.com/votre-compte/semi-permanent-effects",
+
+        "semi permanent|strass":
+            "https://tidycal.com/votre-compte/semi-permanent-strass",
+
+
+        // RALLONGEMENT
+        "rallongement|french":
+            "https://tidycal.com/votre-compte/rallongement-french",
+
+        "rallongement|baby":
+            "https://tidycal.com/votre-compte/rallongement-baby",
+
+        "rallongement|effects":
+            "https://tidycal.com/votre-compte/rallongement-effects",
+
+        "rallongement|strass":
+            "https://tidycal.com/votre-compte/rallongement-strass",
+
+
+        // GEL
+        "remplissage gel|french":
+            "https://tidycal.com/votre-compte/gel-french",
+
+        "remplissage gel|baby":
+            "https://tidycal.com/votre-compte/gel-baby"
+
+    };
+
+    let targetUrl = selectedMain.dataset.url;
+
+    if (addonTitle !== "") {
+
+        const key = `${mainTitle}|${addonTitle}`;
+
+        if (bookingLinks[key]) {
+            targetUrl = bookingLinks[key];
+        }
+    }
+
+    bookingBtn.href = targetUrl;
+}
