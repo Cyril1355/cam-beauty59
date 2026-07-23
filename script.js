@@ -136,20 +136,69 @@ document.addEventListener('DOMContentLoaded', () => {
     const bookingBtn = document.getElementById('booking-btn');
     const prestationLinks = document.querySelectorAll('.prestation-link[data-url]');
 
-    function updateBookingSelection() {
-        if (!bookingBtn) return;
-        const selectedMain = document.querySelector('.prestation-link.selected:not(.addon)');
-        const selectedAddon = document.querySelector('.prestation-link.selected.addon');
-        
-        const activeSelection = selectedAddon || selectedMain;
-        
-        if (activeSelection) {
-            let targetUrl = activeSelection.getAttribute('data-url');
-            bookingBtn.setAttribute('href', targetUrl);
-        } else {
-            bookingBtn.setAttribute('href', '#');
-        }
+function updateBookingSelection() {
+    if (!bookingBtn) return;
+
+    const selectedMain = document.querySelector('.prestation-link.selected:not(.addon)');
+    const selectedAddon = document.querySelector('.prestation-link.selected.addon');
+
+    if (!selectedMain) {
+        bookingBtn.setAttribute("href", "#");
+        return;
     }
+
+    const mainTitle = selectedMain.querySelector(".item-title").textContent.trim().toLowerCase();
+    const addonTitle = selectedAddon
+        ? selectedAddon.querySelector(".item-title").textContent.trim().toLowerCase()
+        : "";
+
+    let targetUrl = selectedMain.dataset.url;
+
+    const bookingLinks = {
+
+        // SEMI PERMANENT
+        "semi permanent couleur unie|french":
+            "https://tidycal.com/votre-compte/semi-permanent-french",
+
+        "semi permanent couleur unie|baby boomers / colors":
+            "https://tidycal.com/votre-compte/semi-permanent-baby",
+
+        "semi permanent couleur unie|effects":
+            "TON_LIEN_EFFECTS",
+
+        "semi permanent couleur unie|strass":
+            "TON_LIEN_STRASS",
+
+        // GAINAGE
+        "gainage ongles naturels|french":
+            "TON_LIEN_GAINAGE_FRENCH",
+
+        "gainage ongles naturels|baby boomers / colors":
+            "TON_LIEN_GAINAGE_BABY",
+
+        // RALLONGEMENT
+        "rallongement gel s-m|french":
+            "TON_LIEN_RALLONGEMENT_SM_FRENCH",
+
+        "rallongement gel s-m|baby boomers / colors":
+            "TON_LIEN_RALLONGEMENT_SM_BABY",
+
+        "rallongement gel l-xl|french":
+            "TON_LIEN_RALLONGEMENT_XL_FRENCH",
+
+        "rallongement gel l-xl|baby boomers / colors":
+            "TON_LIEN_RALLONGEMENT_XL_BABY"
+
+    };
+
+    const key = `${mainTitle}|${addonTitle}`;
+
+    if (bookingLinks[key]) {
+        targetUrl = bookingLinks[key];
+    }
+
+    bookingBtn.setAttribute("href", targetUrl);
+}
 
     prestationLinks.forEach(link => {
         link.addEventListener('click', function(e) {
@@ -237,7 +286,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     return;
                 }
 
-                if (isAddon) {
+                if (this.classList.contains("addon")) {
                     const selectedMain = document.querySelector('.prestation-link.selected:not(.addon)');
 
                     if (isClassicAddon) {
@@ -260,7 +309,11 @@ document.addEventListener('DOMContentLoaded', () => {
                         return; 
                     }
 
-                    this.classList.add('selected');
+                    document.querySelectorAll('.prestation-link.addon.selected').forEach(a => {
+    a.classList.remove('selected');
+});
+
+this.classList.add('selected');
                 } else {
                     document.querySelectorAll('.prestation-link:not(.addon)').forEach(l => l.classList.remove('selected'));
                     this.classList.add('selected');
@@ -292,70 +345,4 @@ document.addEventListener('DOMContentLoaded', () => {
         checkbox.addEventListener('change', toggleBookingButton);
     }
 });
-function updateBookingSelection() {
-    if (!bookingBtn) return;
 
-    const selectedMain = document.querySelector('.prestation-link.selected:not(.addon)');
-    const selectedAddon = document.querySelector('.prestation-link.selected.addon');
-
-    if (!selectedMain) {
-        bookingBtn.href = "#";
-        return;
-    }
-
-    const mainTitle = selectedMain.querySelector('.item-title')?.textContent.trim().toLowerCase() || "";
-    const addonTitle = selectedAddon?.querySelector('.item-title')?.textContent.trim().toLowerCase() || "";
-
-    // Tableau des combinaisons
-    const bookingLinks = {
-
-        // SEMI PERMANENT
-        "semi permanent|french":
-            "https://tidycal.com/votre-compte/semi-permanent-french",
-
-        "semi permanent|baby":
-            "https://tidycal.com/votre-compte/semi-permanent-baby",
-
-        "semi permanent|effects":
-            "https://tidycal.com/votre-compte/semi-permanent-effects",
-
-        "semi permanent|strass":
-            "https://tidycal.com/votre-compte/semi-permanent-strass",
-
-
-        // RALLONGEMENT
-        "rallongement|french":
-            "https://tidycal.com/votre-compte/rallongement-french",
-
-        "rallongement|baby":
-            "https://tidycal.com/votre-compte/rallongement-baby",
-
-        "rallongement|effects":
-            "https://tidycal.com/votre-compte/rallongement-effects",
-
-        "rallongement|strass":
-            "https://tidycal.com/votre-compte/rallongement-strass",
-
-
-        // GEL
-        "remplissage gel|french":
-            "https://tidycal.com/votre-compte/gel-french",
-
-        "remplissage gel|baby":
-            "https://tidycal.com/votre-compte/gel-baby"
-
-    };
-
-    let targetUrl = selectedMain.dataset.url;
-
-    if (addonTitle !== "") {
-
-        const key = `${mainTitle}|${addonTitle}`;
-
-        if (bookingLinks[key]) {
-            targetUrl = bookingLinks[key];
-        }
-    }
-
-    bookingBtn.href = targetUrl;
-}
