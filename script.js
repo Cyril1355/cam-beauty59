@@ -166,13 +166,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const isRemplissageGel = titleText.includes('remplissage gel');
             
             const isRemplissage3SemainesCils = titleText.includes('remplissage 3 semaines') && !titleText.includes('+');
-            const isRemplissagePlus3SemainesCils = titleText.includes('remplissage  + 3 semaines') || titleText.includes('remplissage + 3 semaines');
+            const isRemplissagePlus3SemainesCils = titleText.includes('remplissage + 3 semaines') || titleText.includes('remplissage  + 3 semaines');
             const isRemplissageCils = isRemplissage3SemainesCils || isRemplissagePlus3SemainesCils;
             
             const isClassicAddon = titleText.includes('french') || titleText.includes('baby') || titleText.includes('effects') || titleText.includes('strass');
             const isTeintureOuDepose = titleText.includes('teinture') || titleText.includes('dépose');
             
-            // Les remplissages cils rejoignent le groupe des options exclusives entre elles (comme classicAddon)
             const isExclusiveOption = isClassicAddon || isRemplissageCils;
             
             const isAddon = isExclusiveOption || isTeintureOuDepose || isOngleCasse || isPackSourcils || isRemplissageGel;
@@ -204,20 +203,36 @@ document.addEventListener('DOMContentLoaded', () => {
                     return;
                 }
 
+                // RÈGLE : Si on clique sur l'un des deux remplissages 3 semaines, il remplace l'autre et nécessite une prestation principale
+                if (isRemplissageCils) {
+                    const selectedMain = document.querySelector('.prestation-link.selected:not(.addon)');
+                    if (!selectedMain) {
+                        return; 
+                    }
+                    // Désélectionner l'autre remplissage 3 semaines s'il est actif
+                    document.querySelectorAll('.prestation-link.selected').forEach(addon => {
+                        const aTitle = addon.querySelector('.item-title')?.textContent.toLowerCase() || '';
+                        if (aTitle.includes('remplissage 3 semaines') || aTitle.includes('remplissage + 3 semaines')) {
+                            addon.classList.remove('selected');
+                        }
+                    });
+                    this.classList.add('selected');
+                    updateBookingSelection();
+                    return;
+                }
+
                 if (isAddon) {
                     const selectedMain = document.querySelector('.prestation-link.selected:not(.addon)');
 
-                    // RÈGLE : Interdiction de sélectionner plusieurs options exclusives entre elles (French, Baby, Effects, Strass, et les 2 remplissages 3 semaines)
-                    if (isExclusiveOption) {
+                    if (isClassicAddon) {
                         document.querySelectorAll('.prestation-link.selected').forEach(addon => {
                             const aTitle = addon.querySelector('.item-title')?.textContent.toLowerCase() || '';
-                            if (aTitle.includes('french') || aTitle.includes('baby') || aTitle.includes('effects') || aTitle.includes('strass') || aTitle.includes('remplissage 3 semaines') || aTitle.includes('remplissage + 3 semaines')) {
+                            if (aTitle.includes('french') || aTitle.includes('baby') || aTitle.includes('effects') || aTitle.includes('strass')) {
                                 addon.classList.remove('selected');
                             }
                         });
                     }
 
-                    // RÈGLE : Interdiction de sélectionner les ongles cassés en même temps que le remplissage gel
                     if (isRemplissageGel) {
                         const activeCasse = Array.from(document.querySelectorAll('.prestation-link.selected')).some(l => {
                             return l.querySelector('.item-title')?.textContent.toLowerCase().includes('ongle cassé');
@@ -225,14 +240,12 @@ document.addEventListener('DOMContentLoaded', () => {
                         if (activeCasse) return;
                     }
 
-                    // Les add-ons nécessitent une prestation principale sélectionnée au préalable
                     if (!selectedMain) {
                         return; 
                     }
 
                     this.classList.add('selected');
                 } else {
-                    // Si on clique sur une prestation principale, on nettoie les autres prestations principales
                     document.querySelectorAll('.prestation-link:not(.addon)').forEach(l => l.classList.remove('selected'));
                     this.classList.add('selected');
                 }
