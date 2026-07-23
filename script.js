@@ -301,6 +301,10 @@ function updateBookingSelection() {
         const mainTitle = selectedMain ? (selectedMain.querySelector('.item-title')?.textContent.toLowerCase() || '') : '';
         const addonTitle = selectedAddon ? (selectedAddon.querySelector('.item-title')?.textContent.toLowerCase() || '') : '';
 
+        // POUR DEBUGGER : Affiche ce qui est détecté dans la console (F12)
+        console.log("Prestation principale détectée :", mainTitle);
+        console.log("Supplément détecté :", addonTitle);
+
         let targetUrl = '#';
 
         // Gérer les combinaisons exactes de liens
@@ -313,12 +317,13 @@ function updateBookingSelection() {
         } else if (mainTitle.includes('rallongement') && addonTitle.includes('baby')) {
             targetUrl = "https://tidycal.com/votre-compte/rallongement-baby"; 
         } else {
-            // Comportement standard pour le reste des prestations / suppléments seuls
+            // Comportement standard pour le reste
             const activeSelection = selectedAddon || selectedMain;
             if (activeSelection) {
                 targetUrl = activeSelection.getAttribute('data-url') || '#';
             }
         }
 
+        console.log("URL finale appliquée au bouton :", targetUrl);
         bookingBtn.setAttribute('href', targetUrl);
     }
