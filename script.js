@@ -132,8 +132,8 @@ favicon.href = 'https://cyril1355.github.io/cam-beauty59/favicon.jpg';
 document.head.appendChild(favicon);
 
 document.addEventListener('DOMContentLoaded', () => {
-    const checkbox = document.getElementById('agree-policy');
-    const bookingBtn = document.getElementById('booking-btn');
+    const checkboxes = document.querySelectorAll('#agree-policy, .policy-checkbox');
+    const bookingBtns = document.querySelectorAll('#booking-btn, .btn-booking');
     const prestationLinks = document.querySelectorAll('.prestation-link[data-url]');
 
     function updateBookingSelection() {
