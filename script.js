@@ -179,18 +179,8 @@ document.addEventListener('DOMContentLoaded', () => {
             if (this.classList.contains('selected')) {
                 this.classList.remove('selected');
             } else {
-                // RÈGLE : Si le Pack Sourcils est déjà actif, interdiction de sélectionner quoi que ce soit d'autre
-                const activePackSourcils = Array.from(document.querySelectorAll('.prestation-link.selected')).some(l => {
-                    const lTitle = l.querySelector('.item-title')?.textContent.toLowerCase() || '';
-                    return lTitle.includes('pack sourcils') || lTitle.includes('création de la ligne');
-                });
-                if (activePackSourcils) {
-                    return;
-                }
-
-                // RÈGLE : Si on clique sur le Pack Sourcils, il devient exclusif et désactive TOUT le reste
+                // RÈGLE : Si on clique sur le Pack Sourcils, il se sélectionne (sans bloquer les autres sélections)
                 if (isPackSourcils) {
-                    document.querySelectorAll('.prestation-link').forEach(l => l.classList.remove('selected'));
                     this.classList.add('selected');
                     updateBookingSelection();
                     return;
@@ -204,17 +194,16 @@ document.addEventListener('DOMContentLoaded', () => {
                     return;
                 }
 
+                // RÈGLE : Si on clique sur un Remplissage 3 semaines (cils), il devient exclusif et désactive TOUT le reste
+                if (isRemplissageCils) {
+                    document.querySelectorAll('.prestation-link').forEach(l => l.classList.remove('selected'));
+                    this.classList.add('selected');
+                    updateBookingSelection();
+                    return;
+                }
+
                 if (isAddon) {
                     const selectedMain = document.querySelector('.prestation-link.selected:not(.addon)');
-
-                    // RÈGLE : Interdiction de sélectionner les deux remplissages 3 semaines (cils) en simultané
-                    if (isRemplissageCils) {
-                        const existingCilsRemplissage = Array.from(document.querySelectorAll('.prestation-link.selected')).some(l => {
-                            const t = l.querySelector('.item-title')?.textContent.toLowerCase() || '';
-                            return (t.includes('remplissage 3 semaines') || t.includes('remplissage + 3 semaines')) && !t.includes('gel');
-                        });
-                        if (existingCilsRemplissage) return;
-                    }
 
                     // RÈGLE : Interdiction de sélectionner plusieurs add-ons de style (French, Baby boomers, Effects, Strass) en même temps
                     if (isClassicAddon) {
@@ -234,14 +223,14 @@ document.addEventListener('DOMContentLoaded', () => {
                         if (activeCasse) return;
                     }
 
-                    // Les autres add-ons nécessitent une prestation principale
-                    if (!selectedMain) {
+                    // Les autres add-ons nécessitent une prestation principale (sauf le pack sourcils ou les options spécifiques gérées au-dessus)
+                    if (!selectedMain && !isPackSourcils) {
                         return; 
                     }
 
                     this.classList.add('selected');
                 } else {
-                    // Si on clique sur une prestation principale, on nettoie les autres prestations principales et le pack sourcils
+                    // Si on clique sur une prestation principale, on nettoie les autres prestations principales
                     document.querySelectorAll('.prestation-link:not(.addon)').forEach(l => l.classList.remove('selected'));
                     this.classList.add('selected');
                 }
