@@ -179,8 +179,9 @@ document.addEventListener('DOMContentLoaded', () => {
             if (this.classList.contains('selected')) {
                 this.classList.remove('selected');
             } else {
-                // RÈGLE : Si on clique sur le Pack Sourcils, il se sélectionne (sans bloquer les autres sélections)
+                // RÈGLE : Si on clique sur le Pack Sourcils, il devient exclusif et désactive TOUT le reste
                 if (isPackSourcils) {
+                    document.querySelectorAll('.prestation-link').forEach(l => l.classList.remove('selected'));
                     this.classList.add('selected');
                     updateBookingSelection();
                     return;
@@ -223,8 +224,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         if (activeCasse) return;
                     }
 
-                    // Les autres add-ons nécessitent une prestation principale (sauf le pack sourcils ou les options spécifiques gérées au-dessus)
-                    if (!selectedMain && !isPackSourcils) {
+                    // Les autres add-ons nécessitent une prestation principale
+                    if (!selectedMain) {
                         return; 
                     }
 
