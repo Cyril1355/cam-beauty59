@@ -94,8 +94,8 @@ function selectService(url, element) {
 }
 
 function toggleBookingButton() {
-    const checkbox = document.getElementById('agree-policy');
-    const btn = document.getElementById('booking-btn');
+    const checkbox = document.getElementById('agree-policy','agree-policy-2');
+    const btn = document.getElementById('booking-btn','booking-btn-2');
     
     if (checkbox.checked && selectedServiceUrl !== "") {
         btn.href = selectedServiceUrl;
@@ -132,8 +132,8 @@ favicon.href = 'https://cyril1355.github.io/cam-beauty59/favicon.jpg';
 document.head.appendChild(favicon);
 
 document.addEventListener('DOMContentLoaded', () => {
-    const checkbox = document.getElementById('agree-policy');
-    const bookingBtn = document.getElementById('booking-btn');
+    const checkbox = document.getElementById('agree-policy','agree-policy-2');
+    const bookingBtn = document.getElementById('booking-btn','booking-btn');
     const prestationLinks = document.querySelectorAll('.prestation-link[data-url]');
 
     function updateBookingSelection() {
