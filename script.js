@@ -134,7 +134,7 @@ document.head.appendChild(favicon);
 document.addEventListener('DOMContentLoaded', () => {
     const checkbox = document.getElementById('agree-policy') || document.getElementById('agree-policy-2');
     const bookingBtn = document.getElementById('booking-btn') || document.getElementById('booking-btn-2');
-    const prestationLinks = document.querySelectorAll('.prestation-link[data-url]');
+    const prestationLinks = document.querySelectorAll('.prestation-link');
 
     function updateBookingLink() {
         if (!bookingBtn) return;
@@ -144,7 +144,11 @@ document.addEventListener('DOMContentLoaded', () => {
         
         if (activeSelection) {
             let targetUrl = activeSelection.getAttribute('data-url');
-            bookingBtn.setAttribute('href', targetUrl);
+            if (targetUrl) {
+                bookingBtn.setAttribute('href', targetUrl);
+            } else {
+                bookingBtn.setAttribute('href', '#');
+            }
         } else {
             bookingBtn.setAttribute('href', '#');
         }
@@ -154,7 +158,10 @@ document.addEventListener('DOMContentLoaded', () => {
         link.addEventListener('click', function(e) {
             e.preventDefault(); 
 
-            const titleText = this.querySelector('.item-title')?.textContent.toLowerCase() || '';
+            const targetLink = this.closest('.prestation-link');
+            if (!targetLink) return;
+
+            const titleText = targetLink.querySelector('.item-title')?.textContent.toLowerCase() || '';
             
             const isOngleCasseMoins1 = titleText.includes('ongle cassé - 1 semaine') || titleText.includes('ongle cassé -1 semaine');
             const isOngleCassePlus1 = titleText.includes('ongle cassé + 1 semaine') || titleText.includes('ongle cassé +1 semaine');
@@ -173,8 +180,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const isExclusiveOption = isClassicAddon || isRemplissageCils;
             const isAddon = isExclusiveOption || isTeintureOuDepose || isOngleCasse || isPackSourcils || isRemplissageGel;
 
-            if (this.classList.contains('selected')) {
-                this.classList.remove('selected');
+            if (targetLink.classList.contains('selected')) {
+                targetLink.classList.remove('selected');
             } else {
                 const activePackSourcils = Array.from(document.querySelectorAll('.prestation-link.selected')).some(l => {
                     const t = l.querySelector('.item-title')?.textContent.toLowerCase() || '';
@@ -188,21 +195,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (isPackSourcils) {
                     document.querySelectorAll('.prestation-link').forEach(l => l.classList.remove('selected'));
-                    this.classList.add('selected');
+                    targetLink.classList.add('selected');
                     updateBookingLink();
                     return;
                 }
 
                 if (isOngleCasse) {
                     document.querySelectorAll('.prestation-link').forEach(l => l.classList.remove('selected'));
-                    this.classList.add('selected');
+                    targetLink.classList.add('selected');
                     updateBookingLink();
                     return;
                 }
 
                 if (isTeintureOuDepose) {
                     document.querySelectorAll('.prestation-link').forEach(l => l.classList.remove('selected'));
-                    this.classList.add('selected');
+                    targetLink.classList.add('selected');
                     updateBookingLink();
                     return;
                 }
@@ -224,7 +231,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                     });
 
-                    this.classList.add('selected');
+                    targetLink.classList.add('selected');
                     updateBookingLink();
                     return;
                 }
@@ -256,29 +263,25 @@ document.addEventListener('DOMContentLoaded', () => {
                         return; 
                     }
 
-                    this.classList.add('selected');
+                    targetLink.classList.add('selected');
                 } else {
                     document.querySelectorAll('.prestation-link:not(.addon)').forEach(l => l.classList.remove('selected'));
-                    this.classList.add('selected');
+                    targetLink.classList.add('selected');
                 }
             }
             updateBookingLink();
         });
     });
 
-window.toggleBookingButton = function() {
-    const activeBookingBtn = document.getElementById('booking-btn') || document.getElementById('booking-btn-2');
-    const activeCheckbox = document.getElementById('agree-policy') || document.getElementById('agree-policy-2');
-
-    if (!activeCheckbox || !activeBookingBtn) return;
-
-    if (activeCheckbox.checked) {
-        activeBookingBtn.classList.add('active');
-    } else {
-        activeBookingBtn.classList.remove('active');
-        activeBookingBtn.setAttribute('href', '#');
+    function toggleBookingButton() {
+        if (!checkbox || !bookingBtn) return;
+        if (checkbox.checked) {
+            bookingBtn.classList.add('active');
+        } else {
+            bookingBtn.classList.remove('active');
+            bookingBtn.setAttribute('href', '#');
+        }
     }
-};
 
     toggleBookingButton();
     
