@@ -171,9 +171,11 @@ document.addEventListener('DOMContentLoaded', () => {
             
             const isRemplissage = isRemplissageGel || isRemplissageCils;
             
-            const isClassicAddon = titleText.includes('french') || titleText.includes('baby') || titleText.includes('effects') || titleText.includes('strass') || titleText.includes('dépose') || titleText.includes('teinture');
+            // Add-ons de style (French, Baby boomers, Effects, Strass)
+            const isClassicAddon = titleText.includes('french') || titleText.includes('baby') || titleText.includes('effects' ) || titleText.includes('strass');
+            const isOtherAddon = titleText.includes('dépose') || titleText.includes('teinture');
             
-            const isAddon = isClassicAddon || isOngleCasse || isPackSourcils || isRemplissage;
+            const isAddon = isClassicAddon || isOtherAddon || isOngleCasse || isPackSourcils || isRemplissage;
 
             if (this.classList.contains('selected')) {
                 this.classList.remove('selected');
@@ -207,17 +209,17 @@ document.addEventListener('DOMContentLoaded', () => {
                         if (existingCilsRemplissage) return;
                     }
 
-                    // RÈGLE : Interdiction de sélectionner plusieurs add-ons classiques en simultané
+                    // RÈGLE CORRIGÉE : Interdiction de sélectionner plusieurs add-ons de style (French, Baby boomers, Effects, Strass) en même temps
                     if (isClassicAddon) {
-                        document.querySelectorAll('.prestation-link.selected.addon').forEach(addon => {
+                        document.querySelectorAll('.prestation-link.selected').forEach(addon => {
                             const aTitle = addon.querySelector('.item-title')?.textContent.toLowerCase() || '';
-                            if (aTitle.includes('french') || aTitle.includes('baby') || aTitle.includes('effects') || aTitle.includes('strass') || aTitle.includes('dépose') || aTitle.includes('teinture')) {
+                            if (aTitle.includes('french') || aTitle.includes('baby') || aTitle.includes('effects') || aTitle.includes('strass')) {
                                 addon.classList.remove('selected');
                             }
                         });
                     }
 
-                    // RÈGLE CORRIGÉE : Désélection mutuelle stricte entre les deux options d'ongles cassés (dans les deux sens)
+                    // RÈGLE : Désélection mutuelle stricte entre les deux options d'ongles cassés
                     if (isOngleCasse) {
                         document.querySelectorAll('.prestation-link.selected').forEach(addon => {
                             const aTitle = addon.querySelector('.item-title')?.textContent.toLowerCase() || '';
