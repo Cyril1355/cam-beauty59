@@ -172,9 +172,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const isRemplissage = isRemplissageGel || isRemplissageCils;
             
             const isClassicAddon = titleText.includes('french') || titleText.includes('baby') || titleText.includes('effects') || titleText.includes('strass');
-            const isOtherAddon = titleText.includes('dépose') || titleText.includes('teinture');
             
-            const isAddon = isClassicAddon || isOtherAddon || isOngleCasse || isPackSourcils || isRemplissage;
+            // Teinture et Dépose basculent en mode "prestation principale" (indépendantes)
+            const isTeintureOuDepose = titleText.includes('teinture') || titleText.includes('dépose');
+            
+            const isAddon = isClassicAddon || isOngleCasse || isPackSourcils || isRemplissage;
 
             if (this.classList.contains('selected')) {
                 this.classList.remove('selected');
@@ -197,6 +199,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // RÈGLE : Si on clique sur un Remplissage 3 semaines (cils), il devient exclusif et désactive TOUT le reste
                 if (isRemplissageCils) {
+                    document.querySelectorAll('.prestation-link').forEach(l => l.classList.remove('selected'));
+                    this.classList.add('selected');
+                    updateBookingSelection();
+                    return;
+                }
+
+                // RÈGLE : Si on clique sur la Teinture ou la Dépose, elles se comportent comme des extensions (exclusives)
+                if (isTeintureOuDepose) {
                     document.querySelectorAll('.prestation-link').forEach(l => l.classList.remove('selected'));
                     this.classList.add('selected');
                     updateBookingSelection();
@@ -231,7 +241,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     this.classList.add('selected');
                 } else {
-                    // Si on clique sur une prestation principale, on nettoie les autres prestations principales
+                    // Si on clique sur une prestation principale (extensions, rehaussement, etc.), on nettoie les autres
                     document.querySelectorAll('.prestation-link:not(.addon)').forEach(l => l.classList.remove('selected'));
                     this.classList.add('selected');
                 }
