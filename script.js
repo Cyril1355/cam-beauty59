@@ -295,29 +295,34 @@ document.addEventListener('DOMContentLoaded', () => {
 function updateBookingLink() {
         if (!bookingBtn) return;
         const selectedMain = document.querySelector('.prestation-link.selected:not(.addon)');
-        const selectedAddon = document.querySelector('.prestation-link.selected.addon');
         
-        // Récupère les titres en minuscules pour identifier les choix
-        const mainTitle = selectedMain ? (selectedMain.querySelector('.item-title')?.textContent.toLowerCase() || '') : '';
-        const addonTitle = selectedAddon ? (selectedAddon.querySelector('.item-title')?.textContent.toLowerCase() || '') : '';
+        // On récupère TOUTES les prestations sélectionnées pour chercher French ou Baby peu importe leur classe
+        const allSelected = document.querySelectorAll('.prestation-link.selected');
+        let mainTitle = '';
+        let hasFrench = false;
+        let hasBaby = false;
+
+        allSelected.forEach(el => {
+            const t = el.querySelector('.item-title')?.textContent.toLowerCase() || '';
+            if (!el.classList.contains('addon') || t.includes('semi-permanent')) {
+                mainTitle = t;
+            }
+            if (t.includes('french')) hasFrench = true;
+            if (t.includes('baby')) hasBaby = true;
+        });
 
         let targetUrl = '#';
 
-        // 1. Gérer les combinaisons spécifiques
         if (mainTitle.includes('semi-permanent')) {
-            if (addonTitle.includes('french')) {
-                // Lien spécifique pour Semi-permanent + French
-                targetUrl = "https://tidycal.com/votre-compte/semi-permanent-french"; 
-            } else if (addonTitle.includes('baby')) {
-                // Lien spécifique pour Semi-permanent + Babyboomer
-                targetUrl = "https://tidycal.com/votre-compte/semi-permanent-babyboomer"; 
+            if (hasFrench) {
+                targetUrl = "https://tidycal.com/votre-compte/semi-permanent-french";
+            } else if (hasBaby) {
+                targetUrl = "https://tidycal.com/votre-compte/semi-permanent-babyboomer";
             } else if (selectedMain) {
-                // Lien par défaut du semi-permanent seul (ou autre option)
                 targetUrl = selectedMain.getAttribute('data-url');
             }
         } else {
-            // Comportement normal pour les autres prestations
-            const activeSelection = selectedAddon || selectedMain;
+            const activeSelection = document.querySelector('.prestation-link.selected');
             if (activeSelection) {
                 targetUrl = activeSelection.getAttribute('data-url') || '#';
             }
