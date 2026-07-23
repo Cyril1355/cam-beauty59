@@ -179,6 +179,16 @@ document.addEventListener('DOMContentLoaded', () => {
             if (this.classList.contains('selected')) {
                 this.classList.remove('selected');
             } else {
+                // RÈGLE : Si le Pack Sourcils est déjà actif, interdiction de sélectionner un remplissage 3 semaines (ou autre add-on nécessitant une pose principale)
+                const activePackSourcils = Array.from(document.querySelectorAll('.prestation-link.selected')).some(l => {
+                    const t = l.querySelector('.item-title')?.textContent.toLowerCase() || '';
+                    return t.includes('pack sourcils') || t.includes('création de la ligne');
+                });
+
+                if (activePackSourcils && (isRemplissageCils || isClassicAddon)) {
+                    return;
+                }
+
                 // RÈGLE : Pack Sourcils exclusif global
                 if (isPackSourcils) {
                     document.querySelectorAll('.prestation-link').forEach(l => l.classList.remove('selected'));
