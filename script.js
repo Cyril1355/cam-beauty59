@@ -273,13 +273,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.toggleBookingButton = function() {
         if (!checkbox || !bookingBtn) return;
-        const currentSelected = document.querySelector('.prestation-link.selected');
-
         if (checkbox.checked) {
             bookingBtn.classList.add('active');
-            if (currentSelected) {
-                updateBookingSelection();
-            }
         } else {
             bookingBtn.classList.remove('active');
             bookingBtn.setAttribute('href', '#');
