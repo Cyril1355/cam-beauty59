@@ -30,23 +30,57 @@ document.addEventListener("DOMContentLoaded", function() {
 function initHeader() {
     const path = window.location.pathname;
     const navLinks = document.querySelectorAll('.nav-menu a');
-    
+
+    // Gestion du lien actif
     navLinks.forEach(link => {
-        // On retire la classe active partout avant de commencer
         link.classList.remove('active');
-        
-        // On vérifie si le href du lien correspond à la page actuelle
+
         const href = link.getAttribute('href');
+
         if (href !== "#" && path.endsWith(href)) {
             link.classList.add('active');
-            
-            // Si le lien est dans un menu déroulant, on active aussi le parent
+
             const parentDropdown = link.closest('.dropdown');
             if (parentDropdown) {
                 parentDropdown.querySelector('.dropdown-trigger').classList.add('active');
             }
         }
     });
+
+    // ===== MENU DÉROULANT MOBILE =====
+    if (window.innerWidth <= 1024) {
+
+        document.querySelectorAll('.dropdown-trigger').forEach(trigger => {
+
+            trigger.addEventListener('click', function (e) {
+
+                e.preventDefault();
+
+                const dropdown = this.parentElement;
+
+                // Ferme les autres sous-menus
+                document.querySelectorAll('.dropdown').forEach(item => {
+                    if (item !== dropdown) {
+                        item.classList.remove('open');
+                    }
+                });
+
+                // Ouvre/Ferme celui-ci
+                dropdown.classList.toggle('open');
+            });
+
+        });
+
+        // Fermer tous les sous-menus lorsqu'on clique sur un vrai lien
+        document.querySelectorAll('.dropdown-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.querySelectorAll('.dropdown').forEach(item => {
+                    item.classList.remove('open');
+                });
+            });
+        });
+
+    }
 }
 
 //Gestion des modales dans le footer
