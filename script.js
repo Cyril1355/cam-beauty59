@@ -112,36 +112,7 @@ function toggleBookingButton() {
 /* ==========================================================================
    FERMETURE DU MENU BURGER AU CLIC EN DEHORS
    ========================================================================== */
-document.addEventListener('pointerdown', function(event) {
-    const checkbox = document.querySelector('.menu-toggle-checkbox');
-    const navMenu = document.querySelector('.nav-menu');
-    const burgerLabel = document.querySelector('.menu-burger-label');
-
-    if (checkbox && checkbox.checked) {
-        // Si on clique en dehors du menu ET du bouton burger
-        if (navMenu && burgerLabel && !navMenu.contains(event.target) && !burgerLabel.contains(event.target)) {
-            checkbox.checked = false;
-            document.body.classList.remove('menu-open');
-        }
-    }
-});
-
-// Gestion du clic sur le burger (fonctionne même si le header vient d'une source externe)
-document.addEventListener('click', function(event) {
-    const burgerLabel = event.target.closest('.menu-burger-label');
-    if (burgerLabel) {
-        const checkbox = document.querySelector('.menu-toggle-checkbox');
-        setTimeout(() => {
-            if (checkbox && checkbox.checked) {
-                document.body.classList.add('menu-open');
-            } else {
-                document.body.classList.remove('menu-open');
-            }
-        }, 10);
-    }
-});
-
-// Correction pour les sous-menus mobiles (évite le double clic)
+// Correction définitive pour les sous-menus et le bouton Prendre RDV
 document.addEventListener('DOMContentLoaded', () => {
     const dropdownToggles = document.querySelectorAll('.menu-item-has-children > a');
 
@@ -149,10 +120,13 @@ document.addEventListener('DOMContentLoaded', () => {
         toggle.addEventListener('click', function(e) {
             const parentLi = this.parentElement;
             
+            // Si le sous-menu est déjà ouvert et qu'on clique sur le lien principal ou son bouton
             if (parentLi.classList.contains('active')) {
-                return; 
+                // Laisse le comportement par défaut s'exécuter (navigation directe)
+                return;
             }
             
+            // Sinon, on ouvre le sous-menu
             e.preventDefault();
             document.querySelectorAll('.menu-item-has-children').forEach(item => {
                 if (item !== parentLi) {
@@ -160,6 +134,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
             parentLi.classList.add('active');
+        });
+    });
+
+    // Empêche la fermeture parasite du menu lors des clics sur le bouton Prendre RDV
+    const bookingButtonsInMenu = document.querySelectorAll('.nav-menu .btn-booking, .nav-menu #booking-btn');
+    bookingButtonsInMenu.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.stopPropagation(); // Stoppe la propagation pour éviter les conflits d'accordéon
         });
     });
 });
