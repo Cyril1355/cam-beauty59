@@ -365,20 +365,3 @@ function updateBookingSelection() {
         checkbox.addEventListener('change', toggleBookingButton);
     }
 });
-// Correctif spécifique pour le bouton Prendre RDV sur la page des tarifs
-document.addEventListener('DOMContentLoaded', () => {
-    if (document.body.classList.contains('page-tarifs-institut')) {
-        const menuBookingBtn = document.querySelector('.nav-menu .btn-booking, .nav-menu #booking-btn, .mobile-menu-container .btn-booking');
-        
-        if (menuBookingBtn) {
-            menuBookingBtn.addEventListener('click', function(e) {
-                // Force la fermeture immédiate du menu mobile au premier clic
-                const checkbox = document.querySelector('.menu-toggle-checkbox');
-                if (checkbox) {
-                    checkbox.checked = false;
-                }
-                document.body.classList.remove('menu-open');
-            }, { capture: true });
-        }
-    }
-});
