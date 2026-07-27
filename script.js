@@ -37,18 +37,19 @@ function initHeader() {
 
         const href = link.getAttribute('href');
 
-if (
-    href !== "#" &&
-    path.endsWith(href) &&
-    !link.classList.contains("btn-primary") &&
-    !link.classList.contains("btn-cta")
-) {
-    link.classList.add("active");
-}
+        if (
+            href !== "#" &&
+            path.endsWith(href) &&
+            !link.classList.contains("btn-primary") &&
+            !link.classList.contains("btn-cta")
+        ) {
+            link.classList.add("active");
 
             const parentDropdown = link.closest('.dropdown');
             if (parentDropdown) {
-                parentDropdown.querySelector('.dropdown-trigger').classList.add('active');
+                parentDropdown
+                    .querySelector('.dropdown-trigger')
+                    .classList.add('active');
             }
         }
     });
