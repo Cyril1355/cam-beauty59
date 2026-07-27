@@ -88,25 +88,66 @@ function initHeader() {
         });
 
     }
+}
 
-    // ===== FERMER LE MENU BURGER EN CLIQUANT EN DEHORS =====
-    // On s'assure de récupérer la checkbox et le menu ou le label burger selon votre structure HTML
-    const menuCheckbox = document.querySelector('.menu-toggle-checkbox'); 
-    const navMenu = document.querySelector('.nav-menu');
-    const burgerLabel = document.querySelector('.menu-burger-label');
+//Gestion des modales dans le footer
+function openModal(id) {
+    const modal = document.getElementById(id);
+    if (modal) {
+        modal.style.display = "flex";
+        document.body.style.overflow = "hidden";
+    }
+}
 
-    if (menuCheckbox) {
-        document.addEventListener('click', function(event) {
-            if (menuCheckbox.checked) {
-                // Si le clic est en dehors du menu et en dehors du bouton burger
-                const clickedInsideMenu = navMenu && navMenu.contains(event.target);
-                const clickedInsideBurger = burgerLabel && burgerLabel.contains(event.target);
+function closeModal(id) {
+    const modal = document.getElementById(id);
+    if (modal) {
+        modal.style.display = "none";
+        document.body.style.overflow = "auto";
+    }
+}
 
-                if (!clickedInsideMenu && !clickedInsideBurger) {
-                    menuCheckbox.checked = false;
-                }
-            }
+// Fermeture au clic en dehors
+window.addEventListener('click', function(event) {
+    if (event.target.id === 'legal-modal') closeModal('legal-modal');
+    if (event.target.id === 'rgpd-modal') closeModal('rgpd-modal');
+});
+// Sélection Prestations & Bouton Réservation
+let selectedServiceUrl = "";
+
+function selectService(url, element) {
+    if (selectedServiceUrl === url) {
+        element.style.borderColor = "#eae1de";
+        element.style.background = "#ffffff";
+        selectedServiceUrl = ""; 
+    } else {
+        document.querySelectorAll('.service-option').forEach(opt => {
+            opt.style.borderColor = "#eae1de";
+            opt.style.background = "#ffffff";
         });
+        
+        element.style.borderColor = "#b89689";
+        element.style.background = "#fdfbfb";
+        selectedServiceUrl = url; 
+    }
+    
+    toggleBookingButton();
+}
+
+function toggleBookingButton() {
+    const checkbox = document.getElementById('agree-policy');
+    const btn = document.getElementById('booking-btn');
+    
+    if (checkbox.checked && selectedServiceUrl !== "") {
+        btn.href = selectedServiceUrl;
+        btn.style.backgroundColor = "#b89689"; 
+        btn.style.pointerEvents = "auto";
+        btn.style.opacity = "1";
+    } else {
+        btn.href = "#";
+        btn.style.backgroundColor = "#cbd5e1"; 
+        btn.style.pointerEvents = "none";
+        btn.style.opacity = "0.7";
     }
 }
 
