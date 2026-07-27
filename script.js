@@ -121,9 +121,26 @@ document.addEventListener('pointerdown', function(event) {
         // Si on clique en dehors du menu ET du bouton burger
         if (!navMenu.contains(event.target) && !burgerLabel.contains(event.target)) {
             checkbox.checked = false;
+            document.body.classList.remove('menu-open'); // Retire le blocage du fond
         }
     }
 });
+
+// Écoute aussi si on clique directement sur le label du burger pour fermer/ouvrir
+const burgerLabel = document.querySelector('.menu-burger-label');
+if (burgerLabel) {
+    burgerLabel.addEventListener('click', function() {
+        const checkbox = document.querySelector('.menu-toggle-checkbox');
+        // Petit délai pour laisser la case changer d'état
+        setTimeout(() => {
+            if (checkbox && checkbox.checked) {
+                document.body.classList.add('menu-open');
+            } else {
+                document.body.classList.remove('menu-open');
+            }
+        }, 10);
+    });
+}
 // Injection automatique du favicon sur toutes les pages
 const favicon = document.createElement('link');
 favicon.rel = 'icon';
