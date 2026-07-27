@@ -180,7 +180,6 @@ btn.addEventListener('pointerdown', () => {
     }
     document.body.classList.remove('menu-open');
 });
-    });
 });
 
 document.addEventListener('DOMContentLoaded', () => {
