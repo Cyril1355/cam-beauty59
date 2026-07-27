@@ -167,19 +167,45 @@ function initHeader() {
     }
 
 }
+// ================================
+// MODALES FOOTER
+// ================================
 
-    // Assurer le clic direct et la fermeture immédiate sur le bouton Prendre RDV du menu (toutes pages confondues)
-    const bookingButtonsInMenu = document.querySelectorAll(
-    '.nav-menu .btn-primary, .nav-menu .btn-booking'
-);
-    
-    bookingButtonsInMenu.forEach(btn => {
-btn.addEventListener('pointerdown', () => {
-    if (checkbox) {
-        checkbox.checked = false;
+function openModal(id) {
+
+    const modal = document.getElementById(id);
+
+    if (modal) {
+        modal.style.display = "flex";
+        document.body.style.overflow = "hidden";
     }
-    document.body.classList.remove('menu-open');
-});
+
+}
+
+
+function closeModal(id) {
+
+    const modal = document.getElementById(id);
+
+    if (modal) {
+        modal.style.display = "none";
+        document.body.style.overflow = "auto";
+    }
+
+}
+
+
+// Fermeture en cliquant en dehors de la fenêtre
+window.addEventListener('click', function(event) {
+
+    if (event.target.id === 'legal-modal') {
+        closeModal('legal-modal');
+    }
+
+    if (event.target.id === 'rgpd-modal') {
+        closeModal('rgpd-modal');
+    }
+
 });
 
 document.addEventListener('DOMContentLoaded', () => {
