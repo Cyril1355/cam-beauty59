@@ -2721,3 +2721,10 @@ body.menu-open {
     overflow: hidden;
     height: 100vh;
 }
+.price-item, .tarifs-container, .grid-tarifs {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    margin-left: auto;
+    margin-right: auto;
+}
