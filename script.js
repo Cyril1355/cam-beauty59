@@ -112,36 +112,44 @@ function toggleBookingButton() {
 /* ==========================================================================
    FERMETURE DU MENU BURGER AU CLIC EN DEHORS
    ========================================================================== */
-// Correction définitive pour les sous-menus et le bouton Prendre RDV
+// Gestion globale et propre du menu mobile et du bouton de réservation
 document.addEventListener('DOMContentLoaded', () => {
-    const dropdownToggles = document.querySelectorAll('.menu-item-has-children > a');
+    const checkbox = document.querySelector('.menu-toggle-checkbox');
+    const burgerLabel = document.querySelector('.menu-burger-label');
+    const navMenu = document.querySelector('.nav-menu');
 
-    dropdownToggles.forEach(toggle => {
-        toggle.addEventListener('click', function(e) {
-            const parentLi = this.parentElement;
-            
-            // Si le sous-menu est déjà ouvert et qu'on clique sur le lien principal ou son bouton
-            if (parentLi.classList.contains('active')) {
-                // Laisse le comportement par défaut s'exécuter (navigation directe)
-                return;
+    // Fermer le menu si on clique en dehors
+    document.addEventListener('pointerdown', (event) => {
+        if (checkbox && checkbox.checked) {
+            if (navMenu && burgerLabel && !navMenu.contains(event.target) && !burgerLabel.contains(event.target)) {
+                checkbox.checked = false;
+                document.body.classList.remove('menu-open');
             }
-            
-            // Sinon, on ouvre le sous-menu
-            e.preventDefault();
-            document.querySelectorAll('.menu-item-has-children').forEach(item => {
-                if (item !== parentLi) {
-                    item.classList.remove('active');
-                }
-            });
-            parentLi.classList.add('active');
-        });
+        }
     });
 
-    // Empêche la fermeture parasite du menu lors des clics sur le bouton Prendre RDV
-    const bookingButtonsInMenu = document.querySelectorAll('.nav-menu .btn-booking, .nav-menu #booking-btn');
+    // Synchroniser l'état du body avec la checkbox du burger
+    if (burgerLabel) {
+        burgerLabel.addEventListener('click', () => {
+            setTimeout(() => {
+                if (checkbox && checkbox.checked) {
+                    document.body.classList.add('menu-open');
+                } else {
+                    document.body.classList.remove('menu-open');
+                }
+            }, 10);
+        });
+    }
+
+    // Assurer le clic direct et la fermeture immédiate sur le bouton Prendre RDV du menu (toutes pages confondues)
+    const bookingButtonsInMenu = document.querySelectorAll('.nav-menu .btn-booking, .nav-menu #booking-btn, .mobile-menu-container .btn-booking');
+    
     bookingButtonsInMenu.forEach(btn => {
-        btn.addEventListener('click', function(e) {
-            e.stopPropagation(); // Stoppe la propagation pour éviter les conflits d'accordéon
+        btn.addEventListener('click', () => {
+            if (checkbox) {
+                checkbox.checked = false;
+            }
+            document.body.classList.remove('menu-open');
         });
     });
 });
