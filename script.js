@@ -477,3 +477,70 @@ function updateBookingSelection() {
         checkbox.addEventListener('change', toggleBookingButton);
     }
 });
+
+/* =====================================================================
+   CARROUSEL AVIS CLIENTS
+   ===================================================================== */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const slider = document.querySelector(".reviews-slider");
+    const prevBtn = document.getElementById("prev-review-btn");
+    const nextBtn = document.getElementById("next-review-btn");
+    const cards = document.querySelectorAll(".review-card");
+
+    if (!slider || !prevBtn || !nextBtn || cards.length === 0) {
+        return;
+    }
+
+    let currentIndex = 0;
+
+    function getStep() {
+        const card = cards[0];
+        const style = window.getComputedStyle(slider);
+        const gap = parseInt(style.gap) || 0;
+
+        return card.offsetWidth + gap;
+    }
+
+    function moveSlider() {
+        slider.style.transform = `translateX(-${currentIndex * getStep()}px)`;
+    }
+
+
+    nextBtn.addEventListener("click", function () {
+
+        const visibleCards = window.innerWidth <= 768 ? 1 : 3;
+        const maxIndex = cards.length - visibleCards;
+
+        if (currentIndex < maxIndex) {
+            currentIndex++;
+        } else {
+            currentIndex = 0;
+        }
+
+        moveSlider();
+    });
+
+
+    prevBtn.addEventListener("click", function () {
+
+        const visibleCards = window.innerWidth <= 768 ? 1 : 3;
+        const maxIndex = cards.length - visibleCards;
+
+        if (currentIndex > 0) {
+            currentIndex--;
+        } else {
+            currentIndex = maxIndex;
+        }
+
+        moveSlider();
+    });
+
+
+    window.addEventListener("resize", function () {
+        currentIndex = 0;
+        moveSlider();
+    });
+
+});
