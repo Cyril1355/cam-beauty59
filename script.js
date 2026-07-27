@@ -145,12 +145,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const bookingButtonsInMenu = document.querySelectorAll('.nav-menu .btn-booking, .nav-menu #booking-btn, .mobile-menu-container .btn-booking');
     
     bookingButtonsInMenu.forEach(btn => {
-        btn.addEventListener('click', () => {
-            if (checkbox) {
-                checkbox.checked = false;
-            }
-            document.body.classList.remove('menu-open');
-        });
+btn.addEventListener('pointerdown', () => {
+    if (checkbox) {
+        checkbox.checked = false;
+    }
+    document.body.classList.remove('menu-open');
+});
     });
 });
 // Injection automatique du favicon sur toutes les pages
