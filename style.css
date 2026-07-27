@@ -2721,3 +2721,10 @@ body.menu-open {
     overflow: hidden;
     height: 100vh;
 }
+.nav-menu .btn-booking, 
+.nav-menu #booking-btn,
+.mobile-menu-container .btn-booking {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
