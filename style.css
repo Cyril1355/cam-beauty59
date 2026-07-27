@@ -685,9 +685,9 @@
          min-width: auto;
     }
     /* Affiche le sous-menu sur mobile au clic/survol */
-     .nav-menu li.dropdown:hover .dropdown-menu, .nav-menu li.dropdown:focus-within .dropdown-menu {
-         display: flex;
-    }
+.nav-menu .dropdown.open > .dropdown-menu {
+    display: flex;
+}
      .nav-menu .dropdown-menu li a {
          font-size: 1.05rem;
          padding: 8px 0;
