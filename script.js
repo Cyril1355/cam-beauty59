@@ -140,6 +140,29 @@ document.addEventListener('click', function(event) {
         }, 10);
     }
 });
+
+// Correction pour les sous-menus mobiles (évite le double clic)
+document.addEventListener('DOMContentLoaded', () => {
+    const dropdownToggles = document.querySelectorAll('.menu-item-has-children > a');
+
+    dropdownToggles.forEach(toggle => {
+        toggle.addEventListener('click', function(e) {
+            const parentLi = this.parentElement;
+            
+            if (parentLi.classList.contains('active')) {
+                return; 
+            }
+            
+            e.preventDefault();
+            document.querySelectorAll('.menu-item-has-children').forEach(item => {
+                if (item !== parentLi) {
+                    item.classList.remove('active');
+                }
+            });
+            parentLi.classList.add('active');
+        });
+    });
+});
 // Injection automatique du favicon sur toutes les pages
 const favicon = document.createElement('link');
 favicon.rel = 'icon';
