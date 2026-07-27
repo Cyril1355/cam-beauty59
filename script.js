@@ -142,7 +142,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Assurer le clic direct et la fermeture immédiate sur le bouton Prendre RDV du menu (toutes pages confondues)
-    const bookingButtonsInMenu = document.querySelectorAll('.nav-menu .btn-booking, .nav-menu #booking-btn, .mobile-menu-container .btn-booking');
+    const bookingButtonsInMenu = document.querySelectorAll(
+    '.nav-menu .btn-primary, .nav-menu .btn-booking'
+);
     
     bookingButtonsInMenu.forEach(btn => {
 btn.addEventListener('pointerdown', () => {
