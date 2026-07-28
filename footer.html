@@ -9,7 +9,9 @@
     <i class="fa-solid fa-location-dot"></i>
     <a href="https://maps.google.com/?q=85+bis+rue+Blaise+59171+Hornaing"
        target="_blank"
-       style="color:#d1c7c3;text-decoration:none;">
+        style="color:#d1c7c3;transition:color .3s;"
+        onmouseover="this.style.color='#b89689'"
+        onmouseout="this.style.color='#d1c7c3'">
         85 bis rue Blaise<br>
         59171 Hornaing
     </a>
@@ -63,29 +65,46 @@
             </div>
         </div>
         
-        <!-- Colonne 3 : Moyens de paiement -->
-        <div class="footer-col payment-col">
-            <h4>Moyens de paiement</h4>
-            <div class="payment-container">
-                <div class="payment-group accept">
-                    <span class="group-title">Acceptés :</span>
-                    <div class="logos-grid">
-                        <div class="logo-item" title="Espèces"><i class="fa-solid fa-money-bill-wave"></i> <span>Espèces</span></div>
-                        <div class="logo-item" title="PayPal"><i class="fa-brands fa-paypal"></i> <span>PayPal</span></div>
-                        <div class="logo-item" title="Wero"><i class="fa-solid fa-mobile-screen-button"></i> <span>Wero</span></div>
-                    </div>
+<!-- Colonne 3 : Moyens de paiement -->
+<div class="footer-col payment-col">
+    <h4>Moyens de paiement</h4>
+
+    <div class="payment-container">
+
+        <div class="payment-group accept">
+            <span class="group-title">Acceptés :</span>
+
+            <div class="logos-grid">
+                <div class="logo-item" title="Espèces">
+                    <i class="fa-solid fa-money-bill-wave"></i>
+                    <span>Espèces</span>
                 </div>
-                
-                <div class="payment-group refuse">
-                    <span class="group-title">Refusés :</span>
-                    <div class="logos-grid">
-                        <div class="logo-item disabled" title="Carte Bancaire"><i class="fa-solid fa-credit-card"></i> <span>CB</span></div>
-                        <div class="logo-item disabled" title="Chèque"><i class="fa-solid fa-money-check-dollar"></i> <span>Chèque</span></div>
-                    </div>
+
+                <div class="logo-item" title="Carte Bancaire">
+                    <i class="fa-solid fa-credit-card"></i>
+                    <span>CB</span>
+                </div>
+
+                <div class="logo-item" title="PayPal">
+                    <i class="fa-brands fa-paypal"></i>
+                    <span>PayPal</span>
                 </div>
             </div>
         </div>
+
+        <div class="payment-group refuse">
+            <span class="group-title">Non accepté :</span>
+
+            <div class="logos-grid">
+                <div class="logo-item disabled" title="Chèque">
+                    <i class="fa-solid fa-money-check-dollar"></i>
+                    <span>Chèque</span>
+                </div>
+            </div>
+        </div>
+
     </div>
+</div>
     
     <div class="footer-bottom">
         <p>&copy; 2026 Cam’Beauty59 - Tous droits réservés - Réalisation <a href="https://cyril1355.github.io/Cyril-freelance/" target="_blank" class="footer-link">BIMBI Cyril</a></p>
