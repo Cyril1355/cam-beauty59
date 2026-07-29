@@ -331,7 +331,6 @@ function updateBookingSelection() {
                     updateBookingSelection();
                     return;
                 }
-            });
 
                 // RÈGLE : Ongles cassés exclusifs globaux
                 if (isOngleCasse) {
