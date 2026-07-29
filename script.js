@@ -380,7 +380,7 @@ if (isTeintureSourcils) {
                 }
 
                 // RÈGLE : Teinture ou Dépose exclusives globales
-                if (isTeintureOuDepose) {
+                if (isDepose) {
                     document.querySelectorAll('.prestation-link').forEach(l => l.classList.remove('selected'));
                     this.classList.add('selected');
                     updateBookingSelection();
@@ -444,6 +444,7 @@ if (isAddon) {
         .toLowerCase()
         .trim();
 
+
     // ===== Teinture sourcils =====
     if (isTeintureSourcils) {
 
@@ -451,12 +452,11 @@ if (isAddon) {
             return;
         }
 
-        this.classList.add('selected');
+        this.classList.add("selected");
         updateBookingSelection();
         return;
     }
-    });
-});
+
 
     // ===== French / Baby / Effects / Strass =====
     if (isClassicAddon) {
@@ -478,6 +478,7 @@ if (isAddon) {
 
     }
 
+
     // ===== Remplissage gel =====
     if (isRemplissageGel) {
 
@@ -485,8 +486,20 @@ if (isAddon) {
             return l.querySelector('.item-title')?.textContent.toLowerCase().includes('ongle cassé');
         });
 
-        if (activeCasse) return;
+        if (activeCasse) {
+            return;
+        }
     }
+
+
+    this.classList.add("selected");
+    updateBookingSelection();
+    return;
+
+}
+
+        });
+    });
 
     this.classList.add("selected");
     updateBookingSelection();
