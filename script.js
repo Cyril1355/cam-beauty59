@@ -301,7 +301,6 @@ function updateBookingSelection() {
             
             const isClassicAddon = titleText.includes('french') || titleText.includes('baby') || titleText.includes('effects') || titleText.includes('strass');
             const isTeintureSourcils = titleText.includes('teinture sourcils');
-            const isTeintureSourcils = titleText.includes('teinture sourcils');
             const isDepose = titleText.includes('dépose');
             
             const isExclusiveOption = isClassicAddon || isRemplissageCils;
