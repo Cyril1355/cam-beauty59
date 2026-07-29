@@ -282,11 +282,10 @@ function updateBookingSelection() {
 
 prestationLinks.forEach(link => {
         link.addEventListener('click', function(e) {
-            e.preventDefault(); // Empêche tout saut de page ou comportement par défaut
+            e.preventDefault(); 
 
             const titleText = this.querySelector('.item-title')?.textContent.toLowerCase() || '';
             
-            // Identification précise des éléments
             const isOngleCasseMoins1 = titleText.includes('ongle cassé - 1 semaine') || titleText.includes('ongle cassé -1 semaine');
             const isOngleCassePlus1 = titleText.includes('ongle cassé + 1 semaine') || titleText.includes('ongle cassé +1 semaine');
             const isOngleCasse = isOngleCasseMoins1 || isOngleCassePlus1;
@@ -299,12 +298,9 @@ prestationLinks.forEach(link => {
             const isRemplissageCils = isRemplissageSimple || isRemplissagePlus;
             
             const isClassicAddon = titleText.includes('french') || titleText.includes('baby') || titleText.includes('effects') || titleText.includes('strass');
-            
-            // Distinction claire pour éviter les conflits de mots-clés
-            const isTeintureSourcils = titleText.includes('teinture sourcils');
             const isDeposeSeule = titleText.includes('dépose') && !titleText.includes('teinture');
-            const isTeintureOuDepose = titleText.includes('teinture') || titleText.includes('dépose');
-
+            
+            const isTeintureSourcils = titleText.includes('teinture sourcils');
             const isRehaussementCils = titleText.includes('rehaussement');
 
             // RÈGLE : Teinture sourcils uniquement si rehaussement des cils est actif
@@ -313,17 +309,25 @@ prestationLinks.forEach(link => {
                     return l.querySelector('.item-title')?.textContent.toLowerCase().includes('rehaussement');
                 });
                 if (!rehaussementActif) {
-                    return; // Stoppe net si le rehaussement n'est pas coché
+                    return; 
                 }
             }
 
             const isExclusiveOption = isClassicAddon || isRemplissageCils;
-            const isAddon = isExclusiveOption || isTeintureOuDepose || isOngleCasse || isPackSourcils || isRemplissageGel;
+            // La teinture sourcils n'est plus globale ici pour ne pas écraser le rehaussement
+            const isAddon = isExclusiveOption || isTeintureSourcils || isDeposeSeule || isOngleCasse || isPackSourcils || isRemplissageGel;
 
             if (this.classList.contains('selected')) {
+                // Si on clique sur le rehaussement alors que la teinture est active, on désélectionne les deux
+                if (isRehaussementCils) {
+                    document.querySelectorAll('.prestation-link.selected').forEach(l => {
+                        if (l.querySelector('.item-title')?.textContent.toLowerCase().includes('teinture sourcils')) {
+                            l.classList.remove('selected');
+                        }
+                    });
+                }
                 this.classList.remove('selected');
             } else {
-                // RÈGLE : Si le Pack Sourcils est actif, interdiction de sélectionner un remplissage ou une option de style
                 const activePackSourcils = Array.from(document.querySelectorAll('.prestation-link.selected')).some(l => {
                     const t = l.querySelector('.item-title')?.textContent.toLowerCase() || '';
                     return t.includes('pack sourcils') || t.includes('création de la ligne');
@@ -333,7 +337,7 @@ prestationLinks.forEach(link => {
                     return;
                 }
 
-                if (isPackSourcils || isOngleCasse || isTeintureOuDepose) {
+                if (isPackSourcils || isOngleCasse || isDeposeSeule) {
                     document.querySelectorAll('.prestation-link').forEach(l => l.classList.remove('selected'));
                     this.classList.add('selected');
                     updateBookingSelection();
@@ -368,11 +372,36 @@ prestationLinks.forEach(link => {
                         });
                     }
 
+                    // Permet d'ajouter la teinture si le rehaussement est sélectionné (sans tout effacer)
+                    if (isTeintureSourcils) {
+                        const rehaussementActif = Array.from(document.querySelectorAll('.prestation-link.selected')).some(l => {
+                            return l.querySelector('.item-title')?.textContent.toLowerCase().includes('rehaussement');
+                        });
+                        if (rehaussementActif) {
+                            this.classList.add('selected');
+                            updateBookingSelection();
+                            return;
+                        } else {
+                            return;
+                        }
+                    }
+
                     if (!selectedMain) return;
 
                     this.classList.add('selected');
                 } else {
+                    // Quand on clique sur une prestation principale (ex: Extension ou Rehaussement), 
+                    // cela réinitialise la sélection principale, et retire la teinture si elle n'est plus liée à un rehaussement
                     document.querySelectorAll('.prestation-link:not(.addon)').forEach(l => l.classList.remove('selected'));
+                    
+                    if (!isRehaussementCils) {
+                        document.querySelectorAll('.prestation-link.selected').forEach(l => {
+                            if (l.querySelector('.item-title')?.textContent.toLowerCase().includes('teinture sourcils')) {
+                                l.classList.remove('selected');
+                            }
+                        });
+                    }
+
                     this.classList.add('selected');
                 }
             }
