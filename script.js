@@ -444,7 +444,6 @@ if (isAddon) {
         .toLowerCase()
         .trim();
 
-
     // ===== Teinture sourcils =====
     if (isTeintureSourcils) {
 
@@ -500,11 +499,6 @@ if (isAddon) {
 
         });
     });
-
-    this.classList.add("selected");
-    updateBookingSelection();
-    return;
-}
 
     window.toggleBookingButton = function() {
         if (!checkbox || !bookingBtn) return;
