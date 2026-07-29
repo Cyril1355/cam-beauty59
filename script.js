@@ -387,22 +387,6 @@ if (isRemplissageCils) {
     updateBookingSelection();
     return;
 }
-                    
-                    // Désélectionner impérativement TOUT autre remplissage cils existant
-                    document.querySelectorAll('.prestation-link.selected').forEach(addon => {
-                        const aTitle = addon.querySelector('.item-title')?.textContent.toLowerCase() || '';
-                        const isOtherSimple = (aTitle.includes('remplissage 3 semaines') || aTitle.includes('remplissage  3 semaines')) && !aTitle.includes('+');
-                        const isOtherPlus = aTitle.includes('remplissage + 3 semaines') || aTitle.includes('remplissage  + 3 semaines');
-                        
-                        if (isOtherSimple || isOtherPlus) {
-                            addon.classList.remove('selected');
-                        }
-                    });
-
-                    this.classList.add('selected');
-                    updateBookingSelection();
-                    return;
-                }
 
                 if (isAddon) {
                     const selectedMain = document.querySelector('.prestation-link.selected:not(.addon)');
