@@ -218,8 +218,8 @@ function updateBookingSelection() {
 
     const selectedMain = document.querySelector('.prestation-link.selected:not(.addon)');
     
-    // Récupérer toutes les options/addons sélectionnés sous forme de tableau de textes
-    const selectedAddons = Array.from(document.querySelectorAll('.prestation-link.selected.addon, .prestation-link.selected')).filter(l => l !== selectedMain);
+    // Récupère tous les addons sélectionnés
+    const selectedAddons = Array.from(document.querySelectorAll('.prestation-link.selected.addon'));
     const addonTitles = selectedAddons.map(l => l.querySelector('.item-title')?.textContent.toLowerCase().trim() || '');
 
     if (!selectedMain) {
@@ -230,25 +230,29 @@ function updateBookingSelection() {
     let targetUrl = selectedMain.dataset.url;
     const mainTitle = selectedMain.querySelector('.item-title')?.textContent.toLowerCase().trim();
 
-    // ===== EXEMPLE : SEMI PERMANENT =====
+    // ===== SEMI PERMANENT =====
     if (mainTitle.includes("semi permanent")) {
-
-        const hasRemplissageGel = addonTitles.some(t => t.includes("remplissage gel"));
+        const hasRemplissage = addonTitles.some(t => t.includes("remplissage gel"));
         const hasFrench = addonTitles.some(t => t.includes("french"));
         const hasBaby = addonTitles.some(t => t.includes("baby"));
 
-        // Combinaison : Semi permanent + Remplissage gel + French
-        if (hasRemplissageGel && hasFrench) {
-            targetUrl = "https://tidycal.com/votre-compte/semi-permanent-remplissage-gel-french";
+        // Combinaison : Semi-permanent + Remplissage Gel + French
+        if (hasRemplissage && hasFrench) {
+            targetUrl = "https://tidycal.com/votre-compte/semi-permanent-remplissage-french";
         }
-        // Combinaison : Semi permanent + Remplissage gel + Baby Boomer
-        else if (hasRemplissageGel && hasBaby) {
-            targetUrl = "https://tidycal.com/votre-compte/semi-permanent-remplissage-gel-baby";
+        // Combinaison : Semi-permanent + Remplissage Gel + Baby Boomer
+        else if (hasRemplissage && hasBaby) {
+            targetUrl = "https://tidycal.com/votre-compte/semi-permanent-remplissage-baby";
         }
-        // Options simples (sans le remplissage gel)
+        // Remplissage seul
+        else if (hasRemplissage) {
+            targetUrl = "https://tidycal.com/votre-compte/semi-permanent-remplissage";
+        }
+        // French seule
         else if (hasFrench) {
             targetUrl = "https://tidycal.com/votre-compte/semi-permanent-french";
         }
+        // Baby Boomer seul
         else if (hasBaby) {
             targetUrl = "https://tidycal.com/votre-compte/semi-permanent-baby";
         }
