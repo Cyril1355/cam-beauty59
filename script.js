@@ -390,14 +390,20 @@ if (isRemplissageCils) {
 
                 if (isAddon) {
                     const selectedMain = document.querySelector('.prestation-link.selected:not(.addon)');
+// ===== Teinture sourcils uniquement avec Rehaussement de cils =====
 if (isTeintureSourcils) {
 
     if (!selectedMain) {
         return;
     }
 
-    const mainTitle = selectedMain.querySelector('.item-title').textContent.toLowerCase();
+    const mainTitle = selectedMain
+        .querySelector('.item-title')
+        .textContent
+        .toLowerCase()
+        .trim();
 
+    // Accepte "Rehaussement de cils" ou "Rehaussement de cils + Botox"
     if (!mainTitle.includes("rehaussement de cils")) {
         return;
     }
