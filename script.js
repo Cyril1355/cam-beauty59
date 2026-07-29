@@ -231,30 +231,209 @@ function updateBookingSelection() {
     const mainTitle = selectedMain.querySelector('.item-title')?.textContent.toLowerCase().trim();
 
     // ===== SEMI PERMANENT =====
-    if (mainTitle.includes("semi permanent")) {
+    if (mainTitle.includes("semi permanent couleur unie")) {
         const hasRemplissage = addonTitles.some(t => t.includes("remplissage gel"));
         const hasFrench = addonTitles.some(t => t.includes("french"));
         const hasBaby = addonTitles.some(t => t.includes("baby"));
+        const hasEffects = addonTitles.some(t => t.includes("effects"));
+        const hasStrass = addonTitles.some(t => t.includes("strass"));
 
         // Combinaison : Semi-permanent + Remplissage Gel + French
         if (hasRemplissage && hasFrench) {
-            targetUrl = "https://tidycal.com/votre-compte/semi-permanent-remplissage-french";
+            targetUrl = "https://tidycal.com/bcyrildu13/semi-permanent-couleur-unie-remplissage-french";
         }
         // Combinaison : Semi-permanent + Remplissage Gel + Baby Boomer
         else if (hasRemplissage && hasBaby) {
-            targetUrl = "https://tidycal.com/votre-compte/semi-permanent-remplissage-baby";
+            targetUrl = "https://tidycal.com/bcyrildu13/semi-permanent-couleur-unie-remplissage-baby-boomer";
+        }
+        else if (hasRemplissage && hasEffects) {
+            targetUrl = "https://tidycal.com/bcyrildu13/semi-permanent-couleur-unie-remplissage-effect";
+        }
+        else if (hasRemplissage && hasStrass) {
+            targetUrl = "https://tidycal.com/bcyrildu13/semi-permanent-couleur-unie-remplissage-strass";
         }
         // Remplissage seul
         else if (hasRemplissage) {
-            targetUrl = "https://tidycal.com/votre-compte/semi-permanent-remplissage";
+            targetUrl = "https://tidycal.com/bcyrildu13/semi-permanent-couleur-unie-remplissage";
         }
         // French seule
         else if (hasFrench) {
-            targetUrl = "https://tidycal.com/votre-compte/semi-permanent-french";
+            targetUrl = "https://tidycal.com/bcyrildu13/semi-permanent-couleur-unie-french";
         }
         // Baby Boomer seul
         else if (hasBaby) {
-            targetUrl = "https://tidycal.com/votre-compte/semi-permanent-baby";
+            targetUrl = "https://tidycal.com/bcyrildu13/semi-permanent-couleur-unie-baby-boomer";
+        }
+        else if (hasEffects) {
+            targetUrl = "https://tidycal.com/bcyrildu13/semi-permanent-couleur-unie-effect";
+        }
+        else if (hasStrass) {
+            targetUrl = "https://tidycal.com/bcyrildu13/semi-permanent-couleur-unie-strass";
+        }
+    }
+    
+    // ===== SEMI PERMANENT Pedicure =====
+    if (mainTitle.includes("semi permanent couleur unie + pédicure")) {
+        const hasRemplissage = addonTitles.some(t => t.includes("remplissage gel"));
+        const hasFrench = addonTitles.some(t => t.includes("french"));
+        const hasBaby = addonTitles.some(t => t.includes("baby"));
+        const hasEffects = addonTitles.some(t => t.includes("effects"));
+        const hasStrass = addonTitles.some(t => t.includes("strass"));
+
+        // Combinaison : Semi-permanent + Remplissage Gel + French
+        if (hasRemplissage && hasFrench) {
+            targetUrl = "https://tidycal.com/bcyrildu13/semi-permanent-couleur-unie-pedicure-remplissage-french";
+        }
+        // Combinaison : Semi-permanent + Remplissage Gel + Baby Boomer
+        else if (hasRemplissage && hasBaby) {
+            targetUrl = "https://tidycal.com/bcyrildu13/semi-permanent-couleur-unie-pedicure-remplissage-baby-boomer";
+        }
+        else if (hasRemplissage && hasEffects) {
+            targetUrl = "https://tidycal.com/bcyrildu13/semi-permanent-couleur-unie-pedicure-remplissage-effect";
+        }
+        else if (hasRemplissage && hasStrass) {
+            targetUrl = "https://tidycal.com/bcyrildu13/semi-permanent-couleur-unie-pedicure-remplissage-strass";
+        }
+        // Remplissage seul
+        else if (hasRemplissage) {
+            targetUrl = "https://tidycal.com/bcyrildu13/semi-permanent-couleur-unie-pedicure-remplissage";
+        }
+        // French seule
+        else if (hasFrench) {
+            targetUrl = "https://tidycal.com/bcyrildu13/semi-permanent-couleur-unie-pedicure-french";
+        }
+        // Baby Boomer seul
+        else if (hasBaby) {
+            targetUrl = "https://tidycal.com/bcyrildu13/semi-permanent-couleur-unie-pedicure-baby-boomer";
+        }
+        else if (hasEffects) {
+            targetUrl = "https://tidycal.com/bcyrildu13/semi-permanent-couleur-unie-pedicure-effect";
+        }
+        else if (hasStrass) {
+            targetUrl = "https://tidycal.com/bcyrildu13/semi-permanent-couleur-unie-pedicure-strass";
+        }
+    }
+    // ===== GAINAGE =====
+    if (mainTitle.includes("gainage ongles naturels")) {
+        const hasRemplissage = addonTitles.some(t => t.includes("remplissage gel"));
+        const hasFrench = addonTitles.some(t => t.includes("french"));
+        const hasBaby = addonTitles.some(t => t.includes("baby"));
+        const hasEffects = addonTitles.some(t => t.includes("effects"));
+        const hasStrass = addonTitles.some(t => t.includes("strass"));
+
+        // Combinaison : Semi-permanent + Remplissage Gel + French
+        if (hasRemplissage && hasFrench) {
+            targetUrl = "https://tidycal.com/bcyrildu13/gainage-remplissage-french";
+        }
+        // Combinaison : Semi-permanent + Remplissage Gel + Baby Boomer
+        else if (hasRemplissage && hasBaby) {
+            targetUrl = "https://tidycal.com/bcyrildu13/gainage-remplissage-baby-boomer";
+        }
+        else if (hasRemplissage && hasEffects) {
+            targetUrl = "https://tidycal.com/bcyrildu13/gainage-remplissage-effect";
+        }
+        else if (hasRemplissage && hasStrass) {
+            targetUrl = "https://tidycal.com/bcyrildu13/gainage-remplissage-strass";
+        }
+        // Remplissage seul
+        else if (hasRemplissage) {
+            targetUrl = "https://tidycal.com/bcyrildu13/gainage-remplissage";
+        }
+        // French seule
+        else if (hasFrench) {
+            targetUrl = "https://tidycal.com/bcyrildu13/gainage-french";
+        }
+        // Baby Boomer seul
+        else if (hasBaby) {
+            targetUrl = "https://tidycal.com/bcyrildu13/gainage-baby-boomer";
+        }
+        else if (hasEffects) {
+            targetUrl = "https://tidycal.com/bcyrildu13/gainage-effect";
+        }
+        else if (hasStrass) {
+            targetUrl = "https://tidycal.com/bcyrildu13/gainage-strass";
+        }
+    }
+        // ===== RALLONGEMENT GEL S-M =====
+    if (mainTitle.includes("rallongement gel S-M")) {
+        const hasRemplissage = addonTitles.some(t => t.includes("remplissage gel"));
+        const hasFrench = addonTitles.some(t => t.includes("french"));
+        const hasBaby = addonTitles.some(t => t.includes("baby"));
+        const hasEffects = addonTitles.some(t => t.includes("effects"));
+        const hasStrass = addonTitles.some(t => t.includes("strass"));
+
+        // Combinaison : Semi-permanent + Remplissage Gel + French
+        if (hasRemplissage && hasFrench) {
+            targetUrl = "https://tidycal.com/bcyrildu13/rallongement-gel-s-m-remplissage-french";
+        }
+        // Combinaison : Semi-permanent + Remplissage Gel + Baby Boomer
+        else if (hasRemplissage && hasBaby) {
+            targetUrl = "https://tidycal.com/bcyrildu13/rallongement-gel-s-m-remplissage-baby-boomer";
+        }
+        else if (hasRemplissage && hasEffects) {
+            targetUrl = "https://tidycal.com/bcyrildu13/rallongement-gel-s-m-remplissage-effect";
+        }
+        else if (hasRemplissage && hasStrass) {
+            targetUrl = "https://tidycal.com/bcyrildu13/rallongement-gel-s-m-remplissage-strass";
+        }
+        // Remplissage seul
+        else if (hasRemplissage) {
+            targetUrl = "https://tidycal.com/bcyrildu13/rallongement-gel-s-m-remplissage";
+        }
+        // French seule
+        else if (hasFrench) {
+            targetUrl = "https://tidycal.com/bcyrildu13/rallongement-gel-s-m-french";
+        }
+        // Baby Boomer seul
+        else if (hasBaby) {
+            targetUrl = "https://tidycal.com/bcyrildu13/rallongement-gel-s-m-baby-boomer";
+        }
+        else if (hasEffects) {
+            targetUrl = "https://tidycal.com/bcyrildu13/rallongement-gel-s-m-effect";
+        }
+        else if (hasStrass) {
+            targetUrl = "https://tidycal.com/bcyrildu13/rallongement-gel-s-m-strass";
+        }
+    }
+            // ===== RALLONGEMENT GEL L-Xl =====
+    if (mainTitle.includes("rallongement gel L-XL")) {
+        const hasRemplissage = addonTitles.some(t => t.includes("remplissage gel"));
+        const hasFrench = addonTitles.some(t => t.includes("french"));
+        const hasBaby = addonTitles.some(t => t.includes("baby"));
+        const hasEffects = addonTitles.some(t => t.includes("effects"));
+        const hasStrass = addonTitles.some(t => t.includes("strass"));
+
+        // Combinaison : Semi-permanent + Remplissage Gel + French
+        if (hasRemplissage && hasFrench) {
+            targetUrl = "https://tidycal.com/bcyrildu13/rallongement-gel-l-xl-remplissage-french";
+        }
+        // Combinaison : Semi-permanent + Remplissage Gel + Baby Boomer
+        else if (hasRemplissage && hasBaby) {
+            targetUrl = "https://tidycal.com/bcyrildu13/rallongement-gel-l-xl-remplissage-baby-boomer";
+        }
+        else if (hasRemplissage && hasEffects) {
+            targetUrl = "https://tidycal.com/bcyrildu13/rallongement-gel-l-xl-remplissage-effect";
+        }
+        else if (hasRemplissage && hasStrass) {
+            targetUrl = "https://tidycal.com/bcyrildu13/rallongement-gel-l-xl-remplissage-strass";
+        }
+        // Remplissage seul
+        else if (hasRemplissage) {
+            targetUrl = "https://tidycal.com/bcyrildu13/rallongement-gel-l-xl-remplissage";
+        }
+        // French seule
+        else if (hasFrench) {
+            targetUrl = "https://tidycal.com/bcyrildu13/rallongement-gel-l-xl-french";
+        }
+        // Baby Boomer seul
+        else if (hasBaby) {
+            targetUrl = "https://tidycal.com/bcyrildu13/rallongement-gel-l-xl-baby-boomer";
+        }
+        else if (hasEffects) {
+            targetUrl = "https://tidycal.com/bcyrildu13/rallongement-gel-l-xl-effect";
+        }
+        else if (hasStrass) {
+            targetUrl = "https://tidycal.com/bcyrildu13/rallongement-gel-l-xl-strass";
         }
     }
      // ===== Remplissage cils =====
