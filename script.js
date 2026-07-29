@@ -230,49 +230,7 @@ function updateBookingSelection() {
     let targetUrl = selectedMain.dataset.url;
     const mainTitle = selectedMain.querySelector('.item-title')?.textContent.toLowerCase().trim();
 
-    // ===== SEMI PERMANENT =====
-    if (mainTitle.includes("semi permanent couleur unie")) {
-        const hasRemplissage = addonTitles.some(t => t.includes("remplissage gel"));
-        const hasFrench = addonTitles.some(t => t.includes("french"));
-        const hasBaby = addonTitles.some(t => t.includes("baby"));
-        const hasEffects = addonTitles.some(t => t.includes("effects"));
-        const hasStrass = addonTitles.some(t => t.includes("strass"));
-
-        // Combinaison : Semi-permanent + Remplissage Gel + French
-        if (hasRemplissage && hasFrench) {
-            targetUrl = "https://tidycal.com/bcyrildu13/semi-permanent-couleur-unie-remplissage-french";
-        }
-        // Combinaison : Semi-permanent + Remplissage Gel + Baby Boomer
-        else if (hasRemplissage && hasBaby) {
-            targetUrl = "https://tidycal.com/bcyrildu13/semi-permanent-couleur-unie-remplissage-baby-boomer";
-        }
-        else if (hasRemplissage && hasEffects) {
-            targetUrl = "https://tidycal.com/bcyrildu13/semi-permanent-couleur-unie-remplissage-effect";
-        }
-        else if (hasRemplissage && hasStrass) {
-            targetUrl = "https://tidycal.com/bcyrildu13/semi-permanent-couleur-unie-remplissage-strass";
-        }
-        // Remplissage seul
-        else if (hasRemplissage) {
-            targetUrl = "https://tidycal.com/bcyrildu13/semi-permanent-couleur-unie-remplissage";
-        }
-        // French seule
-        else if (hasFrench) {
-            targetUrl = "https://tidycal.com/bcyrildu13/semi-permanent-couleur-unie-french";
-        }
-        // Baby Boomer seul
-        else if (hasBaby) {
-            targetUrl = "https://tidycal.com/bcyrildu13/semi-permanent-couleur-unie-baby-boomer";
-        }
-        else if (hasEffects) {
-            targetUrl = "https://tidycal.com/bcyrildu13/semi-permanent-couleur-unie-effect";
-        }
-        else if (hasStrass) {
-            targetUrl = "https://tidycal.com/bcyrildu13/semi-permanent-couleur-unie-strass";
-        }
-    }
-    
-    // ===== SEMI PERMANENT Pedicure =====
+// ===== SEMI PERMANENT PEDICURE =====
     if (mainTitle.includes("semi permanent couleur unie + pédicure")) {
         const hasRemplissage = addonTitles.some(t => t.includes("remplissage gel"));
         const hasFrench = addonTitles.some(t => t.includes("french"));
@@ -280,11 +238,10 @@ function updateBookingSelection() {
         const hasEffects = addonTitles.some(t => t.includes("effects"));
         const hasStrass = addonTitles.some(t => t.includes("strass"));
 
-        // Combinaison : Semi-permanent + Remplissage Gel + French
+        // Combinaison : Semi-permanent + pédicure + Remplissage Gel + French
         if (hasRemplissage && hasFrench) {
             targetUrl = "https://tidycal.com/bcyrildu13/semi-permanent-couleur-unie-pedicure-remplissage-french";
         }
-        // Combinaison : Semi-permanent + Remplissage Gel + Baby Boomer
         else if (hasRemplissage && hasBaby) {
             targetUrl = "https://tidycal.com/bcyrildu13/semi-permanent-couleur-unie-pedicure-remplissage-baby-boomer";
         }
@@ -294,15 +251,12 @@ function updateBookingSelection() {
         else if (hasRemplissage && hasStrass) {
             targetUrl = "https://tidycal.com/bcyrildu13/semi-permanent-couleur-unie-pedicure-remplissage-strass";
         }
-        // Remplissage seul
         else if (hasRemplissage) {
             targetUrl = "https://tidycal.com/bcyrildu13/semi-permanent-couleur-unie-pedicure-remplissage";
         }
-        // French seule
         else if (hasFrench) {
             targetUrl = "https://tidycal.com/bcyrildu13/semi-permanent-couleur-unie-pedicure-french";
         }
-        // Baby Boomer seul
         else if (hasBaby) {
             targetUrl = "https://tidycal.com/bcyrildu13/semi-permanent-couleur-unie-pedicure-baby-boomer";
         }
@@ -311,6 +265,42 @@ function updateBookingSelection() {
         }
         else if (hasStrass) {
             targetUrl = "https://tidycal.com/bcyrildu13/semi-permanent-couleur-unie-pedicure-strass";
+        }
+    }
+    // ===== SEMI PERMANENT COULEUR UNIE =====
+    else if (mainTitle.includes("semi permanent couleur unie")) {
+        const hasRemplissage = addonTitles.some(t => t.includes("remplissage gel"));
+        const hasFrench = addonTitles.some(t => t.includes("french"));
+        const hasBaby = addonTitles.some(t => t.includes("baby"));
+        const hasEffects = addonTitles.some(t => t.includes("effects"));
+        const hasStrass = addonTitles.some(t => t.includes("strass"));
+
+        if (hasRemplissage && hasFrench) {
+            targetUrl = "https://tidycal.com/bcyrildu13/semi-permanent-couleur-unie-remplissage-french";
+        }
+        else if (hasRemplissage && hasBaby) {
+            targetUrl = "https://tidycal.com/bcyrildu13/semi-permanent-couleur-unie-remplissage-baby-boomer";
+        }
+        else if (hasRemplissage && hasEffects) {
+            targetUrl = "https://tidycal.com/bcyrildu13/semi-permanent-couleur-unie-remplissage-effect";
+        }
+        else if (hasRemplissage && hasStrass) {
+            targetUrl = "https://tidycal.com/bcyrildu13/semi-permanent-couleur-unie-remplissage-strass";
+        }
+        else if (hasRemplissage) {
+            targetUrl = "https://tidycal.com/bcyrildu13/semi-permanent-couleur-unie-remplissage";
+        }
+        else if (hasFrench) {
+            targetUrl = "https://tidycal.com/bcyrildu13/semi-permanent-couleur-unie-french";
+        }
+        else if (hasBaby) {
+            targetUrl = "https://tidycal.com/bcyrildu13/semi-permanent-couleur-unie-baby-boomer";
+        }
+        else if (hasEffects) {
+            targetUrl = "https://tidycal.com/bcyrildu13/semi-permanent-couleur-unie-effect";
+        }
+        else if (hasStrass) {
+            targetUrl = "https://tidycal.com/bcyrildu13/semi-permanent-couleur-unie-strass";
         }
     }
     // ===== GAINAGE =====
