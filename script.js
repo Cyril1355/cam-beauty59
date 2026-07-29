@@ -305,7 +305,7 @@ function updateBookingSelection() {
             
             const isExclusiveOption = isClassicAddon || isRemplissageCils;
             
-            const isAddon = isExclusiveOption || isTeintureOuDepose || isOngleCasse || isPackSourcils || isRemplissageGel;
+            const isAddon = isExclusiveOption || isTeintureOuDepose || isOngleCasse || isPackSourcils || isRemplissageGel  || isTeintureSourcils || isTeintureOuDepose;
 
             if (this.classList.contains('selected')) {
                 this.classList.remove('selected');
@@ -348,7 +348,23 @@ function updateBookingSelection() {
 if (isRemplissageCils) {
 
     const selectedMain = document.querySelector('.prestation-link.selected:not(.addon)');
+// ===== Teinture sourcils uniquement avec Rehaussement de cils =====
+if (isTeintureSourcils) {
 
+    if (!selectedMain) {
+        return;
+    }
+
+    const mainTitle = selectedMain
+        .querySelector('.item-title')
+        .textContent
+        .toLowerCase()
+        .trim();
+
+    if (!mainTitle.includes("rehaussement de cils")) {
+        return;
+    }
+}
     if (!selectedMain) {
         return;
     }
