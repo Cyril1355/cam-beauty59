@@ -301,7 +301,10 @@ function updateBookingSelection() {
             
             const isClassicAddon = titleText.includes('french') || titleText.includes('baby') || titleText.includes('effects') || titleText.includes('strass');
             const isTeintureSourcils = titleText.includes('teinture sourcils');
-            const isTeintureOuDepose =(titleText.includes('teinture') && !isTeintureSourcils) || titleText.includes('dépose');
+            const isTeintureSourcils = titleText.includes('teinture sourcils');
+            const isDepose = titleText.includes('dépose');
+
+            const isTeintureOuDepose = isTeintureSourcils || isDepose;
             
             const isExclusiveOption = isClassicAddon || isRemplissageCils;
             
@@ -311,9 +314,48 @@ function updateBookingSelection() {
     isRemplissageGel ||
     isTeintureSourcils;
 
-            if (this.classList.contains('selected')) {
-                this.classList.remove('selected');
-            } else {
+            // ===== RÈGLE : Teinture sourcils uniquement avec rehaussement de cils =====
+if (isTeintureSourcils) {
+
+    const rehaussementSelectionne = Array.from(
+        document.querySelectorAll('.prestation-link.selected')
+    ).some(l => {
+
+        const t = l.querySelector('.item-title')?.textContent.toLowerCase() || '';
+
+        return t.includes('rehaussement de cils') || t.includes('rehaussement cils');
+
+    });
+
+
+    if (!rehaussementSelectionne) {
+        return; // Bloque la sélection
+    }
+}
+    if (this.classList.contains('selected')) {
+
+    // Empêche de retirer le rehaussement si une teinture sourcils est active
+    const title = this.querySelector('.item-title')?.textContent.toLowerCase() || '';
+
+    const isRehaussement = title.includes('rehaussement de cils') || title.includes('rehaussement cils');
+
+    if (isRehaussement) {
+
+        const teintureActive = Array.from(
+            document.querySelectorAll('.prestation-link.selected')
+        ).some(l => {
+            const t = l.querySelector('.item-title')?.textContent.toLowerCase() || '';
+            return t.includes('teinture sourcils');
+        });
+
+        if (teintureActive) {
+            return;
+        }
+    }
+
+    this.classList.remove('selected');
+}
+         else {
                 // RÈGLE : Si le Pack Sourcils est actif, interdiction de sélectionner un remplissage ou une option de style
                 const activePackSourcils = Array.from(document.querySelectorAll('.prestation-link.selected')).some(l => {
                     const t = l.querySelector('.item-title')?.textContent.toLowerCase() || '';
