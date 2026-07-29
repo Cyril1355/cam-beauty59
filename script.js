@@ -303,8 +303,6 @@ function updateBookingSelection() {
             const isTeintureSourcils = titleText.includes('teinture sourcils');
             const isTeintureSourcils = titleText.includes('teinture sourcils');
             const isDepose = titleText.includes('dépose');
-
-            const isTeintureOuDepose = isTeintureSourcils || isDepose;
             
             const isExclusiveOption = isClassicAddon || isRemplissageCils;
             
