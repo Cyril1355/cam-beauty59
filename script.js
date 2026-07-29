@@ -302,57 +302,15 @@ function updateBookingSelection() {
             const isClassicAddon = titleText.includes('french') || titleText.includes('baby') || titleText.includes('effects') || titleText.includes('strass');
             const isTeintureSourcils = titleText.includes('teinture sourcils');
             const isDepose = titleText.includes('dépose');
+            const isTeintureOuDepose = isTeintureSourcils || isDepose;
             
             const isExclusiveOption = isClassicAddon || isRemplissageCils;
             
-            const isAddon =
-    isClassicAddon ||
-    isRemplissageCils ||
-    isRemplissageGel ||
-    isTeintureSourcils;
+            const isAddon = isExclusiveOption || isTeintureOuDepose || isOngleCasse || isPackSourcils || isRemplissageGel;
 
-            // ===== RÈGLE : Teinture sourcils uniquement avec rehaussement de cils =====
-if (isTeintureSourcils) {
-
-    const rehaussementSelectionne = Array.from(
-        document.querySelectorAll('.prestation-link.selected')
-    ).some(l => {
-
-        const t = l.querySelector('.item-title')?.textContent.toLowerCase() || '';
-
-        return t.includes('rehaussement de cils') || t.includes('rehaussement cils');
-
-    });
-
-
-    if (!rehaussementSelectionne) {
-        return; // Bloque la sélection
-    }
-}
-    if (this.classList.contains('selected')) {
-
-    // Empêche de retirer le rehaussement si une teinture sourcils est active
-    const title = this.querySelector('.item-title')?.textContent.toLowerCase() || '';
-
-    const isRehaussement = title.includes('rehaussement de cils') || title.includes('rehaussement cils');
-
-    if (isRehaussement) {
-
-        const teintureActive = Array.from(
-            document.querySelectorAll('.prestation-link.selected')
-        ).some(l => {
-            const t = l.querySelector('.item-title')?.textContent.toLowerCase() || '';
-            return t.includes('teinture sourcils');
-        });
-
-        if (teintureActive) {
-            return;
-        }
-    }
-
-    this.classList.remove('selected');
-}
-         else {
+            if (this.classList.contains('selected')) {
+                this.classList.remove('selected');
+            } else {
                 // RÈGLE : Si le Pack Sourcils est actif, interdiction de sélectionner un remplissage ou une option de style
                 const activePackSourcils = Array.from(document.querySelectorAll('.prestation-link.selected')).some(l => {
                     const t = l.querySelector('.item-title')?.textContent.toLowerCase() || '';
@@ -380,123 +338,80 @@ if (isTeintureSourcils) {
                 }
 
                 // RÈGLE : Teinture ou Dépose exclusives globales
-                if (isDepose) {
-                    document.querySelectorAll('.prestation-link').forEach(l => l.classList.remove('selected'));
-                    this.classList.add('selected');
-                    updateBookingSelection();
-                    return;
-                }
-
-                // RÈGLE : Gestion croisée et exclusive entre les deux remplissages 3 semaines
-if (isRemplissageCils) {
-
-    const selectedMain = document.querySelector('.prestation-link.selected:not(.addon)');
-    if (!selectedMain) {
-        return;
-    }
-
-    const mainTitle = selectedMain.querySelector('.item-title').textContent.toLowerCase();
-
-    const autorise =
-        mainTitle.includes("extension cil à cil") ||
-        mainTitle.includes("extension mixte") ||
-        mainTitle.includes("extension volume russe");
-
-    if (!autorise) {
-        return;
-    }
-
-    document.querySelectorAll('.prestation-link.selected').forEach(addon => {
-
-        const aTitle = addon.querySelector('.item-title')?.textContent.toLowerCase() || '';
-
-        const isOtherSimple =
-            (aTitle.includes('remplissage 3 semaines') ||
-             aTitle.includes('remplissage  3 semaines'))
-            && !aTitle.includes('+');
-
-        const isOtherPlus =
-            aTitle.includes('remplissage + 3 semaines') ||
-            aTitle.includes('remplissage  + 3 semaines');
-
-        if (isOtherSimple || isOtherPlus) {
-            addon.classList.remove('selected');
-        }
-
-    });
-
+if (isDepose) {
+    document.querySelectorAll('.prestation-link').forEach(l => l.classList.remove('selected'));
     this.classList.add('selected');
     updateBookingSelection();
     return;
 }
 
-if (isAddon) {
+                // RÈGLE : Gestion croisée et exclusive entre les deux remplissages 3 semaines
+                if (isRemplissageCils) {
+                    const selectedMain = document.querySelector('.prestation-link.selected:not(.addon)');
+                    if (!selectedMain) {
+                        return; 
+                    }
+                    
+                    // Désélectionner impérativement TOUT autre remplissage cils existant
+                    document.querySelectorAll('.prestation-link.selected').forEach(addon => {
+                        const aTitle = addon.querySelector('.item-title')?.textContent.toLowerCase() || '';
+                        const isOtherSimple = (aTitle.includes('remplissage 3 semaines') || aTitle.includes('remplissage  3 semaines')) && !aTitle.includes('+');
+                        const isOtherPlus = aTitle.includes('remplissage + 3 semaines') || aTitle.includes('remplissage  + 3 semaines');
+                        
+                        if (isOtherSimple || isOtherPlus) {
+                            addon.classList.remove('selected');
+                        }
+                    });
 
-    const selectedMain = document.querySelector('.prestation-link.selected:not(.addon)');
+                    this.classList.add('selected');
+                    updateBookingSelection();
+                    return;
+                }
 
-    if (!selectedMain) {
-        return;
-    }
+                if (isAddon) {
+                    const selectedMain = document.querySelector('.prestation-link.selected:not(.addon)');
+                    
 
-    const mainTitle = selectedMain
-        .querySelector('.item-title')
-        .textContent
-        .toLowerCase()
-        .trim();
-
-    // ===== Teinture sourcils =====
+                    if (isClassicAddon) {
+                        document.querySelectorAll('.prestation-link.selected').forEach(addon => {
+                            const aTitle = addon.querySelector('.item-title')?.textContent.toLowerCase() || '';
+                            if (aTitle.includes('french') || aTitle.includes('baby') || aTitle.includes('effects') || aTitle.includes('strass')) {
+                                addon.classList.remove('selected');
+                            }
+                        });
+                    }
+                        // ===== La teinture sourcils nécessite un rehaussement de cils =====
     if (isTeintureSourcils) {
 
-        if (!mainTitle.includes("rehaussement de cils")) {
+        const mainTitle = selectedMain
+            .querySelector('.item-title')
+            .textContent
+            .toLowerCase();
+
+        if (!mainTitle.includes('rehaussement de cils')) {
             return;
         }
-
-        this.classList.add("selected");
-        updateBookingSelection();
-        return;
     }
 
+                    if (isRemplissageGel) {
+                        const activeCasse = Array.from(document.querySelectorAll('.prestation-link.selected')).some(l => {
+                            return l.querySelector('.item-title')?.textContent.toLowerCase().includes('ongle cassé');
+                        });
+                        if (activeCasse) return;
+                    }
 
-    // ===== French / Baby / Effects / Strass =====
-    if (isClassicAddon) {
+                    if (!selectedMain) {
+                        return; 
+                    }
 
-        document.querySelectorAll('.prestation-link.selected.addon').forEach(addon => {
-
-            const t = addon.querySelector('.item-title')?.textContent.toLowerCase() || "";
-
-            if (
-                t.includes("french") ||
-                t.includes("baby") ||
-                t.includes("effects") ||
-                t.includes("strass")
-            ) {
-                addon.classList.remove("selected");
+                    this.classList.add('selected');
+                } else {
+                    document.querySelectorAll('.prestation-link:not(.addon)').forEach(l => l.classList.remove('selected'));
+                    this.classList.add('selected');
+                }
             }
 
-        });
-
-    }
-
-
-    // ===== Remplissage gel =====
-    if (isRemplissageGel) {
-
-        const activeCasse = Array.from(document.querySelectorAll('.prestation-link.selected')).some(l => {
-            return l.querySelector('.item-title')?.textContent.toLowerCase().includes('ongle cassé');
-        });
-
-        if (activeCasse) {
-            return;
-        }
-    }
-
-
-    this.classList.add("selected");
-    updateBookingSelection();
-    return;
-
-}
-
+            updateBookingSelection();
         });
     });
 
