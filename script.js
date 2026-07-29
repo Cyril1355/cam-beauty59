@@ -104,7 +104,7 @@ function initHeader() {
 
     // ===== BURGER : FERMETURE AU CLIC EXTERIEUR =====
 
-    const checkbox = document.getElementById('menu-toggle');
+    const checkbox = document.getElementById('menu-toggle') || document.querySelector('.menu-toggle-checkbox');
     const burgerLabel = document.querySelector('.menu-burger-label');
     const navMenu = document.querySelector('.nav-menu');
 
@@ -217,7 +217,6 @@ function updateBookingSelection() {
     if (!bookingBtn) return;
 
     const selectedMain = document.querySelector('.prestation-link.selected:not(.addon)');
-    console.log(selectedMain);
     const selectedAddon = document.querySelector('.prestation-link.selected.addon');
 
     if (!selectedMain) {
@@ -301,10 +300,11 @@ function updateBookingSelection() {
             const isRemplissageCils = isRemplissageSimple || isRemplissagePlus;
             
             const isClassicAddon = titleText.includes('french') || titleText.includes('baby') || titleText.includes('effects') || titleText.includes('strass');
-            const isTeintureSourcils = titleText.includes('teinture sourcils');
-            const isDepose = titleText.includes('dépose');
-            const isTeintureOuDepose = isTeintureSourcils || isDepose;
+            const isTeintureOuDepose = titleText.includes('teinture') || titleText.includes('dépose');
             
+            const isTeintureSourcils = titleText.includes('teinture sourcils');
+            const isRehaussementCils = titleText.includes('rehaussement');
+
             const isExclusiveOption = isClassicAddon || isRemplissageCils;
             
             const isAddon = isExclusiveOption || isTeintureOuDepose || isOngleCasse || isPackSourcils || isRemplissageGel;
@@ -312,6 +312,16 @@ function updateBookingSelection() {
             if (this.classList.contains('selected')) {
                 this.classList.remove('selected');
             } else {
+                // RÈGLE : Teinture sourcils uniquement si rehaussement des cils est actif
+                if (isTeintureSourcils) {
+                    const rehaussementActif = Array.from(document.querySelectorAll('.prestation-link.selected')).some(l => {
+                        return l.querySelector('.item-title')?.textContent.toLowerCase().includes('rehaussement');
+                    });
+                    if (!rehaussementActif) {
+                        return; 
+                    }
+                }
+
                 // RÈGLE : Si le Pack Sourcils est actif, interdiction de sélectionner un remplissage ou une option de style
                 const activePackSourcils = Array.from(document.querySelectorAll('.prestation-link.selected')).some(l => {
                     const t = l.querySelector('.item-title')?.textContent.toLowerCase() || '';
@@ -339,12 +349,12 @@ function updateBookingSelection() {
                 }
 
                 // RÈGLE : Teinture ou Dépose exclusives globales
-if (isDepose) {
-    document.querySelectorAll('.prestation-link').forEach(l => l.classList.remove('selected'));
-    this.classList.add('selected');
-    updateBookingSelection();
-    return;
-}
+                if (isTeintureOuDepose) {
+                    document.querySelectorAll('.prestation-link').forEach(l => l.classList.remove('selected'));
+                    this.classList.add('selected');
+                    updateBookingSelection();
+                    return;
+                }
 
                 // RÈGLE : Gestion croisée et exclusive entre les deux remplissages 3 semaines
                 if (isRemplissageCils) {
@@ -371,7 +381,6 @@ if (isDepose) {
 
                 if (isAddon) {
                     const selectedMain = document.querySelector('.prestation-link.selected:not(.addon)');
-                    
 
                     if (isClassicAddon) {
                         document.querySelectorAll('.prestation-link.selected').forEach(addon => {
@@ -381,18 +390,6 @@ if (isDepose) {
                             }
                         });
                     }
-                        // ===== La teinture sourcils nécessite un rehaussement de cils =====
-    if (isTeintureSourcils) {
-
-        const mainTitle = selectedMain
-            .querySelector('.item-title')
-            .textContent
-            .toLowerCase();
-
-        if (!mainTitle.includes('rehaussement de cils')) {
-            return;
-        }
-    }
 
                     if (isRemplissageGel) {
                         const activeCasse = Array.from(document.querySelectorAll('.prestation-link.selected')).some(l => {
