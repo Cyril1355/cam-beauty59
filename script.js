@@ -416,6 +416,8 @@ if (isAddon) {
         updateBookingSelection();
         return;
     }
+    });
+});
 
     // ===== French / Baby / Effects / Strass =====
     if (isClassicAddon) {
