@@ -257,6 +257,49 @@ function updateBookingSelection() {
             targetUrl = "https://tidycal.com/votre-compte/semi-permanent-baby";
         }
     }
+     // ===== Remplissage cils =====
+    if (mainTitle.includes("extension cil à cil")) {
+        const hasRemplissage1 = addonTitles.some(t => t.includes("remplissage 3 semaines"));
+        const hasRemplissage2 = addonTitles.some(t => t.includes("remplissage + 3 semaines"));
+
+        if (hasRemplissage1) {
+            targetUrl = "https://tidycal.com/bcyrildu13/cil-a-cil-remplissage";
+        }
+      else if (hasRemplissage2) {
+            targetUrl = "https://tidycal.com/bcyrildu13/cil-a-cil-remplissage2-3-semaines";
+        }
+    }
+    if (mainTitle.includes("extension mixte")) {
+        const hasRemplissage1 = addonTitles.some(t => t.includes("remplissage 3 semaines"));
+        const hasRemplissage2 = addonTitles.some(t => t.includes("remplissage + 3 semaines"));
+
+        if (hasRemplissage1) {
+            targetUrl = "https://tidycal.com/bcyrildu13/mixte-remplissage";
+        }
+      else if (hasRemplissage2) {
+            targetUrl = "https://tidycal.com/bcyrildu13/mixte-remplissage";
+        }
+    }
+    if (mainTitle.includes("extension volume russe")) {
+        const hasRemplissage1 = addonTitles.some(t => t.includes("remplissage 3 semaines"));
+        const hasRemplissage2 = addonTitles.some(t => t.includes("remplissage + 3 semaines"));
+
+        if (hasRemplissage1) {
+            targetUrl = "https://tidycal.com/bcyrildu13/volume-russe-remplissage";
+        }
+      else if (hasRemplissage2) {
+            targetUrl = "https://tidycal.com/bcyrildu13/volume-russe-remplissage-3-semaines";
+        }
+    }
+    // ===== teinture sourcils =====
+    if (mainTitle.includes("rehaussement de cils")) {
+        const hasTeinture = addonTitles.some(t => t.includes("teinture sourcils"));
+
+        if (hasTeinture) {
+            targetUrl = "https://tidycal.com/bcyrildu13/rehaussement-cils-teinture";
+        }
+    }
+    
 
     bookingBtn.setAttribute('href', targetUrl);
 }
