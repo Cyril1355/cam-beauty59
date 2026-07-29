@@ -313,12 +313,21 @@ prestationLinks.forEach(link => {
                 }
             }
 
+            // RÈGLE : Remplissage 3 semaines / + 3 semaines uniquement si une extension de cils est active
+            if (isRemplissageCils) {
+                const extensionActive = Array.from(document.querySelectorAll('.prestation-link.selected')).some(l => {
+                    const t = l.querySelector('.item-title')?.textContent.toLowerCase() || '';
+                    return t.includes('extension cil à cil') || t.includes('extension mixte') || t.includes('extension volume russe');
+                });
+                if (!extensionActive) {
+                    return;
+                }
+            }
+
             const isExclusiveOption = isClassicAddon || isRemplissageCils;
-            // La teinture sourcils n'est plus globale ici pour ne pas écraser le rehaussement
             const isAddon = isExclusiveOption || isTeintureSourcils || isDeposeSeule || isOngleCasse || isPackSourcils || isRemplissageGel;
 
             if (this.classList.contains('selected')) {
-                // Si on clique sur le rehaussement alors que la teinture est active, on désélectionne les deux
                 if (isRehaussementCils) {
                     document.querySelectorAll('.prestation-link.selected').forEach(l => {
                         if (l.querySelector('.item-title')?.textContent.toLowerCase().includes('teinture sourcils')) {
@@ -372,7 +381,6 @@ prestationLinks.forEach(link => {
                         });
                     }
 
-                    // Permet d'ajouter la teinture si le rehaussement est sélectionné (sans tout effacer)
                     if (isTeintureSourcils) {
                         const rehaussementActif = Array.from(document.querySelectorAll('.prestation-link.selected')).some(l => {
                             return l.querySelector('.item-title')?.textContent.toLowerCase().includes('rehaussement');
@@ -390,8 +398,6 @@ prestationLinks.forEach(link => {
 
                     this.classList.add('selected');
                 } else {
-                    // Quand on clique sur une prestation principale (ex: Extension ou Rehaussement), 
-                    // cela réinitialise la sélection principale, et retire la teinture si elle n'est plus liée à un rehaussement
                     document.querySelectorAll('.prestation-link:not(.addon)').forEach(l => l.classList.remove('selected'));
                     
                     if (!isRehaussementCils) {
