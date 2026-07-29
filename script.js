@@ -217,6 +217,7 @@ function updateBookingSelection() {
     if (!bookingBtn) return;
 
     const selectedMain = document.querySelector('.prestation-link.selected:not(.addon)');
+    console.log(selectedMain);
     const selectedAddon = document.querySelector('.prestation-link.selected.addon');
 
     if (!selectedMain) {
