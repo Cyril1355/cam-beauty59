@@ -217,63 +217,40 @@ function updateBookingSelection() {
     if (!bookingBtn) return;
 
     const selectedMain = document.querySelector('.prestation-link.selected:not(.addon)');
-    const selectedAddon = document.querySelector('.prestation-link.selected.addon');
+    
+    // Récupérer toutes les options/addons sélectionnés sous forme de tableau de textes
+    const selectedAddons = Array.from(document.querySelectorAll('.prestation-link.selected.addon, .prestation-link.selected')).filter(l => l !== selectedMain);
+    const addonTitles = selectedAddons.map(l => l.querySelector('.item-title')?.textContent.toLowerCase().trim() || '');
 
     if (!selectedMain) {
         bookingBtn.setAttribute('href', '#');
         return;
     }
 
-    // Lien par défaut de la prestation principale
     let targetUrl = selectedMain.dataset.url;
+    const mainTitle = selectedMain.querySelector('.item-title')?.textContent.toLowerCase().trim();
 
-    if (selectedAddon) {
+    // ===== EXEMPLE : SEMI PERMANENT =====
+    if (mainTitle.includes("semi permanent")) {
 
-        const mainTitle = selectedMain.querySelector('.item-title').textContent.toLowerCase().trim();
-        const addonTitle = selectedAddon.querySelector('.item-title').textContent.toLowerCase().trim();
+        const hasRemplissageGel = addonTitles.some(t => t.includes("remplissage gel"));
+        const hasFrench = addonTitles.some(t => t.includes("french"));
+        const hasBaby = addonTitles.some(t => t.includes("baby"));
 
-        // ===== SEMI PERMANENT =====
-        if (mainTitle.includes("semi permanent")) {
-
-            if (addonTitle.includes("french")) {
-                targetUrl = "https://tidycal.com/votre-compte/semi-permanent-french";
-            }
-
-            else if (addonTitle.includes("baby")) {
-                targetUrl = "https://tidycal.com/votre-compte/semi-permanent-baby";
-            }
-
-            else if (addonTitle.includes("effects")) {
-                targetUrl = "TON_LIEN_EFFECTS";
-            }
-
-            else if (addonTitle.includes("strass")) {
-                targetUrl = "TON_LIEN_STRASS";
-            }
+        // Combinaison : Semi permanent + Remplissage gel + French
+        if (hasRemplissageGel && hasFrench) {
+            targetUrl = "https://tidycal.com/votre-compte/semi-permanent-remplissage-gel-french";
         }
-
-        // ===== GAINAGE =====
-        else if (mainTitle.includes("gainage")) {
-
-            if (addonTitle.includes("french")) {
-                targetUrl = "TON_LIEN_GAINAGE_FRENCH";
-            }
-
-            else if (addonTitle.includes("baby")) {
-                targetUrl = "TON_LIEN_GAINAGE_BABY";
-            }
+        // Combinaison : Semi permanent + Remplissage gel + Baby Boomer
+        else if (hasRemplissageGel && hasBaby) {
+            targetUrl = "https://tidycal.com/votre-compte/semi-permanent-remplissage-gel-baby";
         }
-
-        // ===== RALLONGEMENT =====
-        else if (mainTitle.includes("rallongement")) {
-
-            if (addonTitle.includes("french")) {
-                targetUrl = "TON_LIEN_RALLONGEMENT_FRENCH";
-            }
-
-            else if (addonTitle.includes("baby")) {
-                targetUrl = "TON_LIEN_RALLONGEMENT_BABY";
-            }
+        // Options simples (sans le remplissage gel)
+        else if (hasFrench) {
+            targetUrl = "https://tidycal.com/votre-compte/semi-permanent-french";
+        }
+        else if (hasBaby) {
+            targetUrl = "https://tidycal.com/votre-compte/semi-permanent-baby";
         }
     }
 
