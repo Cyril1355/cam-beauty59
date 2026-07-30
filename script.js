@@ -544,7 +544,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const isExclusiveOption = isClassicAddon || isRemplissageCils;
             const isAddon = isExclusiveOption || isTeintureSourcils || isDeposeSeule || isOngleCasse || isPackSourcils || isRemplissageGel;
 
-if (this.classList.contains('selected')) {
+            if (this.classList.contains('selected')) {
                 if (isRehaussementCils) {
                     document.querySelectorAll('.prestation-link.selected').forEach(l => {
                         if (l.querySelector('.item-title')?.textContent.toLowerCase().includes('teinture sourcils')) {
@@ -615,10 +615,9 @@ if (this.classList.contains('selected')) {
 
                     this.classList.add('selected');
                 } else {
-                    // 1. On décoche les autres prestations principales
+                    // Si on sélectionne une nouvelle prestation principale, on décoche les anciennes principales ET les remplissages/teintures
                     document.querySelectorAll('.prestation-link:not(.addon)').forEach(l => l.classList.remove('selected'));
                     
-                    // 2. On désélectionne TOUS les remplissages de cils et teintures en cours pour éviter qu'ils ne restent bloqués
                     document.querySelectorAll('.prestation-link.selected').forEach(l => {
                         const t = l.querySelector('.item-title')?.textContent.toLowerCase() || '';
                         if (t.includes('remplissage') || t.includes('teinture sourcils')) {
@@ -631,8 +630,8 @@ if (this.classList.contains('selected')) {
             }
 
             updateBookingSelection();
-        }},
- }},
+        });
+    });
     
     window.toggleBookingButton = function() {
         if (!checkbox || !bookingBtn) return;
