@@ -474,8 +474,12 @@ document.addEventListener('DOMContentLoaded', () => {
             
             const isRemplissageSimple = (titleText.includes('remplissage 3 semaines') || titleText.includes('remplissage  3 semaines')) && !titleText.includes('+');
             const isRemplissagePlus = titleText.includes('remplissage + 3 semaines') || titleText.includes('remplissage  + 3 semaines');
+            const isRemplissageCils = isRemplissageSimple || isRemplissagePlus;
 
             const isTeintureSourcils = titleText.includes('teinture sourcils');
+            const isRehaussementCils = titleText.includes('rehaussement');
+            const isDeposeSeule = titleText.includes('dépose seule');
+            const isPackSourcils = titleText.includes('pack sourcils') || titleText.includes('création de la ligne');
 
             // RÈGLE : Teinture sourcils uniquement si rehaussement des cils est actif
             if (isTeintureSourcils) {
@@ -628,7 +632,7 @@ document.addEventListener('DOMContentLoaded', () => {
             updateBookingSelection();
         });
     });
-
+    
     window.toggleBookingButton = function() {
         if (!checkbox || !bookingBtn) return;
         const currentSelected = document.querySelector('.prestation-link.selected');
