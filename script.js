@@ -544,7 +544,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const isExclusiveOption = isClassicAddon || isRemplissageCils;
             const isAddon = isExclusiveOption || isTeintureSourcils || isDeposeSeule || isOngleCasse || isPackSourcils || isRemplissageGel;
 
-            if (this.classList.contains('selected')) {
+if (this.classList.contains('selected')) {
                 if (isRehaussementCils) {
                     document.querySelectorAll('.prestation-link.selected').forEach(l => {
                         if (l.querySelector('.item-title')?.textContent.toLowerCase().includes('teinture sourcils')) {
@@ -614,33 +614,25 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (!selectedMain) return;
 
                     this.classList.add('selected');
-                }  else {
-                    // Désélectionne toutes les prestations principales
+                } else {
+                    // 1. On décoche les autres prestations principales
                     document.querySelectorAll('.prestation-link:not(.addon)').forEach(l => l.classList.remove('selected'));
                     
-                    // Désélectionne aussi les options de remplissage de cils et la teinture si on change de prestation principale
+                    // 2. On désélectionne TOUS les remplissages de cils et teintures en cours pour éviter qu'ils ne restent bloqués
                     document.querySelectorAll('.prestation-link.selected').forEach(l => {
                         const t = l.querySelector('.item-title')?.textContent.toLowerCase() || '';
-                        if (t.includes('remplissage 3 semaines') || t.includes('remplissage  3 semaines') || t.includes('teinture sourcils')) {
+                        if (t.includes('remplissage') || t.includes('teinture sourcils')) {
                             l.classList.remove('selected');
                         }
                     });
-
-                    if (!isRehaussementCils) {
-                        document.querySelectorAll('.prestation-link.selected').forEach(l => {
-                            if (l.querySelector('.item-title')?.textContent.toLowerCase().includes('teinture sourcils')) {
-                                l.classList.remove('selected');
-                            }
-                        });
-                    }
 
                     this.classList.add('selected');
                 }
             }
 
             updateBookingSelection();
-        });
-    });
+        }},
+ }},
     
     window.toggleBookingButton = function() {
         if (!checkbox || !bookingBtn) return;
