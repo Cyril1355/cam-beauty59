@@ -458,7 +458,8 @@ document.addEventListener('DOMContentLoaded', () => {
         bookingBtn.setAttribute('href', targetUrl);
     }
 
-prestationLinks.forEach(link => {
+// Gestion des clics sur les prestations
+    prestationLinks.forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault(); 
 
@@ -468,18 +469,13 @@ prestationLinks.forEach(link => {
             const isOngleCassePlus1 = titleText.includes('ongle cassé + 1 semaine') || titleText.includes('ongle cassé +1 semaine');
             const isOngleCasse = isOngleCasseMoins1 || isOngleCassePlus1;
 
-            const isPackSourcils = titleText.includes('pack sourcils') || titleText.includes('création de la ligne');
             const isRemplissageGel = titleText.includes('remplissage gel');
+            const isClassicAddon = titleText.includes('french') || titleText.includes('baby') || titleText.includes('effects') || titleText.includes('strass');
             
             const isRemplissageSimple = (titleText.includes('remplissage 3 semaines') || titleText.includes('remplissage  3 semaines')) && !titleText.includes('+');
             const isRemplissagePlus = titleText.includes('remplissage + 3 semaines') || titleText.includes('remplissage  + 3 semaines');
-            const isRemplissageCils = isRemplissageSimple || isRemplissagePlus;
-            
-            const isClassicAddon = titleText.includes('french') || titleText.includes('baby') || titleText.includes('effects') || titleText.includes('strass');
-            const isDeposeSeule = titleText.includes('dépose') && !titleText.includes('teinture');
-            
+
             const isTeintureSourcils = titleText.includes('teinture sourcils');
-            const isRehaussementCils = titleText.includes('rehaussement');
 
             // RÈGLE : Teinture sourcils uniquement si rehaussement des cils est actif
             if (isTeintureSourcils) {
@@ -489,6 +485,45 @@ prestationLinks.forEach(link => {
                 if (!rehaussementActif) {
                     return; 
                 }
+            }
+
+            // RÈGLE : Si on clique sur un ongle cassé, on bloque si remplissage gel ou add-on classique actif
+            if (isOngleCasse) {
+                const hasIncompatibleSelected = Array.from(document.querySelectorAll('.prestation-link.selected')).some(l => {
+                    const t = l.querySelector('.item-title')?.textContent.toLowerCase() || '';
+                    return t.includes('remplissage gel') || t.includes('french') || t.includes('baby') || t.includes('effects') || t.includes('strass');
+                });
+                if (hasIncompatibleSelected) {
+                    return; 
+                }
+            }
+
+            // RÈGLE : Si un ongle cassé est actif, on bloque le remplissage gel et les add-ons classiques
+            if (isRemplissageGel || isClassicAddon) {
+                const ongleCasseActif = Array.from(document.querySelectorAll('.prestation-link.selected')).some(l => {
+                    const t = l.querySelector('.item-title')?.textContent.toLowerCase() || '';
+                    return t.includes('ongle cassé');
+                });
+                if (ongleCasseActif) {
+                    return; 
+                }
+            }
+
+            // EXCLUSION MUTUELLE DES REMPLISSAGES DE CILS
+            if (isRemplissageSimple) {
+                document.querySelectorAll('.prestation-link.selected').forEach(l => {
+                    const t = l.querySelector('.item-title')?.textContent.toLowerCase() || '';
+                    if (t.includes('remplissage + 3 semaines') || t.includes('remplissage  + 3 semaines')) {
+                        l.classList.remove('selected');
+                    }
+                });
+            } else if (isRemplissagePlus) {
+                document.querySelectorAll('.prestation-link.selected').forEach(l => {
+                    const t = l.querySelector('.item-title')?.textContent.toLowerCase() || '';
+                    if ((t.includes('remplissage 3 semaines') || t.includes('remplissage  3 semaines')) && !t.includes('+')) {
+                        l.classList.remove('selected');
+                    }
+                });
             }
 
             // RÈGLE : Remplissage 3 semaines / + 3 semaines uniquement si une extension de cils est active
