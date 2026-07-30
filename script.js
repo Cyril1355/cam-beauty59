@@ -213,265 +213,248 @@ document.addEventListener('DOMContentLoaded', () => {
     const bookingBtn = document.getElementById('booking-btn');
     const prestationLinks = document.querySelectorAll('.prestation-link[data-url]');
 
-function updateBookingSelection() {
-    if (!bookingBtn) return;
+    function updateBookingSelection() {
+        if (!bookingBtn) return;
 
-    const selectedMain = document.querySelector('.prestation-link.selected:not(.addon)');
-    
-    // Récupère tous les addons sélectionnés
-    const selectedAddons = Array.from(document.querySelectorAll('.prestation-link.selected.addon'));
-    const addonTitles = selectedAddons.map(l => l.querySelector('.item-title')?.textContent.toLowerCase().trim() || '');
+        const selectedMain = document.querySelector('.prestation-link.selected:not(.addon)');
+        
+        // Récupère tous les addons sélectionnés
+        const selectedAddons = Array.from(document.querySelectorAll('.prestation-link.selected.addon'));
+        const addonTitles = selectedAddons.map(l => l.querySelector('.item-title')?.textContent.toLowerCase().trim() || '');
 
-    if (!selectedMain) {
-        bookingBtn.setAttribute('href', '#');
-        return;
-    }
+        if (!selectedMain) {
+            bookingBtn.setAttribute('href', '#');
+            return;
+        }
 
-    let targetUrl = selectedMain.dataset.url;
-    const mainTitle = selectedMain.querySelector('.item-title')?.textContent.toLowerCase().trim();
+        let targetUrl = selectedMain.dataset.url;
+        const mainTitle = selectedMain.querySelector('.item-title')?.textContent.toLowerCase().trim();
 
-// ===== SEMI PERMANENT PEDICURE =====
-    if (mainTitle.includes("semi permanent couleur unie + pédicure")) {
-        const hasRemplissage = addonTitles.some(t => t.includes("remplissage gel"));
-        const hasFrench = addonTitles.some(t => t.includes("french"));
-        const hasBaby = addonTitles.some(t => t.includes("baby"));
-        const hasEffects = addonTitles.some(t => t.includes("effects"));
-        const hasStrass = addonTitles.some(t => t.includes("strass"));
+        // ===== SEMI PERMANENT PÉDICURE (En premier car plus spécifique) =====
+        if (mainTitle.includes("semi permanent couleur unie + pédicure")) {
+            const hasRemplissage = addonTitles.some(t => t.includes("remplissage gel"));
+            const hasFrench = addonTitles.some(t => t.includes("french"));
+            const hasBaby = addonTitles.some(t => t.includes("baby"));
+            const hasEffects = addonTitles.some(t => t.includes("effects"));
+            const hasStrass = addonTitles.some(t => t.includes("strass"));
 
-        // Combinaison : Semi-permanent + pédicure + Remplissage Gel + French
-        if (hasRemplissage && hasFrench) {
-            targetUrl = "https://tidycal.com/camillebrejnakowski/semi-permanent-couleur-unie-remplissage-french";
+            if (hasRemplissage && hasFrench) {
+                targetUrl = "https://tidycal.com/camillebrejnakowski/semi-permanent-couleur-unie-pedicure-remplissage-french";
+            }
+            else if (hasRemplissage && hasBaby) {
+                targetUrl = "https://tidycal.com/camillebrejnakowski/semi-permanent-couleur-unie-pedicure-remplissage-baby-boomer";
+            }
+            else if (hasRemplissage && hasEffects) {
+                targetUrl = "https://tidycal.com/camillebrejnakowski/semi-permanent-couleur-unie-pedicure-remplissage-effect";
+            }
+            else if (hasRemplissage && hasStrass) {
+                targetUrl = "https://tidycal.com/camillebrejnakowski/semi-permanent-couleur-unie-pedicure-remplissage-strass";
+            }
+            else if (hasRemplissage) {
+                targetUrl = "https://tidycal.com/camillebrejnakowski/semi-permanent-couleur-unie-pedicure-remplissage";
+            }
+            else if (hasFrench) {
+                targetUrl = "https://tidycal.com/camillebrejnakowski/semi-permanent-couleur-unie-pedicure-french";
+            }
+            else if (hasBaby) {
+                targetUrl = "https://tidycal.com/camillebrejnakowski/semi-permanent-couleur-unie-pedicure-baby-boomer";
+            }
+            else if (hasEffects) {
+                targetUrl = "https://tidycal.com/camillebrejnakowski/semi-permanent-couleur-unie-pedicure-effect";
+            }
+            else if (hasStrass) {
+                targetUrl = "https://tidycal.com/camillebrejnakowski/semi-permanent-couleur-unie-pedicure-strass";
+            }
         }
-        else if (hasRemplissage && hasBaby) {
-            targetUrl = "https://tidycal.com/camillebrejnakowski/semi-permanent-couleur-unie-remplissage-baby-boomer";
-        }
-        else if (hasRemplissage && hasEffects) {
-            targetUrl = "https://tidycal.com/camillebrejnakowski/semi-permanent-couleur-unie-remplissage-effect";
-        }
-        else if (hasRemplissage && hasStrass) {
-            targetUrl = "https://tidycal.com/camillebrejnakowski/semi-permanent-couleur-unie-remplissage-strass";
-        }
-        else if (hasRemplissage) {
-            targetUrl = "https://tidycal.com/camillebrejnakowski/semi-permanent-couleur-unie-remplissage";
-        }
-        else if (hasFrench) {
-            targetUrl = "https://tidycal.com/camillebrejnakowski/semi-permanent-couleur-unie-french";
-        }
-        else if (hasBaby) {
-            targetUrl = "https://tidycal.com/camillebrejnakowski/semi-permanent-couleur-unie-baby-boomer";
-        }
-        else if (hasEffects) {
-            targetUrl = "https://tidycal.com/camillebrejnakowski/semi-permanent-couleur-unie-effect";
-        }
-        else if (hasStrass) {
-            targetUrl = "https://tidycal.com/camillebrejnakowski/semi-permanent-couleur-unie-strass";
-        }
-    }
-    // ===== SEMI PERMANENT COULEUR UNIE =====
-    else if (mainTitle.includes("semi permanent couleur unie")) {
-        const hasRemplissage = addonTitles.some(t => t.includes("remplissage gel"));
-        const hasFrench = addonTitles.some(t => t.includes("french"));
-        const hasBaby = addonTitles.some(t => t.includes("baby"));
-        const hasEffects = addonTitles.some(t => t.includes("effects"));
-        const hasStrass = addonTitles.some(t => t.includes("strass"));
+        // ===== SEMI PERMANENT COULEUR UNIE (Sans pédicure) =====
+        else if (mainTitle.includes("semi permanent couleur unie")) {
+            const hasRemplissage = addonTitles.some(t => t.includes("remplissage gel"));
+            const hasFrench = addonTitles.some(t => t.includes("french"));
+            const hasBaby = addonTitles.some(t => t.includes("baby"));
+            const hasEffects = addonTitles.some(t => t.includes("effects"));
+            const hasStrass = addonTitles.some(t => t.includes("strass"));
 
-        if (hasRemplissage && hasFrench) {
-            targetUrl = "https://tidycal.com/camillebrejnakowski/semi-permanent-couleur-unie-pedicure-remplissage-french";
+            if (hasRemplissage && hasFrench) {
+                targetUrl = "https://tidycal.com/camillebrejnakowski/semi-permanent-couleur-unie-remplissage-french";
+            }
+            else if (hasRemplissage && hasBaby) {
+                targetUrl = "https://tidycal.com/camillebrejnakowski/semi-permanent-couleur-unie-remplissage-baby-boomer";
+            }
+            else if (hasRemplissage && hasEffects) {
+                targetUrl = "https://tidycal.com/camillebrejnakowski/semi-permanent-couleur-unie-remplissage-effect";
+            }
+            else if (hasRemplissage && hasStrass) {
+                targetUrl = "https://tidycal.com/camillebrejnakowski/semi-permanent-couleur-unie-remplissage-strass";
+            }
+            else if (hasRemplissage) {
+                targetUrl = "https://tidycal.com/camillebrejnakowski/semi-permanent-couleur-unie-remplissage";
+            }
+            else if (hasFrench) {
+                targetUrl = "https://tidycal.com/camillebrejnakowski/semi-permanent-couleur-unie-french";
+            }
+            else if (hasBaby) {
+                targetUrl = "https://tidycal.com/camillebrejnakowski/semi-permanent-couleur-unie-baby-boomer";
+            }
+            else if (hasEffects) {
+                targetUrl = "https://tidycal.com/camillebrejnakowski/semi-permanent-couleur-unie-effect";
+            }
+            else if (hasStrass) {
+                targetUrl = "https://tidycal.com/camillebrejnakowski/semi-permanent-couleur-unie-strass";
+            }
         }
-        else if (hasRemplissage && hasBaby) {
-            targetUrl = "https://tidycal.com/camillebrejnakowski/semi-permanent-couleur-unie-pedicure-remplissage-baby-boomer";
-        }
-        else if (hasRemplissage && hasEffects) {
-            targetUrl = "https://tidycal.com/camillebrejnakowski/semi-permanent-couleur-unie-pedicure-remplissage-effect";
-        }
-        else if (hasRemplissage && hasStrass) {
-            targetUrl = "https://tidycal.com/camillebrejnakowski/semi-permanent-couleur-unie-pedicure-remplissage-strass";
-        }
-        else if (hasRemplissage) {
-            targetUrl = "https://tidycal.com/camillebrejnakowski/semi-permanent-couleur-unie-pedicure-remplissage";
-        }
-        else if (hasFrench) {
-            targetUrl = "https://tidycal.com/camillebrejnakowski/semi-permanent-couleur-unie-pedicure-french";
-        }
-        else if (hasBaby) {
-            targetUrl = "https://tidycal.com/camillebrejnakowski/semi-permanent-couleur-unie-pedicure-baby-boomer";
-        }
-        else if (hasEffects) {
-            targetUrl = "https://tidycal.com/camillebrejnakowski/semi-permanent-couleur-unie-pedicure-effect";
-        }
-        else if (hasStrass) {
-            targetUrl = "https://tidycal.com/camillebrejnakowski/semi-permanent-couleur-unie-pedicure-strass";
-        }
-    }
-    // ===== GAINAGE =====
-    if (mainTitle.includes("gainage ongles naturels")) {
-        const hasRemplissage = addonTitles.some(t => t.includes("remplissage gel"));
-        const hasFrench = addonTitles.some(t => t.includes("french"));
-        const hasBaby = addonTitles.some(t => t.includes("baby"));
-        const hasEffects = addonTitles.some(t => t.includes("effects"));
-        const hasStrass = addonTitles.some(t => t.includes("strass"));
+        // ===== GAINAGE =====
+        else if (mainTitle.includes("gainage ongles naturels")) {
+            const hasRemplissage = addonTitles.some(t => t.includes("remplissage gel"));
+            const hasFrench = addonTitles.some(t => t.includes("french"));
+            const hasBaby = addonTitles.some(t => t.includes("baby"));
+            const hasEffects = addonTitles.some(t => t.includes("effects"));
+            const hasStrass = addonTitles.some(t => t.includes("strass"));
 
-        // Combinaison : Semi-permanent + Remplissage Gel + French
-        if (hasRemplissage && hasFrench) {
-            targetUrl = "https://tidycal.com/camillebrejnakowski/gainage-remplissage-french";
+            if (hasRemplissage && hasFrench) {
+                targetUrl = "https://tidycal.com/camillebrejnakowski/gainage-remplissage-french";
+            }
+            else if (hasRemplissage && hasBaby) {
+                targetUrl = "https://tidycal.com/camillebrejnakowski/gainage-remplissage-baby-boomer";
+            }
+            else if (hasRemplissage && hasEffects) {
+                targetUrl = "https://tidycal.com/camillebrejnakowski/gainage-remplissage-effect";
+            }
+            else if (hasRemplissage && hasStrass) {
+                targetUrl = "https://tidycal.com/camillebrejnakowski/gainage-remplissage-strass";
+            }
+            else if (hasRemplissage) {
+                targetUrl = "https://tidycal.com/camillebrejnakowski/gainage-remplissage";
+            }
+            else if (hasFrench) {
+                targetUrl = "https://tidycal.com/camillebrejnakowski/gainage-french";
+            }
+            else if (hasBaby) {
+                targetUrl = "https://tidycal.com/camillebrejnakowski/gainage-baby-boomer";
+            }
+            else if (hasEffects) {
+                targetUrl = "https://tidycal.com/camillebrejnakowski/gainage-effect";
+            }
+            else if (hasStrass) {
+                targetUrl = "https://tidycal.com/camillebrejnakowski/gainage-strass";
+            }
         }
-        // Combinaison : Semi-permanent + Remplissage Gel + Baby Boomer
-        else if (hasRemplissage && hasBaby) {
-            targetUrl = "https://tidycal.com/camillebrejnakowski/gainage-remplissage-baby-boomer";
-        }
-        else if (hasRemplissage && hasEffects) {
-            targetUrl = "https://tidycal.com/camillebrejnakowski/gainage-remplissage-effect";
-        }
-        else if (hasRemplissage && hasStrass) {
-            targetUrl = "https://tidycal.com/camillebrejnakowski/gainage-remplissage-strass";
-        }
-        // Remplissage seul
-        else if (hasRemplissage) {
-            targetUrl = "https://tidycal.com/camillebrejnakowski/gainage-remplissage";
-        }
-        // French seule
-        else if (hasFrench) {
-            targetUrl = "https://tidycal.com/camillebrejnakowski/gainage-french";
-        }
-        // Baby Boomer seul
-        else if (hasBaby) {
-            targetUrl = "https://tidycal.com/camillebrejnakowski/gainage-baby-boomer";
-        }
-        else if (hasEffects) {
-            targetUrl = "https://tidycal.com/camillebrejnakowski/gainage-effect";
-        }
-        else if (hasStrass) {
-            targetUrl = "https://tidycal.com/camillebrejnakowski/gainage-strass";
-        }
-    }
         // ===== RALLONGEMENT GEL S-M =====
-    if (mainTitle.includes("rallongement gel S-M")) {
-        const hasRemplissage = addonTitles.some(t => t.includes("remplissage gel"));
-        const hasFrench = addonTitles.some(t => t.includes("french"));
-        const hasBaby = addonTitles.some(t => t.includes("baby"));
-        const hasEffects = addonTitles.some(t => t.includes("effects"));
-        const hasStrass = addonTitles.some(t => t.includes("strass"));
+        else if (mainTitle.includes("rallongement gel s-m")) {
+            const hasRemplissage = addonTitles.some(t => t.includes("remplissage gel"));
+            const hasFrench = addonTitles.some(t => t.includes("french"));
+            const hasBaby = addonTitles.some(t => t.includes("baby"));
+            const hasEffects = addonTitles.some(t => t.includes("effects"));
+            const hasStrass = addonTitles.some(t => t.includes("strass"));
 
-        // Combinaison : Semi-permanent + Remplissage Gel + French
-        if (hasRemplissage && hasFrench) {
-            targetUrl = "https://tidycal.com/camillebrejnakowski/rallongement-gel-s-m-remplissage-french";
+            if (hasRemplissage && hasFrench) {
+                targetUrl = "https://tidycal.com/camillebrejnakowski/rallongement-gel-s-m-remplissage-french";
+            }
+            else if (hasRemplissage && hasBaby) {
+                targetUrl = "https://tidycal.com/camillebrejnakowski/rallongement-gel-s-m-remplissage-baby-boomer";
+            }
+            else if (hasRemplissage && hasEffects) {
+                targetUrl = "https://tidycal.com/camillebrejnakowski/rallongement-gel-s-m-remplissage-effects";
+            }
+            else if (hasRemplissage && hasStrass) {
+                targetUrl = "https://tidycal.com/camillebrejnakowski/rallongement-gel-s-m-remplissage-strass";
+            }
+            else if (hasRemplissage) {
+                targetUrl = "https://tidycal.com/camillebrejnakowski/rallongement-gel-s-m-remplissage";
+            }
+            else if (hasFrench) {
+                targetUrl = "https://tidycal.com/camillebrejnakowski/rallongement-gel-s-m-french";
+            }
+            else if (hasBaby) {
+                targetUrl = "https://tidycal.com/camillebrejnakowski/rallongement-gel-s-m-baby-boomer";
+            }
+            else if (hasEffects) {
+                targetUrl = "https://tidycal.com/camillebrejnakowski/rallongement-gel-s-m-effect";
+            }
+            else if (hasStrass) {
+                targetUrl = "https://tidycal.com/camillebrejnakowski/rallongement-gel-s-m-strass";
+            }
         }
-        // Combinaison : Semi-permanent + Remplissage Gel + Baby Boomer
-        else if (hasRemplissage && hasBaby) {
-            targetUrl = "https://tidycal.com/camillebrejnakowski/rallongement-gel-s-m-remplissage-baby-boomer";
+        // ===== RALLONGEMENT GEL L-XL =====
+        else if (mainTitle.includes("rallongement gel l-xl")) {
+            const hasRemplissage = addonTitles.some(t => t.includes("remplissage gel"));
+            const hasFrench = addonTitles.some(t => t.includes("french"));
+            const hasBaby = addonTitles.some(t => t.includes("baby"));
+            const hasEffects = addonTitles.some(t => t.includes("effects"));
+            const hasStrass = addonTitles.some(t => t.includes("strass"));
+
+            if (hasRemplissage && hasFrench) {
+                targetUrl = "https://tidycal.com/camillebrejnakowski/rallongement-gel-l-xl-remplissage-french";
+            }
+            else if (hasRemplissage && hasBaby) {
+                targetUrl = "https://tidycal.com/camillebrejnakowski/rallongement-gel-l-xl-remplissage-baby-boomer";
+            }
+            else if (hasRemplissage && hasEffects) {
+                targetUrl = "https://tidycal.com/camillebrejnakowski/rallongement-gel-l-xl-remplissage-effects";
+            }
+            else if (hasRemplissage && hasStrass) {
+                targetUrl = "https://tidycal.com/camillebrejnakowski/rallongement-gel-l-xl-remplissage-strass";
+            }
+            else if (hasRemplissage) {
+                targetUrl = "https://tidycal.com/camillebrejnakowski/rallongement-gel-l-xl-remplissage";
+            }
+            else if (hasFrench) {
+                targetUrl = "https://tidycal.com/camillebrejnakowski/rallongement-gel-l-xl-french";
+            }
+            else if (hasBaby) {
+                targetUrl = "https://tidycal.com/camillebrejnakowski/rallongement-gel-l-xl-baby-boomer";
+            }
+            else if (hasEffects) {
+                targetUrl = "https://tidycal.com/camillebrejnakowski/rallongement-gel-l-xl-effect";
+            }
+            else if (hasStrass) {
+                targetUrl = "https://tidycal.com/camillebrejnakowski/rallongement-gel-l-xl-strass";
+            }
         }
-        else if (hasRemplissage && hasEffects) {
-            targetUrl = "https://tidycal.com/camillebrejnakowski/rallongement-gel-s-m-remplissage-effects";
+        // ===== Remplissage cils =====
+        else if (mainTitle.includes("extension cil à cil")) {
+            const hasRemplissage1 = addonTitles.some(t => t.includes("remplissage 3 semaines"));
+            const hasRemplissage2 = addonTitles.some(t => t.includes("remplissage + 3 semaines"));
+
+            if (hasRemplissage1) {
+                targetUrl = "https://tidycal.com/camillebrejnakowski/cil-a-cil-remplissage-3-semaines";
+            }
+            else if (hasRemplissage2) {
+                targetUrl = "https://tidycal.com/camillebrejnakowski/cil-a-cil-remplissage1-3-semaines";
+            }
         }
-        else if (hasRemplissage && hasStrass) {
-            targetUrl = "https://tidycal.com/camillebrejnakowski/rallongement-gel-s-m-remplissage-strass";
+        else if (mainTitle.includes("extension mixte")) {
+            const hasRemplissage1 = addonTitles.some(t => t.includes("remplissage 3 semaines"));
+            const hasRemplissage2 = addonTitles.some(t => t.includes("remplissage + 3 semaines"));
+
+            if (hasRemplissage1) {
+                targetUrl = "https://tidycal.com/camillebrejnakowski/mixte-remplissage-3-semaines";
+            }
+            else if (hasRemplissage2) {
+                targetUrl = "https://tidycal.com/camillebrejnakowski/mixte-remplissage1-3-semaines";
+            }
         }
-        // Remplissage seul
-        else if (hasRemplissage) {
-            targetUrl = "https://tidycal.com/camillebrejnakowski/rallongement-gel-s-m-remplissage";
+        else if (mainTitle.includes("extension volume russe")) {
+            const hasRemplissage1 = addonTitles.some(t => t.includes("remplissage 3 semaines"));
+            const hasRemplissage2 = addonTitles.some(t => t.includes("remplissage + 3 semaines"));
+
+            if (hasRemplissage1) {
+                targetUrl = "https://tidycal.com/camillebrejnakowski/volume-russe-remplissage-3-semaines";
+            }
+            else if (hasRemplissage2) {
+                targetUrl = "https://tidycal.com/camillebrejnakowski/volume-russe-remplissage1-3-semaines";
+            }
         }
-        // French seule
-        else if (hasFrench) {
-            targetUrl = "https://tidycal.com/camillebrejnakowski/rallongement-gel-s-m-french";
+        // ===== Teinture sourcils =====
+        else if (mainTitle.includes("rehaussement de cils")) {
+            const hasTeinture = addonTitles.some(t => t.includes("teinture sourcils"));
+
+            if (hasTeinture) {
+                targetUrl = "https://tidycal.com/camillebrejnakowski/rehaussement-cils-teinture";
+            }
         }
-        // Baby Boomer seul
-        else if (hasBaby) {
-            targetUrl = "https://tidycal.com/camillebrejnakowski/rallongement-gel-s-m-baby-boomer";
-        }
-        else if (hasEffects) {
-            targetUrl = "https://tidycal.com/camillebrejnakowski/rallongement-gel-s-m-effect";
-        }
-        else if (hasStrass) {
-            targetUrl = "https://tidycal.com/camillebrejnakowski/rallongement-gel-s-m-strass";
-        }
+
+        bookingBtn.setAttribute('href', targetUrl);
     }
-            // ===== RALLONGEMENT GEL L-Xl =====
-    if (mainTitle.includes("rallongement gel L-XL")) {
-        const hasRemplissage = addonTitles.some(t => t.includes("remplissage gel"));
-        const hasFrench = addonTitles.some(t => t.includes("french"));
-        const hasBaby = addonTitles.some(t => t.includes("baby"));
-        const hasEffects = addonTitles.some(t => t.includes("effects"));
-        const hasStrass = addonTitles.some(t => t.includes("strass"));
-
-        // Combinaison : Semi-permanent + Remplissage Gel + French
-        if (hasRemplissage && hasFrench) {
-            targetUrl = "https://tidycal.com/camillebrejnakowski/rallongement-gel-l-xl-remplissage-french";
-        }
-        // Combinaison : Semi-permanent + Remplissage Gel + Baby Boomer
-        else if (hasRemplissage && hasBaby) {
-            targetUrl = "https://tidycal.com/camillebrejnakowski/rallongement-gel-l-xl-remplissage-baby-boomer";
-        }
-        else if (hasRemplissage && hasEffects) {
-            targetUrl = "https://tidycal.com/camillebrejnakowski/rallongement-gel-l-xl-remplissage-effects";
-        }
-        else if (hasRemplissage && hasStrass) {
-            targetUrl = "https://tidycal.com/camillebrejnakowski/rallongement-gel-l-xl-remplissage-strass";
-        }
-        // Remplissage seul
-        else if (hasRemplissage) {
-            targetUrl = "https://tidycal.com/camillebrejnakowski/rallongement-gel-l-xl-remplissage";
-        }
-        // French seule
-        else if (hasFrench) {
-            targetUrl = "https://tidycal.com/camillebrejnakowski/rallongement-gel-l-xl-french";
-        }
-        // Baby Boomer seul
-        else if (hasBaby) {
-            targetUrl = "https://tidycal.com/camillebrejnakowski/rallongement-gel-l-xl-baby-boomer";
-        }
-        else if (hasEffects) {
-            targetUrl = "https://tidycal.com/camillebrejnakowski/rallongement-gel-l-xl-effect";
-        }
-        else if (hasStrass) {
-            targetUrl = "https://tidycal.com/camillebrejnakowski/rallongement-gel-l-xl-strass";
-        }
-    }
-     // ===== Remplissage cils =====
-    if (mainTitle.includes("extension cil à cil")) {
-        const hasRemplissage1 = addonTitles.some(t => t.includes("remplissage 3 semaines"));
-        const hasRemplissage2 = addonTitles.some(t => t.includes("remplissage + 3 semaines"));
-
-        if (hasRemplissage1) {
-            targetUrl = "https://tidycal.com/camillebrejnakowski/cil-a-cil-remplissage-3-semaines";
-        }
-        else if (hasRemplissage2) {
-            targetUrl = "https://tidycal.com/camillebrejnakowski/cil-a-cil-remplissage1-3-semaines";
-        }
-    }
-    if (mainTitle.includes("extension mixte")) {
-        const hasRemplissage1 = addonTitles.some(t => t.includes("remplissage 3 semaines"));
-        const hasRemplissage2 = addonTitles.some(t => t.includes("remplissage + 3 semaines"));
-
-        if (hasRemplissage1) {
-            targetUrl = "https://tidycal.com/camillebrejnakowski/mixte-remplissage-3-semaines";
-        }
-        else if (hasRemplissage2) {
-            targetUrl = "https://tidycal.com/camillebrejnakowski/mixte-remplissage1-3-semaines";
-        }
-    }
-    if (mainTitle.includes("extension volume russe")) {
-        const hasRemplissage1 = addonTitles.some(t => t.includes("remplissage 3 semaines"));
-        const hasRemplissage2 = addonTitles.some(t => t.includes("remplissage + 3 semaines"));
-
-        if (hasRemplissage1) {
-            targetUrl = "https://tidycal.com/camillebrejnakowski/volume-russe-remplissage-3-semaines";
-        }
-        else if (hasRemplissage2) {
-            targetUrl = "https://tidycal.com/camillebrejnakowski/volume-russe-remplissage1-3-semaines";
-        }
-    }
-    // ===== teinture sourcils =====
-    if (mainTitle.includes("rehaussement de cils")) {
-        const hasTeinture = addonTitles.some(t => t.includes("teinture sourcils"));
-
-        if (hasTeinture) {
-            targetUrl = "https://tidycal.com/camillebrejnakowski/rehaussement-cils-teinture";
-        }
-    }
-    
-
-    bookingBtn.setAttribute('href', targetUrl);
-}
 
 prestationLinks.forEach(link => {
         link.addEventListener('click', function(e) {
