@@ -374,7 +374,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 targetUrl = "https://tidycal.com/camillebrejnakowski/rallongement-gel-s-m-strass";
             }
         }
-        // ===== RALLONGEMENT GEL L-XL =====
+// ===== RALLONGEMENT GEL L-XL =====
         else if (mainTitle.includes("rallongement gel l-xl")) {
             const hasRemplissage = addonTitles.some(t => t.includes("remplissage gel"));
             const hasFrench = addonTitles.some(t => t.includes("french"));
@@ -382,34 +382,39 @@ document.addEventListener('DOMContentLoaded', () => {
             const hasEffects = addonTitles.some(t => t.includes("effects"));
             const hasStrass = addonTitles.some(t => t.includes("strass"));
 
+        // Combinaison : Rallongement gel L-XL + Remplissage Gel + French
             if (hasRemplissage && hasFrench) {
                 targetUrl = "https://tidycal.com/camillebrejnakowski/rallongement-gel-l-xl-remplissage-french";
-            }
+        }
+        // Combinaison : Rallongement gel L-XL + Remplissage Gel + Baby Boomer
             else if (hasRemplissage && hasBaby) {
                 targetUrl = "https://tidycal.com/camillebrejnakowski/rallongement-gel-l-xl-remplissage-baby-boomer";
-            }
+        }
             else if (hasRemplissage && hasEffects) {
                 targetUrl = "https://tidycal.com/camillebrejnakowski/rallongement-gel-l-xl-remplissage-effects";
-            }
+        }
             else if (hasRemplissage && hasStrass) {
                 targetUrl = "https://tidycal.com/camillebrejnakowski/rallongement-gel-l-xl-remplissage-strass";
-            }
+        }
+        // Remplissage seul
             else if (hasRemplissage) {
                 targetUrl = "https://tidycal.com/camillebrejnakowski/rallongement-gel-l-xl-remplissage";
-            }
+        }
+        // French seule
             else if (hasFrench) {
                 targetUrl = "https://tidycal.com/camillebrejnakowski/rallongement-gel-l-xl-french";
-            }
+        }
+        // Baby Boomer seul
             else if (hasBaby) {
                 targetUrl = "https://tidycal.com/camillebrejnakowski/rallongement-gel-l-xl-baby-boomer";
-            }
+        }
             else if (hasEffects) {
                 targetUrl = "https://tidycal.com/camillebrejnakowski/rallongement-gel-l-xl-effect";
-            }
+        }
             else if (hasStrass) {
                 targetUrl = "https://tidycal.com/camillebrejnakowski/rallongement-gel-l-xl-strass";
-            }
         }
+    }
         // ===== Remplissage cils =====
         else if (mainTitle.includes("extension cil à cil")) {
             const hasRemplissage1 = addonTitles.some(t => t.includes("remplissage 3 semaines"));
@@ -423,8 +428,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
         else if (mainTitle.includes("extension mixte")) {
-            const hasRemplissage1 = addonTitles.some(t => t.includes("remplissage 3 semaines"));
-            const hasRemplissage2 = addonTitles.some(t => t.includes("remplissage + 3 semaines"));
+            const hasRemplissage1 = addonTitles.some(t => t.includes("3 semaines") && !t.includes("+"));
+            const hasRemplissage2 = addonTitles.some(t => t.includes("3 semaines") && t.includes("+"));
 
             if (hasRemplissage1) {
                 targetUrl = "https://tidycal.com/camillebrejnakowski/mixte-remplissage-3-semaines";
