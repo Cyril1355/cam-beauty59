@@ -434,7 +434,7 @@ function updateBookingSelection() {
         if (hasRemplissage1) {
             targetUrl = "https://tidycal.com/camillebrejnakowski/cil-a-cil-remplissage-3-semaines";
         }
-      else if (hasRemplissage2) {
+        else if (hasRemplissage2) {
             targetUrl = "https://tidycal.com/camillebrejnakowski/cil-a-cil-remplissage1-3-semaines";
         }
     }
@@ -445,7 +445,7 @@ function updateBookingSelection() {
         if (hasRemplissage1) {
             targetUrl = "https://tidycal.com/camillebrejnakowski/mixte-remplissage-3-semaines";
         }
-      else if (hasRemplissage2) {
+        else if (hasRemplissage2) {
             targetUrl = "https://tidycal.com/camillebrejnakowski/mixte-remplissage1-3-semaines";
         }
     }
