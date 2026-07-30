@@ -493,13 +493,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // RÈGLE : Si on clique sur un ongle cassé, on bloque si remplissage gel ou add-on classique actif
             if (isOngleCasse) {
-                const hasIncompatibleSelected = Array.from(document.querySelectorAll('.prestation-link.selected')).some(l => {
+                document.querySelectorAll('.prestation-link.selected').forEach(l => {
                     const t = l.querySelector('.item-title')?.textContent.toLowerCase() || '';
-                    return t.includes('remplissage gel') || t.includes('french') || t.includes('baby') || t.includes('effects') || t.includes('strass');
+                    if (t.includes('remplissage gel') || t.includes('french') || t.includes('baby') || t.includes('effects') || t.includes('strass')) {
+                        l.classList.remove('selected');
+                    }
                 });
-                if (hasIncompatibleSelected) {
-                    return; 
-                }
+                
+                document.querySelectorAll('.prestation-link').forEach(l => l.classList.remove('selected'));
+                this.classList.add('selected');
+                updateBookingSelection();
+                return;
             }
 
             // RÈGLE : Si un ongle cassé est actif, on bloque le remplissage gel et les add-ons classiques
