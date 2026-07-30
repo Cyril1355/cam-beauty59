@@ -375,18 +375,16 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 // ===== RALLONGEMENT GEL L-XL =====
-        else if (mainTitle.includes("rallongement gel l-xl")) {
+        else if (mainTitle.includes("rallongement gel l") && mainTitle.includes("xl")) {
             const hasRemplissage = addonTitles.some(t => t.includes("remplissage gel"));
             const hasFrench = addonTitles.some(t => t.includes("french"));
             const hasBaby = addonTitles.some(t => t.includes("baby"));
             const hasEffects = addonTitles.some(t => t.includes("effects"));
             const hasStrass = addonTitles.some(t => t.includes("strass"));
 
-        // Combinaison : Rallongement gel L-XL + Remplissage Gel + French
             if (hasRemplissage && hasFrench) {
                 targetUrl = "https://tidycal.com/camillebrejnakowski/rallongement-gel-l-xl-remplissage-french";
         }
-        // Combinaison : Rallongement gel L-XL + Remplissage Gel + Baby Boomer
             else if (hasRemplissage && hasBaby) {
                 targetUrl = "https://tidycal.com/camillebrejnakowski/rallongement-gel-l-xl-remplissage-baby-boomer";
         }
@@ -396,15 +394,12 @@ document.addEventListener('DOMContentLoaded', () => {
             else if (hasRemplissage && hasStrass) {
                 targetUrl = "https://tidycal.com/camillebrejnakowski/rallongement-gel-l-xl-remplissage-strass";
         }
-        // Remplissage seul
             else if (hasRemplissage) {
                 targetUrl = "https://tidycal.com/camillebrejnakowski/rallongement-gel-l-xl-remplissage";
         }
-        // French seule
             else if (hasFrench) {
                 targetUrl = "https://tidycal.com/camillebrejnakowski/rallongement-gel-l-xl-french";
         }
-        // Baby Boomer seul
             else if (hasBaby) {
                 targetUrl = "https://tidycal.com/camillebrejnakowski/rallongement-gel-l-xl-baby-boomer";
         }
