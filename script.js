@@ -615,12 +615,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     this.classList.add('selected');
                 } else {
-                    // Si on sélectionne une nouvelle prestation principale, on décoche les anciennes principales ET les remplissages/teintures
+                    // 1. On décoche les autres prestations principales
                     document.querySelectorAll('.prestation-link:not(.addon)').forEach(l => l.classList.remove('selected'));
                     
+                    // 2. On désélectionne TOUS les add-ons (remplissages, designs, teintures) pour repartir sur une sélection propre
                     document.querySelectorAll('.prestation-link.selected').forEach(l => {
                         const t = l.querySelector('.item-title')?.textContent.toLowerCase() || '';
-                        if (t.includes('remplissage') || t.includes('teinture sourcils')) {
+                        if (t.includes('remplissage') || t.includes('teinture sourcils') || t.includes('french') || t.includes('baby') || t.includes('effects') || t.includes('strass')) {
                             l.classList.remove('selected');
                         }
                     });
