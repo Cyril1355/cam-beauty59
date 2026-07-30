@@ -415,46 +415,48 @@ document.addEventListener('DOMContentLoaded', () => {
                 targetUrl = "https://tidycal.com/camillebrejnakowski/rallongement-gel-l-xl-strass";
         }
     }
-        // ===== Remplissage cils =====
+// ===== EXTENSION CIL À CIL =====
         else if (mainTitle.includes("extension cil à cil")) {
-            const hasRemplissage1 = addonTitles.some(t => t.includes("remplissage 3 semaines"));
-            const hasRemplissage2 = addonTitles.some(t => t.includes("remplissage + 3 semaines"));
+            const hasRemplissage1 = addonTitles.some(t => t.includes("3 semaines") && !t.includes("+"));
+            const hasRemplissage2 = addonTitles.some(t => t.includes("3 semaines") && t.includes("+"));
 
             if (hasRemplissage1) {
                 targetUrl = "https://tidycal.com/camillebrejnakowski/cil-a-cil-remplissage-3-semaines";
-            }
+        }
             else if (hasRemplissage2) {
                 targetUrl = "https://tidycal.com/camillebrejnakowski/cil-a-cil-remplissage1-3-semaines";
-            }
         }
+    }
+    // ===== EXTENSION MIXTE =====
         else if (mainTitle.includes("extension mixte")) {
             const hasRemplissage1 = addonTitles.some(t => t.includes("3 semaines") && !t.includes("+"));
             const hasRemplissage2 = addonTitles.some(t => t.includes("3 semaines") && t.includes("+"));
 
             if (hasRemplissage1) {
                 targetUrl = "https://tidycal.com/camillebrejnakowski/mixte-remplissage-3-semaines";
-            }
+        }
             else if (hasRemplissage2) {
                 targetUrl = "https://tidycal.com/camillebrejnakowski/mixte-remplissage1-3-semaines";
-            }
         }
-        else if (mainTitle.includes("extension volume russe")) {
-            const hasRemplissage1 = addonTitles.some(t => t.includes("remplissage 3 semaines"));
-            const hasRemplissage2 = addonTitles.some(t => t.includes("remplissage + 3 semaines"));
+    }
+    // ===== EXTENSION VOLUME RUSSE =====
+        else if (mainTitle.includes("volume russe")) {
+            const hasRemplissage1 = addonTitles.some(t => t.includes("3 semaines") && !t.includes("+"));
+            const hasRemplissage2 = addonTitles.some(t => t.includes("3 semaines") && t.includes("+"));
 
             if (hasRemplissage1) {
                 targetUrl = "https://tidycal.com/camillebrejnakowski/volume-russe-remplissage-3-semaines";
-            }
+        }
             else if (hasRemplissage2) {
                 targetUrl = "https://tidycal.com/camillebrejnakowski/volume-russe-remplissage1-3-semaines";
-            }
         }
+    }
         // ===== Teinture sourcils =====
-        else if (mainTitle.includes("rehaussement de cils")) {
-            const hasTeinture = addonTitles.some(t => t.includes("teinture sourcils"));
+            else if (mainTitle.includes("rehaussement de cils")) {
+                const hasTeinture = addonTitles.some(t => t.includes("teinture sourcils"));
 
-            if (hasTeinture) {
-                targetUrl = "https://tidycal.com/camillebrejnakowski/rehaussement-cils-teinture";
+                if (hasTeinture) {
+                    targetUrl = "https://tidycal.com/camillebrejnakowski/rehaussement-cils-teinture";
             }
         }
 
