@@ -614,9 +614,18 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (!selectedMain) return;
 
                     this.classList.add('selected');
-                } else {
+                }  else {
+                    // Désélectionne toutes les prestations principales
                     document.querySelectorAll('.prestation-link:not(.addon)').forEach(l => l.classList.remove('selected'));
                     
+                    // Désélectionne aussi les options de remplissage de cils et la teinture si on change de prestation principale
+                    document.querySelectorAll('.prestation-link.selected').forEach(l => {
+                        const t = l.querySelector('.item-title')?.textContent.toLowerCase() || '';
+                        if (t.includes('remplissage 3 semaines') || t.includes('remplissage  3 semaines') || t.includes('teinture sourcils')) {
+                            l.classList.remove('selected');
+                        }
+                    });
+
                     if (!isRehaussementCils) {
                         document.querySelectorAll('.prestation-link.selected').forEach(l => {
                             if (l.querySelector('.item-title')?.textContent.toLowerCase().includes('teinture sourcils')) {
