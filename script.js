@@ -456,7 +456,7 @@ function updateBookingSelection() {
         if (hasRemplissage1) {
             targetUrl = "https://tidycal.com/camillebrejnakowski/volume-russe-remplissage-3-semaines";
         }
-      else if (hasRemplissage2) {
+        else if (hasRemplissage2) {
             targetUrl = "https://tidycal.com/camillebrejnakowski/volume-russe-remplissage1-3-semaines";
         }
     }
