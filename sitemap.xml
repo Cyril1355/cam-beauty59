@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/css" href="https://www.xml-sitemaps.com/css/sitemap.css"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <url>
+       <loc>https://institut-cambeauty-hornaing.fr/</loc>
+       <lastmod>2026-07-31T16:22:09+00:00</lastmod>
+       <changefreq>daily</changefreq>
+       <priority>1.0000</priority>
+  </url>
+  <url>
+       <loc>https://institut-cambeauty-hornaing.fr/tarifs.html</loc>
+       <lastmod>2026-07-31T16:22:09+00:00</lastmod>
+       <changefreq>daily</changefreq>
+       <priority>0.8000</priority>
+  </url>
+  <url>
+       <loc>https://institut-cambeauty-hornaing.fr/ongles.html</loc>
+       <lastmod>2026-07-31T16:22:09+00:00</lastmod>
+       <changefreq>daily</changefreq>
+       <priority>0.6400</priority>
+  </url>
+  <url>
+       <loc>https://institut-cambeauty-hornaing.fr/cils.html</loc>
+       <lastmod>2026-07-31T16:22:09+00:00</lastmod>
+       <changefreq>daily</changefreq>
+       <priority>0.6400</priority>
+  </url>
+  <url>
+       <loc>https://institut-cambeauty-hornaing.fr/soins-epilations.html</loc>
+       <lastmod>2026-07-31T16:22:09+00:00</lastmod>
+       <changefreq>daily</changefreq>
+       <priority>0.6400</priority>
+  </url>
+  <url>
+       <loc>https://institut-cambeauty-hornaing.fr/massage.html</loc>
+       <lastmod>2026-07-31T16:22:09+00:00</lastmod>
+       <changefreq>daily</changefreq>
+       <priority>0.6400</priority>
+  </url>
+  <url>
+       <loc>https://institut-cambeauty-hornaing.fr/mise-en-beaute.html</loc>
+       <lastmod>2026-07-31T16:22:09+00:00</lastmod>
+       <changefreq>daily</changefreq>
+       <priority>0.6400</priority>
+  </url>
+  <url>
+       <loc>https://institut-cambeauty-hornaing.fr/animations.html</loc>
+       <lastmod>2026-07-31T16:22:09+00:00</lastmod>
+       <changefreq>daily</changefreq>
+       <priority>0.6400</priority>
+  </url>
+  <url>
+       <loc>https://institut-cambeauty-hornaing.fr/spa-party.html</loc>
+       <lastmod>2026-07-31T16:22:09+00:00</lastmod>
+       <changefreq>daily</changefreq>
+       <priority>0.6400</priority>
+  </url>
+</urlset>
