@@ -239,31 +239,31 @@ document.addEventListener('DOMContentLoaded', () => {
             const hasStrass = addonTitles.some(t => t.includes("strass"));
 
             if (hasRemplissage && hasFrench) {
-                targetUrl = "https://tidycal.com/camillebrejnakowski/semi-permanent-couleur-unie-pedicure-remplissage-french";
+                targetUrl = "https://booksy.com/fr-fr/79159_cam-beauty-x-eternel-esthetique_instituts-de-beaute_110907_helesmes#ba_s=sh_1";
             }
             else if (hasRemplissage && hasBaby) {
-                targetUrl = "https://tidycal.com/camillebrejnakowski/semi-permanent-couleur-unie-pedicure-remplissage-baby-boomer";
+                targetUrl = "https://booksy.com/fr-fr/79159_cam-beauty-x-eternel-esthetique_instituts-de-beaute_110907_helesmes#ba_s=sh_1";
             }
             else if (hasRemplissage && hasEffects) {
-                targetUrl = "https://tidycal.com/camillebrejnakowski/semi-permanent-couleur-unie-pedicure-remplissage-effect";
+                targetUrl = "https://booksy.com/fr-fr/79159_cam-beauty-x-eternel-esthetique_instituts-de-beaute_110907_helesmes#ba_s=sh_1";
             }
             else if (hasRemplissage && hasStrass) {
-                targetUrl = "https://tidycal.com/camillebrejnakowski/semi-permanent-couleur-unie-pedicure-remplissage-strass";
+                targetUrl = "https://booksy.com/fr-fr/79159_cam-beauty-x-eternel-esthetique_instituts-de-beaute_110907_helesmes#ba_s=sh_1";
             }
             else if (hasRemplissage) {
-                targetUrl = "https://tidycal.com/camillebrejnakowski/semi-permanent-couleur-unie-pedicure-remplissage";
+                targetUrl = "https://booksy.com/fr-fr/79159_cam-beauty-x-eternel-esthetique_instituts-de-beaute_110907_helesmes#ba_s=sh_1";
             }
             else if (hasFrench) {
-                targetUrl = "https://tidycal.com/camillebrejnakowski/semi-permanent-couleur-unie-pedicure-french";
+                targetUrl = "https://booksy.com/fr-fr/79159_cam-beauty-x-eternel-esthetique_instituts-de-beaute_110907_helesmes#ba_s=sh_1";
             }
             else if (hasBaby) {
-                targetUrl = "https://tidycal.com/camillebrejnakowski/semi-permanent-couleur-unie-pedicure-baby-boomer";
+                targetUrl = "https://booksy.com/fr-fr/79159_cam-beauty-x-eternel-esthetique_instituts-de-beaute_110907_helesmes#ba_s=sh_1";
             }
             else if (hasEffects) {
-                targetUrl = "https://tidycal.com/camillebrejnakowski/semi-permanent-couleur-unie-pedicure-effect";
+                targetUrl = "https://booksy.com/fr-fr/79159_cam-beauty-x-eternel-esthetique_instituts-de-beaute_110907_helesmes#ba_s=sh_1";
             }
             else if (hasStrass) {
-                targetUrl = "https://tidycal.com/camillebrejnakowski/semi-permanent-couleur-unie-pedicure-strass";
+                targetUrl = "https://booksy.com/fr-fr/79159_cam-beauty-x-eternel-esthetique_instituts-de-beaute_110907_helesmes#ba_s=sh_1";
             }
         }
         // ===== SEMI PERMANENT COULEUR UNIE (Sans pédicure) =====
@@ -275,31 +275,31 @@ document.addEventListener('DOMContentLoaded', () => {
             const hasStrass = addonTitles.some(t => t.includes("strass"));
 
             if (hasRemplissage && hasFrench) {
-                targetUrl = "https://tidycal.com/camillebrejnakowski/semi-permanent-couleur-unie-remplissage-french";
+                targetUrl = "https://booksy.com/fr-fr/79159_cam-beauty-x-eternel-esthetique_instituts-de-beaute_110907_helesmes#ba_s=sh_1";
             }
             else if (hasRemplissage && hasBaby) {
-                targetUrl = "https://tidycal.com/camillebrejnakowski/semi-permanent-couleur-unie-remplissage-baby-boomer";
+                targetUrl = "https://booksy.com/fr-fr/79159_cam-beauty-x-eternel-esthetique_instituts-de-beaute_110907_helesmes#ba_s=sh_1";
             }
             else if (hasRemplissage && hasEffects) {
-                targetUrl = "https://tidycal.com/camillebrejnakowski/semi-permanent-couleur-unie-remplissage-effect";
+                targetUrl = "https://booksy.com/fr-fr/79159_cam-beauty-x-eternel-esthetique_instituts-de-beaute_110907_helesmes#ba_s=sh_1";
             }
             else if (hasRemplissage && hasStrass) {
-                targetUrl = "https://tidycal.com/camillebrejnakowski/semi-permanent-couleur-unie-remplissage-strass";
+                targetUrl = "https://booksy.com/fr-fr/79159_cam-beauty-x-eternel-esthetique_instituts-de-beaute_110907_helesmes#ba_s=sh_1";
             }
             else if (hasRemplissage) {
-                targetUrl = "https://tidycal.com/camillebrejnakowski/semi-permanent-couleur-unie-remplissage";
+                targetUrl = "https://booksy.com/fr-fr/79159_cam-beauty-x-eternel-esthetique_instituts-de-beaute_110907_helesmes#ba_s=sh_1";
             }
             else if (hasFrench) {
-                targetUrl = "https://tidycal.com/camillebrejnakowski/semi-permanent-couleur-unie-french";
+                targetUrl = "https://booksy.com/fr-fr/79159_cam-beauty-x-eternel-esthetique_instituts-de-beaute_110907_helesmes#ba_s=sh_1";
             }
             else if (hasBaby) {
-                targetUrl = "https://tidycal.com/camillebrejnakowski/semi-permanent-couleur-unie-baby-boomer";
+                targetUrl = "https://booksy.com/fr-fr/79159_cam-beauty-x-eternel-esthetique_instituts-de-beaute_110907_helesmes#ba_s=sh_1";
             }
             else if (hasEffects) {
-                targetUrl = "https://tidycal.com/camillebrejnakowski/semi-permanent-couleur-unie-effect";
+                targetUrl = "https://booksy.com/fr-fr/79159_cam-beauty-x-eternel-esthetique_instituts-de-beaute_110907_helesmes#ba_s=sh_1";
             }
             else if (hasStrass) {
-                targetUrl = "https://tidycal.com/camillebrejnakowski/semi-permanent-couleur-unie-strass";
+                targetUrl = "https://booksy.com/fr-fr/79159_cam-beauty-x-eternel-esthetique_instituts-de-beaute_110907_helesmes#ba_s=sh_1";
             }
         }
         // ===== GAINAGE =====
@@ -311,31 +311,31 @@ document.addEventListener('DOMContentLoaded', () => {
             const hasStrass = addonTitles.some(t => t.includes("strass"));
 
             if (hasRemplissage && hasFrench) {
-                targetUrl = "https://tidycal.com/camillebrejnakowski/gainage-remplissage-french";
+                targetUrl = "https://booksy.com/fr-fr/79159_cam-beauty-x-eternel-esthetique_instituts-de-beaute_110907_helesmes#ba_s=sh_1";
             }
             else if (hasRemplissage && hasBaby) {
-                targetUrl = "https://tidycal.com/camillebrejnakowski/gainage-remplissage-baby-boomer";
+                targetUrl = "https://booksy.com/fr-fr/79159_cam-beauty-x-eternel-esthetique_instituts-de-beaute_110907_helesmes#ba_s=sh_1";
             }
             else if (hasRemplissage && hasEffects) {
-                targetUrl = "https://tidycal.com/camillebrejnakowski/gainage-remplissage-effect";
+                targetUrl = "https://booksy.com/fr-fr/79159_cam-beauty-x-eternel-esthetique_instituts-de-beaute_110907_helesmes#ba_s=sh_1";
             }
             else if (hasRemplissage && hasStrass) {
-                targetUrl = "https://tidycal.com/camillebrejnakowski/gainage-remplissage-strass";
+                targetUrl = "https://booksy.com/fr-fr/79159_cam-beauty-x-eternel-esthetique_instituts-de-beaute_110907_helesmes#ba_s=sh_1";
             }
             else if (hasRemplissage) {
-                targetUrl = "https://tidycal.com/camillebrejnakowski/gainage-remplissage";
+                targetUrl = "https://booksy.com/fr-fr/79159_cam-beauty-x-eternel-esthetique_instituts-de-beaute_110907_helesmes#ba_s=sh_1";
             }
             else if (hasFrench) {
-                targetUrl = "https://tidycal.com/camillebrejnakowski/gainage-french";
+                targetUrl = "https://booksy.com/fr-fr/79159_cam-beauty-x-eternel-esthetique_instituts-de-beaute_110907_helesmes#ba_s=sh_1";
             }
             else if (hasBaby) {
-                targetUrl = "https://tidycal.com/camillebrejnakowski/gainage-baby-boomer";
+                targetUrl = "https://booksy.com/fr-fr/79159_cam-beauty-x-eternel-esthetique_instituts-de-beaute_110907_helesmes#ba_s=sh_1";
             }
             else if (hasEffects) {
-                targetUrl = "https://tidycal.com/camillebrejnakowski/gainage-effect";
+                targetUrl = "https://booksy.com/fr-fr/79159_cam-beauty-x-eternel-esthetique_instituts-de-beaute_110907_helesmes#ba_s=sh_1";
             }
             else if (hasStrass) {
-                targetUrl = "https://tidycal.com/camillebrejnakowski/gainage-strass";
+                targetUrl = "https://booksy.com/fr-fr/79159_cam-beauty-x-eternel-esthetique_instituts-de-beaute_110907_helesmes#ba_s=sh_1";
             }
         }
         // ===== RALLONGEMENT GEL S-M =====
@@ -347,31 +347,31 @@ document.addEventListener('DOMContentLoaded', () => {
             const hasStrass = addonTitles.some(t => t.includes("strass"));
 
             if (hasRemplissage && hasFrench) {
-                targetUrl = "https://tidycal.com/camillebrejnakowski/rallongement-gel-s-m-remplissage-french";
+                targetUrl = "https://booksy.com/fr-fr/79159_cam-beauty-x-eternel-esthetique_instituts-de-beaute_110907_helesmes#ba_s=sh_1";
             }
             else if (hasRemplissage && hasBaby) {
-                targetUrl = "https://tidycal.com/camillebrejnakowski/rallongement-gel-s-m-remplissage-baby-boomer";
+                targetUrl = "https://booksy.com/fr-fr/79159_cam-beauty-x-eternel-esthetique_instituts-de-beaute_110907_helesmes#ba_s=sh_1";
             }
             else if (hasRemplissage && hasEffects) {
-                targetUrl = "https://tidycal.com/camillebrejnakowski/rallongement-gel-s-m-remplissage-effects";
+                targetUrl = "https://booksy.com/fr-fr/79159_cam-beauty-x-eternel-esthetique_instituts-de-beaute_110907_helesmes#ba_s=sh_1";
             }
             else if (hasRemplissage && hasStrass) {
-                targetUrl = "https://tidycal.com/camillebrejnakowski/rallongement-gel-s-m-remplissage-strass";
+                targetUrl = "https://booksy.com/fr-fr/79159_cam-beauty-x-eternel-esthetique_instituts-de-beaute_110907_helesmes#ba_s=sh_1";
             }
             else if (hasRemplissage) {
-                targetUrl = "https://tidycal.com/camillebrejnakowski/rallongement-gel-s-m-remplissage";
+                targetUrl = "https://booksy.com/fr-fr/79159_cam-beauty-x-eternel-esthetique_instituts-de-beaute_110907_helesmes#ba_s=sh_1";
             }
             else if (hasFrench) {
-                targetUrl = "https://tidycal.com/camillebrejnakowski/rallongement-gel-s-m-french";
+                targetUrl = "https://booksy.com/fr-fr/79159_cam-beauty-x-eternel-esthetique_instituts-de-beaute_110907_helesmes#ba_s=sh_1";
             }
             else if (hasBaby) {
-                targetUrl = "https://tidycal.com/camillebrejnakowski/rallongement-gel-s-m-baby-boomer";
+                targetUrl = "https://booksy.com/fr-fr/79159_cam-beauty-x-eternel-esthetique_instituts-de-beaute_110907_helesmes#ba_s=sh_1";
             }
             else if (hasEffects) {
-                targetUrl = "https://tidycal.com/camillebrejnakowski/rallongement-gel-s-m-effect";
+                targetUrl = "https://booksy.com/fr-fr/79159_cam-beauty-x-eternel-esthetique_instituts-de-beaute_110907_helesmes#ba_s=sh_1";
             }
             else if (hasStrass) {
-                targetUrl = "https://tidycal.com/camillebrejnakowski/rallongement-gel-s-m-strass";
+                targetUrl = "https://booksy.com/fr-fr/79159_cam-beauty-x-eternel-esthetique_instituts-de-beaute_110907_helesmes#ba_s=sh_1";
             }
         }
 // ===== RALLONGEMENT GEL L-XL =====
@@ -383,31 +383,31 @@ document.addEventListener('DOMContentLoaded', () => {
             const hasStrass = addonTitles.some(t => t.includes("strass"));
 
             if (hasRemplissage && hasFrench) {
-                targetUrl = "https://tidycal.com/camillebrejnakowski/rallongement-gel-l-xl-remplissage-french";
+                targetUrl = "https://booksy.com/fr-fr/79159_cam-beauty-x-eternel-esthetique_instituts-de-beaute_110907_helesmes#ba_s=sh_1";
         }
             else if (hasRemplissage && hasBaby) {
-                targetUrl = "https://tidycal.com/camillebrejnakowski/rallongement-gel-l-xl-remplissage-baby-boomer";
+                targetUrl = "https://booksy.com/fr-fr/79159_cam-beauty-x-eternel-esthetique_instituts-de-beaute_110907_helesmes#ba_s=sh_1";
         }
             else if (hasRemplissage && hasEffects) {
-                targetUrl = "https://tidycal.com/camillebrejnakowski/rallongement-gel-l-xl-remplissage-effects";
+                targetUrl = "https://booksy.com/fr-fr/79159_cam-beauty-x-eternel-esthetique_instituts-de-beaute_110907_helesmes#ba_s=sh_1";
         }
             else if (hasRemplissage && hasStrass) {
-                targetUrl = "https://tidycal.com/camillebrejnakowski/rallongement-gel-l-xl-remplissage-strass";
+                targetUrl = "https://booksy.com/fr-fr/79159_cam-beauty-x-eternel-esthetique_instituts-de-beaute_110907_helesmes#ba_s=sh_1";
         }
             else if (hasRemplissage) {
-                targetUrl = "https://tidycal.com/camillebrejnakowski/rallongement-gel-l-xl-remplissage";
+                targetUrl = "https://booksy.com/fr-fr/79159_cam-beauty-x-eternel-esthetique_instituts-de-beaute_110907_helesmes#ba_s=sh_1";
         }
             else if (hasFrench) {
-                targetUrl = "https://tidycal.com/camillebrejnakowski/rallongement-gel-l-xl-french";
+                targetUrl = "https://booksy.com/fr-fr/79159_cam-beauty-x-eternel-esthetique_instituts-de-beaute_110907_helesmes#ba_s=sh_1";
         }
             else if (hasBaby) {
-                targetUrl = "https://tidycal.com/camillebrejnakowski/rallongement-gel-l-xl-baby-boomer";
+                targetUrl = "https://booksy.com/fr-fr/79159_cam-beauty-x-eternel-esthetique_instituts-de-beaute_110907_helesmes#ba_s=sh_1";
         }
             else if (hasEffects) {
-                targetUrl = "https://tidycal.com/camillebrejnakowski/rallongement-gel-l-xl-effect";
+                targetUrl = "https://booksy.com/fr-fr/79159_cam-beauty-x-eternel-esthetique_instituts-de-beaute_110907_helesmes#ba_s=sh_1";
         }
             else if (hasStrass) {
-                targetUrl = "https://tidycal.com/camillebrejnakowski/rallongement-gel-l-xl-strass";
+                targetUrl = "https://booksy.com/fr-fr/79159_cam-beauty-x-eternel-esthetique_instituts-de-beaute_110907_helesmes#ba_s=sh_1";
         }
     }
 // ===== EXTENSION CIL À CIL =====
@@ -416,10 +416,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const hasRemplissage2 = addonTitles.some(t => t.includes("3 semaines") && t.includes("+"));
 
             if (hasRemplissage1) {
-                targetUrl = "https://tidycal.com/camillebrejnakowski/cil-a-cil-remplissage-3-semaines";
+                targetUrl = "https://booksy.com/fr-fr/79159_cam-beauty-x-eternel-esthetique_instituts-de-beaute_110907_helesmes#ba_s=sh_1";
         }
             else if (hasRemplissage2) {
-                targetUrl = "https://tidycal.com/camillebrejnakowski/cil-a-cil-remplissage1-3-semaines";
+                targetUrl = "https://booksy.com/fr-fr/79159_cam-beauty-x-eternel-esthetique_instituts-de-beaute_110907_helesmes#ba_s=sh_1";
         }
     }
     // ===== EXTENSION MIXTE =====
@@ -428,10 +428,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const hasRemplissage2 = addonTitles.some(t => t.includes("3 semaines") && t.includes("+"));
 
             if (hasRemplissage1) {
-                targetUrl = "https://tidycal.com/camillebrejnakowski/mixte-remplissage-3-semaines";
+                targetUrl = "https://booksy.com/fr-fr/79159_cam-beauty-x-eternel-esthetique_instituts-de-beaute_110907_helesmes#ba_s=sh_1";
         }
             else if (hasRemplissage2) {
-                targetUrl = "https://tidycal.com/camillebrejnakowski/mixte-remplissage1-3-semaines";
+                targetUrl = "https://booksy.com/fr-fr/79159_cam-beauty-x-eternel-esthetique_instituts-de-beaute_110907_helesmes#ba_s=sh_1";
         }
     }
     // ===== EXTENSION VOLUME RUSSE =====
@@ -440,10 +440,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const hasRemplissage2 = addonTitles.some(t => t.includes("3 semaines") && t.includes("+"));
 
             if (hasRemplissage1) {
-                targetUrl = "https://tidycal.com/camillebrejnakowski/volume-russe-remplissage-3-semaines";
+                targetUrl = "https://booksy.com/fr-fr/79159_cam-beauty-x-eternel-esthetique_instituts-de-beaute_110907_helesmes#ba_s=sh_1";
         }
             else if (hasRemplissage2) {
-                targetUrl = "https://tidycal.com/camillebrejnakowski/volume-russe-remplissage1-3-semaines";
+                targetUrl = "https://booksy.com/fr-fr/79159_cam-beauty-x-eternel-esthetique_instituts-de-beaute_110907_helesmes#ba_s=sh_1";
         }
     }
         // ===== Teinture sourcils =====
@@ -451,7 +451,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const hasTeinture = addonTitles.some(t => t.includes("teinture sourcils"));
 
                 if (hasTeinture) {
-                    targetUrl = "https://tidycal.com/camillebrejnakowski/rehaussement-cils-teinture";
+                    targetUrl = "https://booksy.com/fr-fr/79159_cam-beauty-x-eternel-esthetique_instituts-de-beaute_110907_helesmes#ba_s=sh_1";
             }
         }
 
